@@ -4,6 +4,8 @@ import {
   checkActorReferences,
   checkAuthorization,
   checkContextLedger,
+  checkContinuityBundle,
+  checkHandoffReferences,
   checkTaskAuthorization,
   checkTaskCompletion
 } from '../packages/kernel/src/index.mjs';
@@ -104,4 +106,74 @@ test('schema validator rejects additional properties', () => {
   assert.deepEqual(validateSchema(schema, { name: 'MingOS', extra: true }), [
     '$.extra: additional property is not allowed'
   ]);
+});
+
+test('handoff dependency references must resolve', () => {
+  const handoff = {
+    handoff_id: 'H-1',
+    actor_refs: ['agent-missing'],
+    authorization_refs: ['AUTH-missing'],
+    task_refs: ['TASK-missing'],
+    evidence_refs: ['E-missing']
+  };
+  assert.deepEqual(checkHandoffReferences(handoff, []), [
+    'H-1: actor_ref agent-missing not found',
+    'H-1: authorization_ref AUTH-missing not found',
+    'H-1: task_ref TASK-missing not found',
+    'H-1: evidence_ref E-missing not found'
+  ]);
+});
+
+test('continuity bundle requires actor and authorization coverage', () => {
+  const bundle = {
+    bundle_id: 'B-1',
+    space_id: 'space-1',
+    source_revision: 'abcdef1',
+    next_actor_id: 'agent-1',
+    artifacts: [
+      { path: 'space.json', artifact_kind: 'space', artifact_ids: ['space-1'] },
+      { path: 'intent.json', artifact_kind: 'intent-contract', artifact_ids: ['INTENT-1'] },
+      { path: 'context.json', artifact_kind: 'context-ledger', artifact_ids: ['CTX-1'] },
+      { path: 'task.json', artifact_kind: 'task', artifact_ids: ['TASK-1'] },
+      { path: 'evidence.json', artifact_kind: 'evidence', artifact_ids: ['E-1'] },
+      { path: 'handoff.json', artifact_kind: 'handoff', artifact_ids: ['H-1'] }
+    ]
+  };
+  const errors = checkContinuityBundle(bundle, []);
+  assert.ok(errors.includes('B-1: missing required artifact kind actor'));
+  assert.ok(errors.includes('B-1: missing required artifact kind authorization'));
+  assert.ok(errors.includes('B-1: next_actor_id agent-1 not found'));
+  assert.ok(errors.includes('B-1: next actor lacks bundled active authorization'));
+});
+
+test('continuity bundle accepts complete authorized handoff', () => {
+  const paths = ['space.json', 'actor.json', 'authorization.json', 'intent.json', 'context.json', 'task.json', 'evidence.json', 'handoff.json'];
+  const documents = [
+    { kind: 'space', space_id: 'space-1' },
+    { kind: 'actor', actor_id: 'agent-1', active: true },
+    { kind: 'authorization', authorization_id: 'AUTH-1', space_id: 'space-1', granted_to_actor_id: 'agent-1', status: 'active' },
+    { kind: 'intent-contract', intent_id: 'INTENT-1' },
+    { kind: 'context-ledger', records: [{ record_id: 'CTX-1' }] },
+    { kind: 'task', task_id: 'TASK-1' },
+    { kind: 'evidence', evidence_id: 'E-1' },
+    { kind: 'handoff', handoff_id: 'H-1', source_revision: 'abcdef1', required_reads: paths }
+  ];
+  documents.forEach((document, index) => Object.defineProperty(document, '__file', { value: paths[index], enumerable: false }));
+  const bundle = {
+    bundle_id: 'B-1',
+    space_id: 'space-1',
+    source_revision: 'abcdef1',
+    next_actor_id: 'agent-1',
+    artifacts: [
+      { path: 'space.json', artifact_kind: 'space', artifact_ids: ['space-1'] },
+      { path: 'actor.json', artifact_kind: 'actor', artifact_ids: ['agent-1'] },
+      { path: 'authorization.json', artifact_kind: 'authorization', artifact_ids: ['AUTH-1'] },
+      { path: 'intent.json', artifact_kind: 'intent-contract', artifact_ids: ['INTENT-1'] },
+      { path: 'context.json', artifact_kind: 'context-ledger', artifact_ids: ['CTX-1'] },
+      { path: 'task.json', artifact_kind: 'task', artifact_ids: ['TASK-1'] },
+      { path: 'evidence.json', artifact_kind: 'evidence', artifact_ids: ['E-1'] },
+      { path: 'handoff.json', artifact_kind: 'handoff', artifact_ids: ['H-1'] }
+    ]
+  };
+  assert.deepEqual(checkContinuityBundle(bundle, documents), []);
 });
