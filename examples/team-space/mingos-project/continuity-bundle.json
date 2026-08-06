@@ -3,7 +3,7 @@
   "kind": "continuity-bundle",
   "bundle_id": "BUNDLE-0001",
   "space_id": "mingos-project",
-  "source_revision": "agent/family-pilot-closure",
+  "source_revision": "5986298c9dce7dbb037787c84e8313e288b838b0",
   "next_actor_id": "agent-continuity",
   "artifacts": [
     {
