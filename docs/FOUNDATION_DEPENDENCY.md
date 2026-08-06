@@ -55,7 +55,7 @@ These are constraints on system design and evidence handling. They do not prescr
 
 | Source | Exact observed head | Status | MingOS handling |
 |---|---|---|---|
-| Foundation PR #15 — canonical repository identity | `c435aa100ba1012ff08be450229d28699e75ea81` | Draft; not merged | Use only to explain the accepted coordination decision and historical provenance. Do not say the change is already in Foundation main. |
+| Foundation PR #15 — canonical repository identity | `e6d7c0ec092bb095870ef68af55f456ed3252047` | Draft; not merged | Use only to explain the accepted coordination decision and historical provenance. Do not say the change is already in Foundation main. |
 | Foundation PR #12 — Kernel conformance and test specification collection | `187c11b68b908e3e0baa0fd5a43371351aa2e84c` | Open proposal; Kernel documents remain Draft | Do not claim Kernel conformance, certification, assessment, badge or executed tests. |
 | Family-Space product evidence | Current product repository and its own status source | External evidence | Use for bounded validation or a new proposal; never silently promote product fields into the Kernel or Foundation. |
 
