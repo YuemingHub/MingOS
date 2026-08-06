@@ -6,14 +6,16 @@
   "from_actor_id": "agent-continuity",
   "to_actor_id": null,
   "current_intent_id": "INTENT-0001",
-  "source_revision": "db5189df5110635dbabc0cf8e5e22b5ea340432d",
+  "source_revision": "agent/m1-bundle-cli",
   "state_snapshot_at": "2026-08-06T12:48:00Z",
   "actor_refs": [
     "human-yueming",
-    "agent-continuity"
+    "agent-continuity",
+    "agent-bootstrap"
   ],
   "authorization_refs": [
-    "AUTH-0002"
+    "AUTH-0002",
+    "AUTH-0001"
   ],
   "task_refs": [
     "TASK-0001",
@@ -42,6 +44,8 @@
     "examples/team-space/mingos-project/tasks/TASK-0002.json",
     "examples/team-space/mingos-project/evidence/EVIDENCE-0001.json",
     "examples/team-space/mingos-project/evidence/EVIDENCE-0002.json",
+    "examples/team-space/mingos-project/agent-bootstrap.json",
+    "examples/team-space/mingos-project/authorization.json",
     "examples/team-space/mingos-project/handoff.json"
   ],
   "evidence_refs": [
