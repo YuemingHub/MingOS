@@ -6,7 +6,7 @@
   "from_actor_id": "agent-continuity",
   "to_actor_id": null,
   "current_intent_id": "INTENT-0001",
-  "source_revision": "agent/m1-bundle-cli",
+  "source_revision": "2d427210d9a4635a9d908168640184498dc28736",
   "state_snapshot_at": "2026-08-06T13:05:00Z",
   "actor_refs": [
     "human-yueming",
