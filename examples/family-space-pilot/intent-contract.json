@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "intent-contract",
+  "intent_id": "INTENT-FAMILY-PILOT-0001",
+  "space_id": "family-space",
+  "original_expression": "Family-Space 是第一个真实垂直空间；验证 MingOS 能否描述它，但不要搬运家庭业务。",
+  "current_understanding": "以固定提交的 manifest、当前状态和关系文档为唯一来源，在 MingOS 中建立只读 Continuity Bundle。",
+  "goals": [
+    "验证 MingOS Space 模型可以表达 Family-Space 的身份与边界",
+    "验证外部仓库事实可以形成可追溯 Context、Task、Evidence 与 Handoff",
+    "确认家庭领域逻辑无需进入 MingOS 内核"
+  ],
+  "non_goals": [
+    "不修改 Family-Space",
+    "不迁移家庭画像、回复链路、安全门或数据库代码",
+    "不接入真实家长、真实个人数据或生产环境",
+    "不建立运行时双向同步"
+  ],
+  "constraints": [
+    "所有来源固定到 Family-Space 提交 4e77e245bf4dfa49249e53a258e9ed575c428a41",
+    "来源仓库只读",
+    "结构化转译不得改变来源事实",
+    "所有对象必须通过 MingOS Bundle 校验"
+  ],
+  "definition_of_done": [
+    "Family-Space 的 Space、Context、Authorization、Task、Evidence 与 Handoff 形成闭包",
+    "Bundle validate 通过",
+    "Bundle inspect 可以恢复其目的、边界、授权和下一步",
+    "Family-Space 仓库零写入"
+  ],
+  "human_decisions": [
+    "是否让 Family-Space 未来接入 MingOS 运行时；本试点不作该决定。"
+  ],
+  "allowed_capabilities": [
+    "github-read",
+    "github-write-branch",
+    "local-validation"
+  ],
+  "risk_level": "low",
+  "status": "active",
+  "next_action": "验证只读 Family-Space Continuity Bundle。",
+  "version": 1
+}
