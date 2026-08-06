@@ -40,7 +40,9 @@
               "context-ledger",
               "task",
               "evidence",
-              "handoff"
+              "handoff",
+              "source-conflict-report",
+              "source-review"
             ]
           },
           "artifact_ids": {
