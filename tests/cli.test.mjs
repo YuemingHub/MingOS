@@ -15,8 +15,10 @@ test('bundle inspect recovers intent, authorization and next action', async () =
   const { stdout } = await execFileAsync(process.execPath, ['packages/cli/bin/ming.mjs', 'bundle', 'inspect', bundle, '--json']);
   const result = JSON.parse(stdout);
   assert.equal(result.space.id, 'mingos-project');
+  assert.equal(result.intent.id, 'INTENT-0001');
   assert.equal(result.next_actor_id, 'agent-continuity');
   assert.equal(result.authorization.status, 'active');
-  assert.ok(result.intent.understanding.includes('跨 Agent 连续性'));
+  assert.ok(result.intent.next_action.includes('Family-Space'));
+  assert.deepEqual(result.blockers, []);
   assert.ok(result.next_actions.length > 0);
 });
