@@ -11,17 +11,20 @@
   ],
   "created_by_actor_id": "agent-continuity",
   "reviewer_actor_id": "human-yueming",
-  "review_status": "pending",
-  "decision": null,
-  "selected_value_ref": null,
-  "rationale": null,
-  "supporting_refs": [],
+  "review_status": "submitted",
+  "decision": "accept-value",
+  "selected_value_ref": "VALUE-foundation-repository-2",
+  "rationale": "月明接受 YuemingHub/mingos-foundation 为当前 Foundation 仓库；YuemingHub/Ming-Foundation 保留为历史仓库标识，不作为当前 canonical identifier。",
+  "supporting_refs": [
+    "github:YuemingHub/mingos-foundation@280a68705d13bbb5beed3a64713575fad7cba189/README.md",
+    "github:YuemingHub/MingOS@ec73647f55055676deb2fb2367ec15c97782d17e/README.md"
+  ],
   "requested_evidence": [],
   "revocable": true,
-  "decided_at": null,
+  "decided_at": "2026-08-06T15:51:07Z",
   "revoked_at": null,
   "revocation_reason": null,
   "supersedes_review_id": null,
   "created_at": "2026-08-06T14:50:00Z",
-  "updated_at": "2026-08-06T14:50:00Z"
+  "updated_at": "2026-08-06T15:51:07Z"
 }
