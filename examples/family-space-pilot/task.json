@@ -1,0 +1,31 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "task",
+  "task_id": "TASK-FAMILY-PILOT-0001",
+  "space_id": "family-space",
+  "intent_id": "INTENT-FAMILY-PILOT-0001",
+  "title": "建立 Family-Space 只读外部空间 Bundle",
+  "status": "completed",
+  "assigned_actor_id": "agent-continuity",
+  "authorization_ref": "AUTH-FAMILY-PILOT-0001",
+  "allowed_actions": [
+    "read-external-repository",
+    "create-files",
+    "update-files",
+    "run-tests",
+    "open-draft-pr"
+  ],
+  "completion_criteria": [
+    "来源固定到明确仓库提交与文件 Blob",
+    "Family-Space 仓库零写入",
+    "领域边界在 Space 与 Context 中保留",
+    "Continuity Bundle 验证通过",
+    "CLI inspect 可恢复目的、授权和下一步"
+  ],
+  "evidence_refs": [
+    "EVIDENCE-FAMILY-PILOT-0001"
+  ],
+  "requires_human_approval": false,
+  "human_approval_ref": null,
+  "blocked_reason": null
+}

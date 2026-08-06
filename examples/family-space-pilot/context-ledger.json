@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "context-ledger",
+  "space_id": "family-space",
+  "records": [
+    {
+      "record_id": "CTX-FS-0001",
+      "record_type": "fact",
+      "content": "Family-Space 当前定位为 MingOS 的第一个垂直家庭空间。",
+      "source_actor_id": "agent-continuity",
+      "source_refs": [
+        "github:YuemingHub/Family-Space@4e77e245bf4dfa49249e53a258e9ed575c428a41/space-manifest.json"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "固定提交中的 space-manifest.json",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": null,
+      "created_at": "2026-08-06T13:12:00Z",
+      "updated_at": "2026-08-06T13:12:00Z"
+    },
+    {
+      "record_id": "CTX-FS-0002",
+      "record_type": "fact",
+      "content": "Family-Space 当前无真实家长、无生产环境、无对外正式服务。",
+      "source_actor_id": "agent-continuity",
+      "source_refs": [
+        "github:YuemingHub/Family-Space@4e77e245bf4dfa49249e53a258e9ed575c428a41/CURRENT_PROJECT_STATUS.md"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "当前项目状态唯一事实源",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": "CTX-FS-0001",
+      "created_at": "2026-08-06T13:12:00Z",
+      "updated_at": "2026-08-06T13:12:00Z"
+    },
+    {
+      "record_id": "CTX-FS-0003",
+      "record_type": "fact",
+      "content": "家庭成员、家庭事件、家长回复、家庭画像、领域风险识别和专业判断属于 Family-Space，不进入 MingOS 通用内核。",
+      "source_actor_id": "agent-continuity",
+      "source_refs": [
+        "github:YuemingHub/Family-Space@4e77e245bf4dfa49249e53a258e9ed575c428a41/docs/architecture/MINGOS_RELATIONSHIP.md"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "固定提交中的仓库职责边界文档",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": "CTX-FS-0001",
+      "created_at": "2026-08-06T13:12:00Z",
+      "updated_at": "2026-08-06T13:12:00Z"
+    },
+    {
+      "record_id": "CTX-FS-0004",
+      "record_type": "decision",
+      "content": "本试点仅在 MingOS 中保存来源锁和结构化转译，对 Family-Space 保持零写入。",
+      "source_actor_id": "human-yueming",
+      "source_refs": [
+        "conversation:2026-08-06-direct-completion",
+        "examples/family-space-pilot/SOURCE_LOCK.md"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "用户授权直接推进，同时明确现阶段无真实用户与生产；采用最低风险只读方案",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": "CTX-FS-0002",
+      "created_at": "2026-08-06T13:12:00Z",
+      "updated_at": "2026-08-06T13:12:00Z"
+    }
+  ]
+}

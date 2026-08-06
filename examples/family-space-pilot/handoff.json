@@ -1,0 +1,51 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "handoff",
+  "handoff_id": "HANDOFF-FAMILY-PILOT-0001",
+  "space_id": "family-space",
+  "from_actor_id": "agent-continuity",
+  "to_actor_id": null,
+  "current_intent_id": "INTENT-FAMILY-PILOT-0001",
+  "source_revision": "a25ef2e278f35ab8e59242b7f0a8e60843db3def",
+  "state_snapshot_at": "2026-08-06T13:14:00Z",
+  "actor_refs": [
+    "human-yueming",
+    "agent-continuity"
+  ],
+  "authorization_refs": [
+    "AUTH-FAMILY-PILOT-0001"
+  ],
+  "task_refs": [
+    "TASK-FAMILY-PILOT-0001"
+  ],
+  "completed": [
+    "读取并锁定 Family-Space production@4e77e245 的三个边界文件",
+    "将 manifest 转译为 MingOS Space 对象",
+    "记录无真实用户、无生产和领域逻辑归属",
+    "Family-Space 来源仓库保持零写入",
+    "Bundle validate、inspect 和边界回归通过"
+  ],
+  "in_progress": [],
+  "blockers": [],
+  "next_actions": [
+    "记录手工转译是否存在信息损失",
+    "根据结果决定是否需要只读 snapshot/import 命令",
+    "在明确收益前不接入 Family-Space 运行时"
+  ],
+  "required_reads": [
+    "examples/family-space-pilot/SOURCE_LOCK.md",
+    "examples/family-space-pilot/space.json",
+    "examples/team-space/mingos-project/actors.json",
+    "examples/team-space/mingos-project/agent-continuity.json",
+    "examples/family-space-pilot/authorization.json",
+    "examples/family-space-pilot/intent-contract.json",
+    "examples/family-space-pilot/context-ledger.json",
+    "examples/family-space-pilot/task.json",
+    "examples/family-space-pilot/evidence.json",
+    "examples/family-space-pilot/handoff.json"
+  ],
+  "evidence_refs": [
+    "EVIDENCE-FAMILY-PILOT-0001"
+  ],
+  "created_at": "2026-08-06T13:14:00Z"
+}

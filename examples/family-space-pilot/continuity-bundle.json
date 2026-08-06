@@ -1,0 +1,66 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "continuity-bundle",
+  "bundle_id": "BUNDLE-FAMILY-PILOT-0001",
+  "space_id": "family-space",
+  "source_revision": "a25ef2e278f35ab8e59242b7f0a8e60843db3def",
+  "next_actor_id": "agent-continuity",
+  "artifacts": [
+    {
+      "path": "examples/family-space-pilot/SOURCE_LOCK.md",
+      "artifact_kind": "state",
+      "artifact_ids": []
+    },
+    {
+      "path": "examples/family-space-pilot/space.json",
+      "artifact_kind": "space",
+      "artifact_ids": ["family-space"]
+    },
+    {
+      "path": "examples/team-space/mingos-project/actors.json",
+      "artifact_kind": "actor",
+      "artifact_ids": ["human-yueming"]
+    },
+    {
+      "path": "examples/team-space/mingos-project/agent-continuity.json",
+      "artifact_kind": "actor",
+      "artifact_ids": ["agent-continuity"]
+    },
+    {
+      "path": "examples/family-space-pilot/authorization.json",
+      "artifact_kind": "authorization",
+      "artifact_ids": ["AUTH-FAMILY-PILOT-0001"]
+    },
+    {
+      "path": "examples/family-space-pilot/intent-contract.json",
+      "artifact_kind": "intent-contract",
+      "artifact_ids": ["INTENT-FAMILY-PILOT-0001"]
+    },
+    {
+      "path": "examples/family-space-pilot/context-ledger.json",
+      "artifact_kind": "context-ledger",
+      "artifact_ids": [
+        "CTX-FS-0001",
+        "CTX-FS-0002",
+        "CTX-FS-0003",
+        "CTX-FS-0004"
+      ]
+    },
+    {
+      "path": "examples/family-space-pilot/task.json",
+      "artifact_kind": "task",
+      "artifact_ids": ["TASK-FAMILY-PILOT-0001"]
+    },
+    {
+      "path": "examples/family-space-pilot/evidence.json",
+      "artifact_kind": "evidence",
+      "artifact_ids": ["EVIDENCE-FAMILY-PILOT-0001"]
+    },
+    {
+      "path": "examples/family-space-pilot/handoff.json",
+      "artifact_kind": "handoff",
+      "artifact_ids": ["HANDOFF-FAMILY-PILOT-0001"]
+    }
+  ],
+  "created_at": "2026-08-06T13:14:00Z"
+}

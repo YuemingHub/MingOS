@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "evidence",
+  "evidence_id": "EVIDENCE-FAMILY-PILOT-0001",
+  "space_id": "family-space",
+  "task_id": "TASK-FAMILY-PILOT-0001",
+  "evidence_type": "test",
+  "summary": "Family-Space 固定来源已完成只读转译；来源仓库零写入。Bundle validate、inspect、领域边界和无生产断言均通过；GitHub Actions Validate MingOS run #17 全部步骤成功。",
+  "uri": "https://github.com/YuemingHub/MingOS/actions/runs/31105229462",
+  "verification_status": "passed",
+  "produced_by_actor_id": "agent-continuity",
+  "verified_by_actor_id": "agent-continuity",
+  "created_at": "2026-08-06T13:14:00Z"
+}

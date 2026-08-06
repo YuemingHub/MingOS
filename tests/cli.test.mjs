@@ -5,6 +5,7 @@ import { promisify } from 'node:util';
 
 const execFileAsync = promisify(execFile);
 const bundle = 'examples/team-space/mingos-project/continuity-bundle.json';
+const familyBundle = 'examples/family-space-pilot/continuity-bundle.json';
 
 test('bundle validate passes for self-hosting space', async () => {
   const { stdout } = await execFileAsync(process.execPath, ['packages/cli/bin/ming.mjs', 'bundle', 'validate', bundle]);
@@ -21,4 +22,20 @@ test('bundle inspect recovers intent, authorization and next action', async () =
   assert.ok(result.intent.next_action.includes('Family-Space'));
   assert.deepEqual(result.blockers, []);
   assert.ok(result.next_actions.length > 0);
+});
+
+test('bundle validate passes for read-only Family-Space pilot', async () => {
+  const { stdout } = await execFileAsync(process.execPath, ['packages/cli/bin/ming.mjs', 'bundle', 'validate', familyBundle]);
+  assert.match(stdout, /MingOS bundle validation passed: BUNDLE-FAMILY-PILOT-0001/);
+});
+
+test('Family-Space pilot preserves domain and non-production boundaries', async () => {
+  const { stdout } = await execFileAsync(process.execPath, ['packages/cli/bin/ming.mjs', 'bundle', 'inspect', familyBundle, '--json']);
+  const result = JSON.parse(stdout);
+  assert.equal(result.space.id, 'family-space');
+  assert.equal(result.space.purpose, '让家庭在持续关系中被理解、被支持，并形成现实可行的下一步');
+  assert.ok(result.space.boundaries.includes('家庭专业判断和生命回复逻辑保留在 Family-Space'));
+  assert.ok(result.space.boundaries.includes('当前无真实家长、无生产运行'));
+  assert.ok(result.authorization.resource_scope.some((scope) => scope.includes('read-only@4e77e245')));
+  assert.deepEqual(result.blockers, []);
 });
