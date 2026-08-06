@@ -165,6 +165,49 @@ unknown
 
 `conflict-report.json` 只并列不同值、来源、权威与时间状态；`automatic_resolution` 永远为 `false`。
 
+## Source Review CLI
+
+把显式冲突候选转成正式冲突报告和待人复核请求：
+
+```bash
+npm run ming -- source-review scaffold \
+  fixtures/mingos-unified-snapshot-input/snapshot.config.json \
+  --out .tmp/source-review \
+  --space mingos-project \
+  --created-by agent-continuity \
+  --reviewer human-yueming \
+  --created-at 2026-08-06T14:50:00Z
+```
+
+输出包括一份 `source-conflict-report` 和每个候选对应的 `source-review`。命令只创建 `pending` 请求：
+
+```text
+review_status = pending
+decision = null
+selected_value_ref = null
+rationale = null
+decided_at = null
+```
+
+这意味着 Agent 可以提出“需要谁复核什么”，但不能把继续推进项目的授权伪装成某个人已经选择了具体事实。
+
+提交或撤回复核决定时，内核要求：
+
+- `reviewer_actor_id` 必须是 active human Actor；
+- 候选引用必须完整覆盖冲突报告中的全部值；
+- `accept-value` 必须选择候选值并引用支持来源；
+- `preserve-history` 必须明确选择要保留为历史的值；
+- `unresolved` 不得暗中选择候选；
+- `request-evidence` 必须列出需要补充的证据；
+- 所有复核保持 `revocable: true`；
+- 原始来源永远不被覆盖。
+
+真实待复核样本位于：
+
+```text
+examples/source-review-pilot/
+```
+
 MingOS 将首先用自己的协议持续建设 MingOS 本身。
 
 ## 核心判定
