@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "space",
+  "space_id": "family-space",
+  "space_type": "family",
+  "name": "Family Space",
+  "owner_actor_id": "human-yueming",
+  "member_actor_ids": [],
+  "purpose": "让家庭在持续关系中被理解、被支持，并形成现实可行的下一步",
+  "lifecycle": "draft",
+  "boundaries": [
+    "家庭专业判断和生命回复逻辑留在 Family-Space",
+    "MingOS 只提供跨空间协议",
+    "当前无真实家长、无生产运行"
+  ],
+  "foundation_repository": "YuemingHub/mingos-foundation",
+  "domain_repository": "YuemingHub/Family-Space",
+  "created_at": "2026-08-06T09:42:00Z",
+  "updated_at": "2026-08-06T09:42:00Z"
+}

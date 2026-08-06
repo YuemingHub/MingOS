@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "task",
+  "task_id": "TASK-0001",
+  "space_id": "mingos-project",
+  "intent_id": "INTENT-0001",
+  "title": "建立 MingOS M0 可验证骨架",
+  "status": "completed",
+  "assigned_actor_id": "agent-bootstrap",
+  "allowed_actions": ["create-files", "run-tests", "open-draft-pr"],
+  "completion_criteria": [
+    "全部 Schema 可编译",
+    "示例 JSON 全部验证通过",
+    "内核不变量测试通过"
+  ],
+  "evidence_refs": ["EVIDENCE-0001"],
+  "requires_human_approval": false,
+  "human_approval_ref": null,
+  "blocked_reason": null
+}
