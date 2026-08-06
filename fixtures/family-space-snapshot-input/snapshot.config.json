@@ -1,5 +1,6 @@
 {
   "snapshot_id": "family-space-2026-08-06",
+  "snapshot_at": "2026-08-06",
   "source": {
     "repository": "YuemingHub/Family-Space",
     "branch": "production",
@@ -9,19 +10,34 @@
         "path": "space-manifest.json",
         "local_path": "sources/space-manifest.json",
         "blob_sha": "7b8906371bfcf37b5d1e68fc4a731a05bd55c0dc",
-        "role": "space-manifest"
+        "role": "space-manifest",
+        "authority": "current-fact-source",
+        "valid_as_of": "2026-08-06",
+        "review_after": "2026-09-06",
+        "current_fact_source_for": ["space-identity"]
       },
       {
         "path": "CURRENT_PROJECT_STATUS.md",
         "local_path": "sources/CURRENT_PROJECT_STATUS.md",
         "blob_sha": "75364cb6c102e443c6443d9fcd0bfe3412f6e8db",
-        "role": "current-state"
+        "role": "current-state",
+        "authority": "current-fact-source",
+        "valid_as_of": "2026-08-06",
+        "review_after": "2026-08-13",
+        "current_fact_source_for": [
+          "real-user-status",
+          "production-status",
+          "public-service-status"
+        ]
       },
       {
         "path": "docs/architecture/MINGOS_RELATIONSHIP.md",
         "local_path": "sources/MINGOS_RELATIONSHIP.md",
         "blob_sha": "3f8db3f889a309e19dbea423d6c80dff226e3f9e",
-        "role": "relationship"
+        "role": "relationship",
+        "authority": "governance",
+        "valid_as_of": "2026-08-06",
+        "review_after": "2026-09-06"
       }
     ]
   },
@@ -38,5 +54,26 @@
     "docs/architecture/MINGOS_RELATIONSHIP.md:L16",
     "docs/architecture/MINGOS_RELATIONSHIP.md:L17",
     "docs/architecture/MINGOS_RELATIONSHIP.md:L18"
-  ]
+  ],
+  "claim_annotations": {
+    "CURRENT_PROJECT_STATUS.md:L8": {
+      "topic": "real-user-status",
+      "asserted_value": "none",
+      "temporal_status": "current",
+      "valid_as_of": "2026-08-06"
+    },
+    "CURRENT_PROJECT_STATUS.md:L9": {
+      "topic": "production-status",
+      "asserted_value": "none",
+      "temporal_status": "current",
+      "valid_as_of": "2026-08-06"
+    },
+    "CURRENT_PROJECT_STATUS.md:L10": {
+      "topic": "public-service-status",
+      "asserted_value": "none",
+      "temporal_status": "current",
+      "valid_as_of": "2026-08-06"
+    }
+  },
+  "reference_assertions": []
 }

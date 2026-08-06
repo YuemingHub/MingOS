@@ -73,7 +73,20 @@ npm run ming -- snapshot scaffold \
   --out .tmp/family-space-snapshot
 ```
 
-脚手架只生成来源快照、Space 字段、主张清单、覆盖率报告和人工复核清单。它不会自动确认事实、推断意图、授予权限、创建任务或声称完成。
+脚手架会生成：
+
+```text
+source-snapshot.json
+space.json
+claims.json
+coverage-report.json
+authority-report.json
+temporal-report.json
+conflict-report.json
+REVIEW_REQUIRED.md
+```
+
+它不会自动确认事实、推断意图、授予权限、创建任务、选择冲突赢家或声称完成。
 
 外部仓库没有 `space-manifest.json` 时，可以在配置中显式提供 `space_seed`：
 
@@ -97,6 +110,60 @@ npm run ming -- snapshot scaffold \
 ```
 
 `space_seed` 是显式、可审阅的身份声明，不是工具推断。配置不得同时提供来源 Manifest 和 Seed；Seed 模式永远要求人工复核。
+
+### 来源权威与时效
+
+每个来源文件可以显式声明：
+
+```json
+{
+  "authority": "current-fact-source",
+  "valid_as_of": "2026-08-06",
+  "review_after": "2026-08-13",
+  "current_fact_source_for": ["production-status"]
+}
+```
+
+支持的权威角色为：
+
+```text
+current-fact-source
+governance
+reference
+historical
+unknown
+```
+
+只有 `current-fact-source` 可以声明 `current_fact_source_for`。工具会提示未知权威、缺少有效日期、到期复核、同一议题存在多个当前事实源，以及已经失效的参考断言。
+
+### 冲突候选
+
+工具不会从文本中自行判断两个句子是否矛盾。只有配置显式为主张声明同一 `topic` 与不同 `asserted_value`，或提供带来源的 `reference_assertions` 时，才生成冲突候选：
+
+```json
+{
+  "claim_annotations": {
+    "REPOSITORY-MAP.md:L12": {
+      "topic": "family-space-product-repository",
+      "asserted_value": "YuemingHub/Ming-os",
+      "temporal_status": "historical",
+      "valid_as_of": "2026-08-03"
+    }
+  },
+  "reference_assertions": [
+    {
+      "assertion_id": "REF-CURRENT-FAMILY-REPO",
+      "topic": "family-space-product-repository",
+      "asserted_value": "YuemingHub/Family-Space",
+      "source_ref": "github:YuemingHub/Family-Space@<commit>/CURRENT_PROJECT_STATUS.md",
+      "authority": "current-fact-source",
+      "valid_as_of": "2026-08-06"
+    }
+  ]
+}
+```
+
+`conflict-report.json` 只并列不同值、来源、权威与时间状态；`automatic_resolution` 永远为 `false`。
 
 MingOS 将首先用自己的协议持续建设 MingOS 本身。
 

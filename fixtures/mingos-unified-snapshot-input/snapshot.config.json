@@ -1,5 +1,6 @@
 {
   "snapshot_id": "mingos-unified-archive-2026-08-06",
+  "snapshot_at": "2026-08-06",
   "source": {
     "repository": "YuemingHub/mingos-unified",
     "branch": "main",
@@ -9,13 +10,19 @@
         "path": "README.md",
         "local_path": "sources/README.md",
         "blob_sha": "6bb359c29eff896c5de7f2cd1c6186fc7e3d4b04",
-        "role": "overview"
+        "role": "overview",
+        "authority": "historical",
+        "valid_as_of": "2026-08-03",
+        "review_after": "2026-08-06"
       },
       {
         "path": "REPOSITORY-MAP.md",
         "local_path": "sources/REPOSITORY-MAP.md",
         "blob_sha": "1df3015fac1e0b2846c98710dccf5b13d9b2ba2a",
-        "role": "repository-map"
+        "role": "repository-map",
+        "authority": "historical",
+        "valid_as_of": "2026-08-03",
+        "review_after": "2026-08-06"
       }
     ]
   },
@@ -41,5 +48,63 @@
     "created_at": "2026-08-06T13:58:00Z",
     "updated_at": "2026-08-06T13:58:00Z"
   },
-  "mapped_claim_ids": []
+  "mapped_claim_ids": [],
+  "claim_annotations": {
+    "README.md:L3": {
+      "topic": "mingos-canonical-entrypoint",
+      "asserted_value": "YuemingHub/mingos-unified",
+      "temporal_status": "historical",
+      "valid_as_of": "2026-08-03"
+    },
+    "REPOSITORY-MAP.md:L11": {
+      "topic": "mingos-canonical-entrypoint",
+      "asserted_value": "YuemingHub/mingos-unified",
+      "temporal_status": "historical",
+      "valid_as_of": "2026-08-03"
+    },
+    "REPOSITORY-MAP.md:L12": {
+      "topic": "family-space-product-repository",
+      "asserted_value": "YuemingHub/Ming-os",
+      "temporal_status": "historical",
+      "valid_as_of": "2026-08-03"
+    },
+    "REPOSITORY-MAP.md:L13": {
+      "topic": "foundation-repository",
+      "asserted_value": "YuemingHub/Ming-Foundation",
+      "temporal_status": "historical",
+      "valid_as_of": "2026-08-03"
+    },
+    "REPOSITORY-MAP.md:L58": {
+      "topic": "family-space-product-repository",
+      "asserted_value": "YuemingHub/Ming-os",
+      "temporal_status": "historical",
+      "valid_as_of": "2026-08-03"
+    }
+  },
+  "reference_assertions": [
+    {
+      "assertion_id": "REF-CURRENT-MINGOS-REPO",
+      "topic": "mingos-canonical-entrypoint",
+      "asserted_value": "YuemingHub/MingOS",
+      "source_ref": "github:YuemingHub/MingOS@667b45d79ca8664d004a2a728f4486b59e64190d/README.md",
+      "authority": "current-fact-source",
+      "valid_as_of": "2026-08-06"
+    },
+    {
+      "assertion_id": "REF-CURRENT-FAMILY-REPO",
+      "topic": "family-space-product-repository",
+      "asserted_value": "YuemingHub/Family-Space",
+      "source_ref": "github:YuemingHub/Family-Space@4e77e245bf4dfa49249e53a258e9ed575c428a41/CURRENT_PROJECT_STATUS.md",
+      "authority": "current-fact-source",
+      "valid_as_of": "2026-08-06"
+    },
+    {
+      "assertion_id": "REF-CURRENT-FOUNDATION-REPO",
+      "topic": "foundation-repository",
+      "asserted_value": "YuemingHub/mingos-foundation",
+      "source_ref": "github:YuemingHub/MingOS@667b45d79ca8664d004a2a728f4486b59e64190d/README.md",
+      "authority": "current-fact-source",
+      "valid_as_of": "2026-08-06"
+    }
+  ]
 }
