@@ -3,7 +3,7 @@
   "kind": "continuity-bundle",
   "bundle_id": "BUNDLE-FAMILY-PILOT-0001",
   "space_id": "family-space",
-  "source_revision": "5fc2225abb7576c1f6d7b3f58b0f446018a283da",
+  "source_revision": "a25ef2e278f35ab8e59242b7f0a8e60843db3def",
   "next_actor_id": "agent-continuity",
   "artifacts": [
     {
