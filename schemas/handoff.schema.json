@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mingos.cn/schemas/handoff.schema.json",
+  "title": "MingOS Handoff",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "kind", "handoff_id", "space_id", "from_actor_id", "current_intent_id", "completed", "in_progress", "blockers", "next_actions", "required_reads", "created_at"],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "kind": { "const": "handoff" },
+    "handoff_id": { "type": "string", "minLength": 1 },
+    "space_id": { "type": "string", "minLength": 1 },
+    "from_actor_id": { "type": "string", "minLength": 1 },
+    "to_actor_id": { "type": ["string", "null"] },
+    "current_intent_id": { "type": "string", "minLength": 1 },
+    "completed": { "type": "array", "items": { "type": "string" } },
+    "in_progress": { "type": "array", "items": { "type": "string" } },
+    "blockers": { "type": "array", "items": { "type": "string" } },
+    "next_actions": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+    "required_reads": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "evidence_refs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true, "default": [] },
+    "created_at": { "type": "string" }
+  }
+}

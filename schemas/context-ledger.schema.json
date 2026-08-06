@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mingos.cn/schemas/context-ledger.schema.json",
+  "title": "MingOS Context Ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "kind", "space_id", "records"],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "kind": { "const": "context-ledger" },
+    "space_id": { "type": "string", "minLength": 1 },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["record_id", "record_type", "content", "source_actor_id", "status", "created_at"],
+        "properties": {
+          "record_id": { "type": "string", "minLength": 1 },
+          "record_type": { "enum": ["fact", "statement", "inference", "decision", "assumption", "correction", "revocation"] },
+          "content": { "type": "string", "minLength": 1 },
+          "source_actor_id": { "type": "string", "minLength": 1 },
+          "source_refs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true, "default": [] },
+          "status": { "enum": ["pending", "confirmed", "disputed", "superseded", "revoked", "expired"] },
+          "confidence_basis": { "type": "string" },
+          "valid_until": { "type": ["string", "null"] },
+          "supersedes": { "type": ["string", "null"] },
+          "derived_from": { "type": ["string", "null"] },
+          "created_at": { "type": "string" },
+          "updated_at": { "type": "string" }
+        }
+      }
+    }
+  }
+}
