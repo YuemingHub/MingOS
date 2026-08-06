@@ -1,29 +1,52 @@
 {
   "schema_version": "0.1.0",
   "kind": "handoff",
-  "handoff_id": "HANDOFF-0001",
+  "handoff_id": "HANDOFF-0002",
   "space_id": "mingos-project",
-  "from_actor_id": "agent-bootstrap",
+  "from_actor_id": "agent-continuity",
   "to_actor_id": null,
   "current_intent_id": "INTENT-0001",
+  "source_revision": "agent/m1-continuity-experiment",
+  "state_snapshot_at": "2026-08-06T12:48:00Z",
+  "actor_refs": [
+    "human-yueming",
+    "agent-continuity"
+  ],
+  "authorization_refs": [
+    "AUTH-0002"
+  ],
+  "task_refs": [
+    "TASK-0001",
+    "TASK-0002"
+  ],
   "completed": [
-    "M0 Schema、验证器、测试、示例和 CI 已建立",
-    "Foundation、MingOS、Family-Space 仓库边界已记录"
+    "M0 已合并且 CI 通过",
+    "首次仓库-only 连续性预检已执行",
+    "过时状态、缺失 Actor、过期授权和可变证据问题已转成协议修复"
   ],
   "in_progress": [],
-  "blockers": [
-    "首个 Draft PR 尚待人类审阅与合并"
-  ],
+  "blockers": [],
   "next_actions": [
-    "合并后执行第一次跨 Agent 无聊天历史交接实验",
-    "根据实验结果设计 M1 文件型 CLI"
+    "由下一 Agent 仅读取 continuity-bundle.json 指定资产复验恢复质量",
+    "根据第二次实验结果决定 M1 CLI 是否只实现 bundle build/validate/refresh"
   ],
   "required_reads": [
     "docs/CURRENT_STATE.md",
+    "examples/team-space/mingos-project/space.json",
+    "examples/team-space/mingos-project/actors.json",
+    "examples/team-space/mingos-project/agent-continuity.json",
+    "examples/team-space/mingos-project/authorizations/AUTH-0002.json",
     "examples/team-space/mingos-project/intent-contract.json",
-    "docs/decisions/ADR-0001-repository-boundaries.md",
-    "docs/decisions/ADR-0002-evidence-completion.md"
+    "examples/team-space/mingos-project/context-ledger.json",
+    "examples/team-space/mingos-project/tasks/TASK-0001.json",
+    "examples/team-space/mingos-project/tasks/TASK-0002.json",
+    "examples/team-space/mingos-project/evidence/EVIDENCE-0001.json",
+    "examples/team-space/mingos-project/evidence/EVIDENCE-0002.json",
+    "examples/team-space/mingos-project/handoff.json"
   ],
-  "evidence_refs": ["EVIDENCE-0001"],
-  "created_at": "2026-08-06T09:42:00Z"
+  "evidence_refs": [
+    "EVIDENCE-0001",
+    "EVIDENCE-0002"
+  ],
+  "created_at": "2026-08-06T12:48:00Z"
 }
