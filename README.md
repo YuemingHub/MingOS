@@ -61,15 +61,15 @@ CLI 只读取仓库资产，不调用模型、不连接外部工具、不执行�
 量化一次外部空间快照中的重复劳动、字段损失与语义覆盖：
 
 ```bash
-npm run ming -- snapshot analyze examples/family-space-snapshot-input/snapshot.config.json
-npm run ming -- snapshot analyze examples/family-space-snapshot-input/snapshot.config.json --json
+npm run ming -- snapshot analyze fixtures/family-space-snapshot-input/snapshot.config.json
+npm run ming -- snapshot analyze fixtures/family-space-snapshot-input/snapshot.config.json --json
 ```
 
 生成确定性的只读脚手架：
 
 ```bash
 npm run ming -- snapshot scaffold \
-  examples/family-space-snapshot-input/snapshot.config.json \
+  fixtures/family-space-snapshot-input/snapshot.config.json \
   --out .tmp/family-space-snapshot
 ```
 
