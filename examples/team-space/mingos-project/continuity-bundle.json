@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "continuity-bundle",
+  "bundle_id": "BUNDLE-0001",
+  "space_id": "mingos-project",
+  "source_revision": "agent/m1-continuity-experiment",
+  "next_actor_id": "agent-continuity",
+  "artifacts": [
+    {
+      "path": "docs/CURRENT_STATE.md",
+      "artifact_kind": "state",
+      "artifact_ids": []
+    },
+    {
+      "path": "examples/team-space/mingos-project/space.json",
+      "artifact_kind": "space",
+      "artifact_ids": ["mingos-project"]
+    },
+    {
+      "path": "examples/team-space/mingos-project/actors.json",
+      "artifact_kind": "actor",
+      "artifact_ids": ["human-yueming"]
+    },
+    {
+      "path": "examples/team-space/mingos-project/agent-continuity.json",
+      "artifact_kind": "actor",
+      "artifact_ids": ["agent-continuity"]
+    },
+    {
+      "path": "examples/team-space/mingos-project/authorizations/AUTH-0002.json",
+      "artifact_kind": "authorization",
+      "artifact_ids": ["AUTH-0002"]
+    },
+    {
+      "path": "examples/team-space/mingos-project/intent-contract.json",
+      "artifact_kind": "intent-contract",
+      "artifact_ids": ["INTENT-0001"]
+    },
+    {
+      "path": "examples/team-space/mingos-project/context-ledger.json",
+      "artifact_kind": "context-ledger",
+      "artifact_ids": ["CTX-0003", "CTX-0004", "CTX-0005", "CTX-0006"]
+    },
+    {
+      "path": "examples/team-space/mingos-project/tasks/TASK-0002.json",
+      "artifact_kind": "task",
+      "artifact_ids": ["TASK-0002"]
+    },
+    {
+      "path": "examples/team-space/mingos-project/evidence/EVIDENCE-0002.json",
+      "artifact_kind": "evidence",
+      "artifact_ids": ["EVIDENCE-0002"]
+    },
+    {
+      "path": "examples/team-space/mingos-project/handoff.json",
+      "artifact_kind": "handoff",
+      "artifact_ids": ["HANDOFF-0002"]
+    }
+  ],
+  "created_at": "2026-08-06T12:48:00Z"
+}
