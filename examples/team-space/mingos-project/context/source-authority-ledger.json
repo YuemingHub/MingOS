@@ -17,7 +17,7 @@
       "confidence_basis": "固定 Git Blob 中存在旧仓库名称、唯一入口声明和绝对日期整理记录",
       "valid_until": null,
       "supersedes": null,
-      "derived_from": "CTX-0017",
+      "derived_from": null,
       "created_at": "2026-08-06T14:40:00Z",
       "updated_at": "2026-08-06T14:40:00Z"
     },
