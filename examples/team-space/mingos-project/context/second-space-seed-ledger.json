@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "context-ledger",
+  "space_id": "mingos-project",
+  "records": [
+    {
+      "record_id": "CTX-0015",
+      "record_type": "fact",
+      "content": "当前 GitHub App 可访问的非 MingOS 仓库中，Family-Space 与 mingos-genesis 都是家庭领域资产，mingos-foundation 是最高原则层；mingos-unified 的仓库性质是入口、知识、决策与历史档案，因此被选为第二个 custom knowledge/archive space。",
+      "source_actor_id": "agent-continuity",
+      "source_refs": [
+        "github:YuemingHub/mingos-unified@250a59dff30b13a57d826ede7b396a4102ea03a4",
+        "github:YuemingHub/mingos-genesis",
+        "github:YuemingHub/mingos-foundation"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "已读取各仓库 README 与仓库元数据，并排除产品仓和最高原则层",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": null,
+      "created_at": "2026-08-06T14:05:00Z",
+      "updated_at": "2026-08-06T14:05:00Z"
+    },
+    {
+      "record_id": "CTX-0016",
+      "record_type": "decision",
+      "content": "外部仓库没有 Space Manifest 时，Snapshot CLI 允许配置提供显式 space_seed；工具不得从 README 或仓库地图自行推断空间身份，Manifest 与 Seed 必须互斥，Seed 模式永远要求人工复核。",
+      "source_actor_id": "human-yueming",
+      "source_refs": [
+        "conversation:2026-08-06-continue",
+        "docs/experiments/2026-08-06-unified-archive-seed-pilot.md"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "用户授权持续直接推进；设计由第二外部空间缺少 Manifest 的真实失败驱动",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": "CTX-0015",
+      "created_at": "2026-08-06T14:05:00Z",
+      "updated_at": "2026-08-06T14:05:00Z"
+    },
+    {
+      "record_id": "CTX-0017",
+      "record_type": "fact",
+      "content": "显式 Seed 试点 PR #10 已合并至 main，合并提交为 35bdf061acfbac85a7c731f344d77631b4bcf450；GitHub Actions run 31108962365 全部通过。试点同时发现历史知识仓包含旧命名、旧阶段和待执行计划，下一步需要来源权威与时效报告，但不能自动裁决真假。",
+      "source_actor_id": "agent-continuity",
+      "source_refs": [
+        "github:YuemingHub/MingOS/pull/10",
+        "github-actions:31108962365",
+        "github:YuemingHub/MingOS@35bdf061acfbac85a7c731f344d77631b4bcf450",
+        "fixtures/mingos-unified-snapshot-input"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "GitHub squash merge、成功 CI 以及固定来源中的历史命名与阶段性表述",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": "CTX-0016",
+      "created_at": "2026-08-06T14:05:00Z",
+      "updated_at": "2026-08-06T14:05:00Z"
+    }
+  ]
+}
