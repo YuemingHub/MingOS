@@ -6,7 +6,7 @@
   "from_actor_id": "agent-continuity",
   "to_actor_id": null,
   "current_intent_id": "INTENT-0001",
-  "source_revision": "agent/family-pilot-closure",
+  "source_revision": "5986298c9dce7dbb037787c84e8313e288b838b0",
   "state_snapshot_at": "2026-08-06T13:22:00Z",
   "actor_refs": [
     "human-yueming",
