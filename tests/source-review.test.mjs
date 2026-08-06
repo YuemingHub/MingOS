@@ -1,11 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { execFile } from 'node:child_process';
 import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import path from 'node:path';
+import { promisify } from 'node:util';
 import { checkSourceReview } from '../packages/kernel/src/index.mjs';
 import { analyzeSnapshot } from '../packages/cli/src/snapshot.mjs';
 import { buildPendingSourceReviews, buildSourceConflictReport, scaffoldSourceReviews } from '../packages/cli/src/source-review.mjs';
 
+const execFileAsync = promisify(execFile);
 const unifiedConfig = 'fixtures/mingos-unified-snapshot-input/snapshot.config.json';
 
 function actors() {
@@ -41,6 +44,12 @@ test('source review scaffold creates deterministic conflict and pending review I
   assert.ok(reviews.every((review) => review.decision === null));
   assert.ok(reviews.every((review) => review.created_by_actor_id === 'agent-creator'));
   assert.ok(reviews.every((review) => review.reviewer_actor_id === 'human-reviewer'));
+});
+
+test('committed conflict report is the deterministic output of the fixed snapshot', async () => {
+  const { conflictReport } = await fixture();
+  const committed = JSON.parse(await readFile('examples/source-review-pilot/conflict-report.json', 'utf8'));
+  assert.deepEqual(committed, conflictReport);
 });
 
 test('pending source review passes without impersonating a human decision', async () => {
@@ -119,6 +128,29 @@ test('source-review scaffold writes only pending requests', async () => {
     assert.equal(written.decision, null);
     const instructions = await readFile(path.join(temp, 'REVIEW_REQUIRED.md'), 'utf8');
     assert.match(instructions, /did not choose a value or submit a decision/);
+  } finally {
+    await rm(temp, { recursive: true, force: true });
+  }
+});
+
+test('source-review CLI reports pending requests without a decision', async () => {
+  const temp = await mkdtemp(path.join(process.cwd(), '.tmp-source-review-cli-'));
+  const relative = path.relative(process.cwd(), temp);
+  try {
+    const { stdout } = await execFileAsync(process.execPath, [
+      'packages/cli/bin/ming.mjs',
+      'source-review',
+      'scaffold',
+      unifiedConfig,
+      '--out', relative,
+      '--space', 'mingos-project',
+      '--created-by', 'agent-continuity',
+      '--reviewer', 'human-yueming',
+      '--created-at', '2026-08-06T14:50:00Z'
+    ]);
+    assert.match(stdout, /Conflict candidates: 3/);
+    assert.match(stdout, /Pending human reviews: 3/);
+    assert.match(stdout, /No review decision was generated/);
   } finally {
     await rm(temp, { recursive: true, force: true });
   }
