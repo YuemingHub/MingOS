@@ -3,7 +3,7 @@
   "kind": "continuity-bundle",
   "bundle_id": "BUNDLE-0001",
   "space_id": "mingos-project",
-  "source_revision": "agent/m1-cli-closure",
+  "source_revision": "e33b88e40e01ea221a04e3ac06f512fec83e2dcf",
   "next_actor_id": "agent-continuity",
   "artifacts": [
     {
