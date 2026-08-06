@@ -85,6 +85,9 @@ async function loadConfig(configFile, root) {
   if (!Array.isArray(config.source.files) || config.source.files.length === 0) {
     throw new Error('snapshot config requires at least one source file');
   }
+  if (config.space_seed !== undefined && (config.space_seed === null || typeof config.space_seed !== 'object' || Array.isArray(config.space_seed))) {
+    throw new Error('space_seed must be an object when provided');
+  }
   return { repositoryRoot, configPath, configDir, config };
 }
 
@@ -112,25 +115,32 @@ async function verifySources(config, configDir) {
     });
 
     if (source.role === 'space-manifest') {
+      if (manifest) throw new Error('snapshot config may contain only one space-manifest source');
       manifest = JSON.parse(content.toString('utf8'));
     } else if (source.path.endsWith('.md')) {
       claims.push(...extractMarkdownClaims(content.toString('utf8'), source.path));
     }
   }
 
-  if (!manifest) throw new Error('snapshot config requires one source file with role=space-manifest');
+  if (!manifest && !config.space_seed) {
+    throw new Error('snapshot config requires either role=space-manifest or an explicit space_seed');
+  }
+  if (manifest && config.space_seed) {
+    throw new Error('snapshot config must not provide both space-manifest and space_seed');
+  }
   return { files, claims, manifest };
 }
 
-async function buildSpace(manifest, config, repositoryRoot) {
+async function buildSpace(sourceSpace, config, repositoryRoot, sourceMode) {
   const schema = await readJson(path.join(repositoryRoot, 'schemas', 'space.schema.json'));
   const allowed = new Set(Object.keys(schema.properties ?? {}));
+  const required = new Set(schema.required ?? []);
   const space = {};
   const preservedFields = [];
   const unsupportedFields = [];
   const overriddenFields = [];
 
-  for (const [key, value] of Object.entries(manifest)) {
+  for (const [key, value] of Object.entries(sourceSpace)) {
     if (!allowed.has(key)) {
       unsupportedFields.push(key);
       continue;
@@ -143,12 +153,18 @@ async function buildSpace(manifest, config, repositoryRoot) {
     if (!allowed.has(key)) throw new Error(`space override is not allowed by schema: ${key}`);
     if (Object.hasOwn(space, key) && JSON.stringify(space[key]) !== JSON.stringify(value)) {
       overriddenFields.push(key);
-      preservedFields.splice(preservedFields.indexOf(key), 1);
+      const index = preservedFields.indexOf(key);
+      if (index >= 0) preservedFields.splice(index, 1);
     }
     space[key] = value;
   }
 
-  return { space, preservedFields, unsupportedFields, overriddenFields };
+  const missingRequiredFields = [...required].filter((key) => !Object.hasOwn(space, key));
+  if (missingRequiredFields.length > 0) {
+    throw new Error(`${sourceMode} space is missing required fields: ${missingRequiredFields.join(', ')}`);
+  }
+
+  return { space, preservedFields, unsupportedFields, overriddenFields, missingRequiredFields, sourceMode };
 }
 
 async function countExistingPilot(config, repositoryRoot) {
@@ -176,7 +192,9 @@ async function countExistingPilot(config, repositoryRoot) {
 export async function analyzeSnapshot(configFile, { root = process.cwd() } = {}) {
   const { repositoryRoot, configDir, config } = await loadConfig(configFile, root);
   const verified = await verifySources(config, configDir);
-  const spaceResult = await buildSpace(verified.manifest, config, repositoryRoot);
+  const sourceMode = verified.manifest ? 'source-manifest' : 'explicit-seed';
+  const sourceSpace = verified.manifest ?? config.space_seed;
+  const spaceResult = await buildSpace(sourceSpace, config, repositoryRoot, sourceMode);
   const pilot = await countExistingPilot(config, repositoryRoot);
   const mapped = new Set(config.mapped_claim_ids ?? []);
   const unknownMappings = [...mapped].filter((id) => !verified.claims.some((claim) => claim.claim_id === id));
@@ -199,10 +217,12 @@ export async function analyzeSnapshot(configFile, { root = process.cwd() } = {})
       repeated_revision_occurrences: pilot.revision_occurrences
     },
     manifest_fidelity: {
-      source_fields: Object.keys(verified.manifest).length,
+      source_mode: sourceMode,
+      source_fields: Object.keys(sourceSpace).length,
       exact_preserved_fields: spaceResult.preservedFields,
       overridden_fields: spaceResult.overriddenFields,
-      unsupported_fields: spaceResult.unsupportedFields
+      unsupported_fields: spaceResult.unsupportedFields,
+      missing_required_fields: spaceResult.missingRequiredFields
     },
     semantic_coverage: {
       extracted_markdown_claims: verified.claims.length,
@@ -213,7 +233,7 @@ export async function analyzeSnapshot(configFile, { root = process.cwd() } = {})
     decision: {
       automate_deterministic_snapshot: pilot.mechanical_artifacts >= 4 || pilot.revision_occurrences >= 3,
       automate_semantic_interpretation: false,
-      manual_review_required: unmappedClaims.length > 0 || spaceResult.unsupportedFields.length > 0
+      manual_review_required: sourceMode === 'explicit-seed' || unmappedClaims.length > 0 || spaceResult.unsupportedFields.length > 0
     },
     claims: verified.claims,
     space: spaceResult.space
@@ -226,20 +246,22 @@ function renderReview(report) {
 
 - Snapshot: \`${report.snapshot_id}\`
 - Source: \`${report.source.repository}@${report.source.revision}\`
+- Space source mode: ${report.manifest_fidelity.source_mode}
 - Verified source files: ${report.cost.source_files}
 - Existing generated artifacts: ${report.cost.generated_artifacts}
 - Mechanical artifacts: ${report.cost.mechanical_artifacts}
 - Extracted markdown claims: ${report.semantic_coverage.extracted_markdown_claims}
 - Explicitly mapped claims: ${report.semantic_coverage.mapped_claims}
 - Coverage: ${percent}%
-- Unsupported manifest fields: ${report.manifest_fidelity.unsupported_fields.join(', ') || 'none'}
+- Unsupported source fields: ${report.manifest_fidelity.unsupported_fields.join(', ') || 'none'}
 
 ## Human decisions still required
 
-1. Confirm which extracted claims should become Context Ledger facts, decisions, constraints or historical notes.
-2. Decide the next Intent, Authorization and Task; the scaffold never grants authority automatically.
-3. Review unsupported or overridden manifest fields.
-4. Only after review, create Evidence, Handoff and Continuity Bundle.
+1. Confirm that an explicit seed accurately identifies the space when the source has no manifest.
+2. Confirm which extracted claims should become Context Ledger facts, decisions, constraints or historical notes.
+3. Decide the next Intent, Authorization and Task; the scaffold never grants authority automatically.
+4. Review unsupported or overridden source fields.
+5. Only after review, create Evidence, Handoff and Continuity Bundle.
 
 The scaffold verifies deterministic provenance. It does not claim semantic completeness.
 `;
@@ -260,6 +282,7 @@ export async function scaffoldSnapshot(configFile, outputDir, { root = process.c
       repository: report.source.repository,
       branch: report.source.branch,
       revision: report.source.revision,
+      space_source_mode: report.manifest_fidelity.source_mode,
       files: report.source.files
     },
     'space.json': report.space,

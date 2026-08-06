@@ -5,6 +5,7 @@ import path from 'node:path';
 import { analyzeSnapshot, scaffoldSnapshot } from '../packages/cli/src/snapshot.mjs';
 
 const config = 'fixtures/family-space-snapshot-input/snapshot.config.json';
+const unifiedConfig = 'fixtures/mingos-unified-snapshot-input/snapshot.config.json';
 
 test('snapshot analyze quantifies deterministic work and semantic loss', async () => {
   const report = await analyzeSnapshot(config);
@@ -15,6 +16,7 @@ test('snapshot analyze quantifies deterministic work and semantic loss', async (
   assert.equal(report.semantic_coverage.extracted_markdown_claims, 39);
   assert.equal(report.semantic_coverage.mapped_claims, 6);
   assert.equal(report.semantic_coverage.unmapped_claims, 33);
+  assert.equal(report.manifest_fidelity.source_mode, 'source-manifest');
   assert.equal(report.manifest_fidelity.source_fields, 15);
   assert.deepEqual(report.manifest_fidelity.overridden_fields, ['member_actor_ids']);
   assert.deepEqual(report.manifest_fidelity.unsupported_fields, ['mingos_repository']);
@@ -65,6 +67,33 @@ test('snapshot analyze rejects tampered source content', async () => {
     await writeFile(tempConfig, JSON.stringify(original));
     const relativeConfig = path.relative(process.cwd(), tempConfig);
     await assert.rejects(() => analyzeSnapshot(relativeConfig), /blob SHA mismatch/);
+  } finally {
+    await rm(temp, { recursive: true, force: true });
+  }
+});
+
+test('snapshot accepts an explicit reviewed seed when an external repository has no manifest', async () => {
+  const report = await analyzeSnapshot(unifiedConfig);
+  assert.equal(report.source.repository, 'YuemingHub/mingos-unified');
+  assert.equal(report.manifest_fidelity.source_mode, 'explicit-seed');
+  assert.equal(report.space.space_id, 'mingos-unified-archive');
+  assert.equal(report.space.space_type, 'custom');
+  assert.ok(report.semantic_coverage.extracted_markdown_claims > 10);
+  assert.equal(report.semantic_coverage.mapped_claims, 0);
+  assert.equal(report.decision.automate_semantic_interpretation, false);
+  assert.equal(report.decision.manual_review_required, true);
+});
+
+test('explicit-seed scaffold records its source mode and review requirement', async () => {
+  const temp = await mkdtemp(path.join(process.cwd(), '.tmp-unified-output-'));
+  const relative = path.relative(process.cwd(), temp);
+  try {
+    await scaffoldSnapshot(unifiedConfig, relative);
+    const snapshot = JSON.parse(await readFile(path.join(temp, 'source-snapshot.json'), 'utf8'));
+    assert.equal(snapshot.space_source_mode, 'explicit-seed');
+    const review = await readFile(path.join(temp, 'REVIEW_REQUIRED.md'), 'utf8');
+    assert.match(review, /Confirm that an explicit seed accurately identifies the space/);
+    assert.match(review, /does not claim semantic completeness/);
   } finally {
     await rm(temp, { recursive: true, force: true });
   }
