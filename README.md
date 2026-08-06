@@ -56,6 +56,25 @@ npm run ming -- bundle inspect examples/team-space/mingos-project/continuity-bun
 
 CLI 只读取仓库资产，不调用模型、不连接外部工具、不执行不可逆操作。
 
+## Snapshot CLI
+
+量化一次外部空间快照中的重复劳动、字段损失与语义覆盖：
+
+```bash
+npm run ming -- snapshot analyze fixtures/family-space-snapshot-input/snapshot.config.json
+npm run ming -- snapshot analyze fixtures/family-space-snapshot-input/snapshot.config.json --json
+```
+
+生成确定性的只读脚手架：
+
+```bash
+npm run ming -- snapshot scaffold \
+  fixtures/family-space-snapshot-input/snapshot.config.json \
+  --out .tmp/family-space-snapshot
+```
+
+脚手架只生成来源快照、Space 字段、主张清单、覆盖率报告和人工复核清单。它不会自动确认事实、推断意图、授予权限、创建任务或声称完成。
+
 MingOS 将首先用自己的协议持续建设 MingOS 本身。
 
 ## 核心判定

@@ -1,0 +1,42 @@
+{
+  "snapshot_id": "family-space-2026-08-06",
+  "source": {
+    "repository": "YuemingHub/Family-Space",
+    "branch": "production",
+    "revision": "4e77e245bf4dfa49249e53a258e9ed575c428a41",
+    "files": [
+      {
+        "path": "space-manifest.json",
+        "local_path": "sources/space-manifest.json",
+        "blob_sha": "7b8906371bfcf37b5d1e68fc4a731a05bd55c0dc",
+        "role": "space-manifest"
+      },
+      {
+        "path": "CURRENT_PROJECT_STATUS.md",
+        "local_path": "sources/CURRENT_PROJECT_STATUS.md",
+        "blob_sha": "75364cb6c102e443c6443d9fcd0bfe3412f6e8db",
+        "role": "current-state"
+      },
+      {
+        "path": "docs/architecture/MINGOS_RELATIONSHIP.md",
+        "local_path": "sources/MINGOS_RELATIONSHIP.md",
+        "blob_sha": "3f8db3f889a309e19dbea423d6c80dff226e3f9e",
+        "role": "relationship"
+      }
+    ]
+  },
+  "space_overrides": {
+    "member_actor_ids": [
+      "agent-continuity"
+    ]
+  },
+  "existing_pilot_dir": "examples/family-space-pilot",
+  "mapped_claim_ids": [
+    "CURRENT_PROJECT_STATUS.md:L8",
+    "CURRENT_PROJECT_STATUS.md:L9",
+    "CURRENT_PROJECT_STATUS.md:L10",
+    "docs/architecture/MINGOS_RELATIONSHIP.md:L16",
+    "docs/architecture/MINGOS_RELATIONSHIP.md:L17",
+    "docs/architecture/MINGOS_RELATIONSHIP.md:L18"
+  ]
+}
