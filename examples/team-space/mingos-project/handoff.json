@@ -6,14 +6,15 @@
   "from_actor_id": "agent-continuity",
   "to_actor_id": null,
   "current_intent_id": "INTENT-0001",
-  "source_revision": "8944c8b145c96a5e5af11855cd41c4b626c661f0",
-  "state_snapshot_at": "2026-08-06T14:40:00Z",
+  "source_revision": "ec73647f55055676deb2fb2367ec15c97782d17e",
+  "state_snapshot_at": "2026-08-06T15:05:00Z",
   "actor_refs": [
     "human-yueming",
     "agent-continuity",
     "agent-bootstrap"
   ],
   "authorization_refs": [
+    "AUTH-0007",
     "AUTH-0006",
     "AUTH-0005",
     "AUTH-0004",
@@ -27,41 +28,47 @@
     "TASK-0003",
     "TASK-0004",
     "TASK-0005",
-    "TASK-0006"
+    "TASK-0006",
+    "TASK-0007"
+  ],
+  "source_conflict_report_refs": [
+    "CONFLICT-REPORT-mingos-unified-archive-2026-08-06"
+  ],
+  "source_review_refs": [
+    "SOURCE-REVIEW-mingos-unified-archive-2026-08-06-1",
+    "SOURCE-REVIEW-mingos-unified-archive-2026-08-06-2",
+    "SOURCE-REVIEW-mingos-unified-archive-2026-08-06-3"
   ],
   "completed": [
     "M0 可验证内核已合并",
-    "两轮跨 Agent 连续性实验及协议修复已合并",
-    "最小 bundle validate 与 bundle inspect CLI 已合并",
-    "Family-Space Manifest 模式的外部空间试点已合并",
-    "Family-Space 快照成本与信息损失已量化",
-    "snapshot analyze 与 snapshot scaffold 已合并",
-    "mingos-unified 显式 Seed 模式的第二外部空间试点已合并",
-    "Manifest 与 Seed 已实现互斥，Seed 模式强制人工复核",
-    "来源权威、有效日期、复核日期和当前事实源议题已可验证",
-    "绝对日期、到期复核和显式冲突候选报告已合并",
-    "冲突报告 automatic_resolution 固定为 false",
-    "Snapshot CLI 始终不自动确认事实、推断意图、授予权限、生成完成证据或替人复核"
+    "跨 Agent 连续性实验和最小 Bundle CLI 已合并",
+    "Family-Space Manifest 模式和 mingos-unified Seed 模式已验证",
+    "确定性 Snapshot CLI 与来源权威、时效、冲突报告已合并",
+    "source-conflict-report 与 source-review Schema 已合并",
+    "pending、submitted、revoked 及四类复核决定已建立不变量",
+    "source-review scaffold CLI 已合并",
+    "三个真实冲突候选已生成稳定报告和 pending 请求",
+    "29 项测试和全仓库示例验证已通过",
+    "系统已证明 Agent 可创建复核请求但不可冒充人类提交决定"
   ],
   "in_progress": [],
-  "blockers": [],
+  "blockers": [
+    "三份 source-review 均为 pending，等待 human-yueming 分别提交具名决定；在此之前不得自动进入下一能力阶段"
+  ],
   "next_actions": [
-    "基于 mingos-unified 的 3 个真实冲突候选设计最小 source-review 资产",
-    "source-review 必须引用候选、具名 Actor、决定时间、理由、证据与可撤回状态",
-    "允许的决定至少包括接受当前值、保留历史、无法判断和要求补证",
-    "系统不得自动生成或代替人提交 source-review",
-    "复核闭环验证前不建设联网导入器、UI、模型网关或通用 Agent 平台"
+    "human-yueming 复核 SOURCE-REVIEW-mingos-unified-archive-2026-08-06-1：Family-Space 产品仓",
+    "human-yueming 复核 SOURCE-REVIEW-mingos-unified-archive-2026-08-06-2：Foundation 仓库名称",
+    "human-yueming 复核 SOURCE-REVIEW-mingos-unified-archive-2026-08-06-3：MingOS 规范入口仓",
+    "每份复核选择 accept-value、preserve-history、unresolved 或 request-evidence，并提供对应理由或补证要求",
+    "全部复核仍 pending 时不建设联网导入器、UI、模型网关、自动迁移或通用 Agent 平台"
   ],
   "required_reads": [
     "docs/CURRENT_STATE.md",
-    "docs/experiments/2026-08-06-source-authority-temporal-conflict.md",
-    "fixtures/family-space-snapshot-input/snapshot.config.json",
-    "fixtures/mingos-unified-snapshot-input/snapshot.config.json",
-    "packages/cli/src/snapshot.mjs",
     "examples/team-space/mingos-project/space.json",
     "examples/team-space/mingos-project/actors.json",
     "examples/team-space/mingos-project/agent-continuity.json",
     "examples/team-space/mingos-project/agent-bootstrap.json",
+    "examples/team-space/mingos-project/authorizations/AUTH-0007.json",
     "examples/team-space/mingos-project/authorizations/AUTH-0006.json",
     "examples/team-space/mingos-project/authorizations/AUTH-0005.json",
     "examples/team-space/mingos-project/authorizations/AUTH-0004.json",
@@ -73,18 +80,25 @@
     "examples/team-space/mingos-project/context/snapshot-scaffold-ledger.json",
     "examples/team-space/mingos-project/context/second-space-seed-ledger.json",
     "examples/team-space/mingos-project/context/source-authority-ledger.json",
+    "examples/team-space/mingos-project/context/source-review-ledger.json",
+    "examples/team-space/mingos-project/tasks/TASK-0007.json",
     "examples/team-space/mingos-project/tasks/TASK-0006.json",
     "examples/team-space/mingos-project/tasks/TASK-0005.json",
     "examples/team-space/mingos-project/tasks/TASK-0004.json",
     "examples/team-space/mingos-project/tasks/TASK-0003.json",
     "examples/team-space/mingos-project/tasks/TASK-0002.json",
     "examples/team-space/mingos-project/tasks/TASK-0001.json",
+    "examples/team-space/mingos-project/evidence/EVIDENCE-0007.json",
     "examples/team-space/mingos-project/evidence/EVIDENCE-0006.json",
     "examples/team-space/mingos-project/evidence/EVIDENCE-0005.json",
     "examples/team-space/mingos-project/evidence/EVIDENCE-0004.json",
     "examples/team-space/mingos-project/evidence/EVIDENCE-0003.json",
     "examples/team-space/mingos-project/evidence/EVIDENCE-0002.json",
     "examples/team-space/mingos-project/evidence/EVIDENCE-0001.json",
+    "examples/source-review-pilot/conflict-report.json",
+    "examples/source-review-pilot/reviews/SOURCE-REVIEW-mingos-unified-archive-2026-08-06-1.json",
+    "examples/source-review-pilot/reviews/SOURCE-REVIEW-mingos-unified-archive-2026-08-06-2.json",
+    "examples/source-review-pilot/reviews/SOURCE-REVIEW-mingos-unified-archive-2026-08-06-3.json",
     "examples/team-space/mingos-project/handoff.json"
   ],
   "evidence_refs": [
@@ -93,7 +107,8 @@
     "EVIDENCE-0003",
     "EVIDENCE-0004",
     "EVIDENCE-0005",
-    "EVIDENCE-0006"
+    "EVIDENCE-0006",
+    "EVIDENCE-0007"
   ],
-  "created_at": "2026-08-06T14:40:00Z"
+  "created_at": "2026-08-06T15:05:00Z"
 }
