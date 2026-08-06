@@ -1,0 +1,45 @@
+{
+  "snapshot_id": "mingos-unified-archive-2026-08-06",
+  "source": {
+    "repository": "YuemingHub/mingos-unified",
+    "branch": "main",
+    "revision": "250a59dff30b13a57d826ede7b396a4102ea03a4",
+    "files": [
+      {
+        "path": "README.md",
+        "local_path": "sources/README.md",
+        "blob_sha": "6bb359c29eff896c5de7f2cd1c6186fc7e3d4b04",
+        "role": "overview"
+      },
+      {
+        "path": "REPOSITORY-MAP.md",
+        "local_path": "sources/REPOSITORY-MAP.md",
+        "blob_sha": "1df3015fac1e0b2846c98710dccf5b13d9b2ba2a",
+        "role": "repository-map"
+      }
+    ]
+  },
+  "space_seed": {
+    "schema_version": "0.1.0",
+    "kind": "space",
+    "space_id": "mingos-unified-archive",
+    "space_type": "custom",
+    "name": "MingOS Unified Knowledge Archive",
+    "owner_actor_id": "human-yueming",
+    "member_actor_ids": [
+      "agent-continuity"
+    ],
+    "purpose": "保存 MingOS 历史资产、旧决策与跨仓导航，作为待复核的知识档案",
+    "lifecycle": "draft",
+    "boundaries": [
+      "本快照只用于历史知识与仓库导航，不代表当前 MingOS 状态",
+      "来源仓库只读，不自动升级旧主张为当前事实",
+      "不将家庭产品逻辑提升为通用内核"
+    ],
+    "foundation_repository": "YuemingHub/mingos-foundation",
+    "domain_repository": "YuemingHub/mingos-unified",
+    "created_at": "2026-08-06T13:58:00Z",
+    "updated_at": "2026-08-06T13:58:00Z"
+  },
+  "mapped_claim_ids": []
+}
