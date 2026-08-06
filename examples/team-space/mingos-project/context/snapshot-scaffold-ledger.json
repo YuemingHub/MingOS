@@ -1,0 +1,59 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "context-ledger",
+  "space_id": "mingos-project",
+  "records": [
+    {
+      "record_id": "CTX-0012",
+      "record_type": "fact",
+      "content": "Family-Space 快照实验固定读取 3 个来源文件并手工形成 9 个试点资产，其中 6 个属于机械控制面资产；两个 Markdown 来源抽取 39 条原子主张，现有结构明确映射 6 条，覆盖率为 15.4%。",
+      "source_actor_id": "agent-continuity",
+      "source_refs": [
+        "docs/experiments/2026-08-06-family-space-snapshot-cost.md",
+        "fixtures/family-space-snapshot-input/snapshot.config.json"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "固定来源 Blob、现有试点文件清单与自动 snapshot analyze 结果",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": null,
+      "created_at": "2026-08-06T13:48:00Z",
+      "updated_at": "2026-08-06T13:48:00Z"
+    },
+    {
+      "record_id": "CTX-0013",
+      "record_type": "decision",
+      "content": "Snapshot CLI 只自动完成来源 Blob 校验、Space 字段保真、主张清单和覆盖率报告；不得自动确认事实、推断意图、授予权限、创建任务或生成完成证据。",
+      "source_actor_id": "human-yueming",
+      "source_refs": [
+        "conversation:2026-08-06-continue",
+        "docs/experiments/2026-08-06-family-space-snapshot-cost.md"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "用户授权持续直接推进；实现边界由已观察到的语义损失与人类主权原则共同决定",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": "CTX-0012",
+      "created_at": "2026-08-06T13:48:00Z",
+      "updated_at": "2026-08-06T13:48:00Z"
+    },
+    {
+      "record_id": "CTX-0014",
+      "record_type": "fact",
+      "content": "证据驱动的 Snapshot CLI PR #8 已合并至 main，合并提交为 cb4f5dd312b901c60f164f468e23c6ceef0b463e；GitHub Actions run 31107614467 的 17 项测试和示例验证全部通过。",
+      "source_actor_id": "agent-continuity",
+      "source_refs": [
+        "github:YuemingHub/MingOS/pull/8",
+        "github-actions:31107614467",
+        "github:YuemingHub/MingOS@cb4f5dd312b901c60f164f468e23c6ceef0b463e"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "GitHub squash merge result and successful final workflow job",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": "CTX-0013",
+      "created_at": "2026-08-06T13:48:00Z",
+      "updated_at": "2026-08-06T13:48:00Z"
+    }
+  ]
+}
