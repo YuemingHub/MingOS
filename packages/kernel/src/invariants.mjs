@@ -28,6 +28,34 @@ export function checkTaskCompletion(task, evidenceById) {
   return errors;
 }
 
+export function checkTaskAuthorization(task, authorizationById) {
+  const errors = [];
+  const authorization = authorizationById.get(task.authorization_ref);
+  if (!authorization) return [`${task.task_id}: authorization ${task.authorization_ref} not found`];
+  if (authorization.status !== 'active') errors.push(`${task.task_id}: authorization ${task.authorization_ref} is not active`);
+  if (authorization.space_id !== task.space_id) errors.push(`${task.task_id}: authorization belongs to another space`);
+  if (authorization.granted_to_actor_id !== task.assigned_actor_id) {
+    errors.push(`${task.task_id}: authorization is not granted to assigned actor`);
+  }
+  for (const action of task.allowed_actions ?? []) {
+    if (!authorization.allowed_actions.includes(action)) {
+      errors.push(`${task.task_id}: action ${action} is outside authorization`);
+    }
+  }
+  return errors;
+}
+
+export function checkAuthorization(authorization) {
+  const errors = [];
+  if (authorization.irreversible_actions_allowed && !authorization.requires_step_approval) {
+    errors.push(`${authorization.authorization_id}: irreversible actions require step approval`);
+  }
+  if (authorization.status === 'revoked' && !authorization.revoked_at) {
+    errors.push(`${authorization.authorization_id}: revoked authorization requires revoked_at`);
+  }
+  return errors;
+}
+
 export function checkContextLedger(ledger) {
   const errors = [];
   const byId = new Map();
@@ -55,6 +83,33 @@ export function checkSpaceReferences(documents) {
   for (const doc of documents) {
     if (doc.kind !== 'space' && doc.space_id && !spaces.has(doc.space_id)) {
       errors.push(`${doc.kind}: unknown space_id ${doc.space_id}`);
+    }
+  }
+  return errors;
+}
+
+export function checkActorReferences(documents) {
+  const errors = [];
+  const actors = new Set(documents.filter((d) => d.kind === 'actor').map((d) => d.actor_id));
+  const requireActor = (id, label) => {
+    if (id && !actors.has(id)) errors.push(`${label}: unknown actor_id ${id}`);
+  };
+
+  for (const doc of documents) {
+    if (doc.kind === 'space') {
+      requireActor(doc.owner_actor_id, `${doc.space_id}.owner_actor_id`);
+      for (const actorId of doc.member_actor_ids ?? []) requireActor(actorId, `${doc.space_id}.member_actor_ids`);
+    } else if (doc.kind === 'authorization') {
+      requireActor(doc.granted_by_actor_id, `${doc.authorization_id}.granted_by_actor_id`);
+      requireActor(doc.granted_to_actor_id, `${doc.authorization_id}.granted_to_actor_id`);
+    } else if (doc.kind === 'task') {
+      requireActor(doc.assigned_actor_id, `${doc.task_id}.assigned_actor_id`);
+    } else if (doc.kind === 'evidence') {
+      requireActor(doc.produced_by_actor_id, `${doc.evidence_id}.produced_by_actor_id`);
+      requireActor(doc.verified_by_actor_id, `${doc.evidence_id}.verified_by_actor_id`);
+    } else if (doc.kind === 'handoff') {
+      requireActor(doc.from_actor_id, `${doc.handoff_id}.from_actor_id`);
+      requireActor(doc.to_actor_id, `${doc.handoff_id}.to_actor_id`);
     }
   }
   return errors;

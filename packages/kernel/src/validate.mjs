@@ -1,7 +1,7 @@
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
-import { checkContextLedger, checkSpaceReferences, checkTaskCompletion } from './invariants.mjs';
+import { checkActorReferences, checkAuthorization, checkContextLedger, checkSpaceReferences, checkTaskAuthorization, checkTaskCompletion } from './invariants.mjs';
 import { validateSchema } from './schema-validator.mjs';
 
 const root = path.resolve(process.cwd());
@@ -11,6 +11,7 @@ const schemaDir = path.join(root, 'schemas');
 const schemaFiles = {
   space: 'space.schema.json',
   actor: 'actor.schema.json',
+  authorization: 'authorization.schema.json',
   'context-ledger': 'context-ledger.schema.json',
   'intent-contract': 'intent-contract.schema.json',
   task: 'task.schema.json',
@@ -57,9 +58,15 @@ for (const file of await walk(target)) {
 }
 
 const evidenceById = new Map(documents.filter((d) => d.kind === 'evidence').map((d) => [d.evidence_id, d]));
-for (const task of documents.filter((d) => d.kind === 'task')) failures.push(...checkTaskCompletion(task, evidenceById));
+const authorizationById = new Map(documents.filter((d) => d.kind === 'authorization').map((d) => [d.authorization_id, d]));
+for (const task of documents.filter((d) => d.kind === 'task')) {
+  failures.push(...checkTaskAuthorization(task, authorizationById));
+  failures.push(...checkTaskCompletion(task, evidenceById));
+}
+for (const authorization of documents.filter((d) => d.kind === 'authorization')) failures.push(...checkAuthorization(authorization));
 for (const ledger of documents.filter((d) => d.kind === 'context-ledger')) failures.push(...checkContextLedger(ledger));
 failures.push(...checkSpaceReferences(documents));
+failures.push(...checkActorReferences(documents));
 
 if (failures.length > 0) {
   console.error('MingOS validation failed:');
