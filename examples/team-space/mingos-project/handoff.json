@@ -6,14 +6,15 @@
   "from_actor_id": "agent-continuity",
   "to_actor_id": null,
   "current_intent_id": "INTENT-0001",
-  "source_revision": "60e3c727490de29b587c93d63e6d0b66cce385ae",
-  "state_snapshot_at": "2026-08-06T13:48:00Z",
+  "source_revision": "504150b0f488fdbe1b0fb94ad278d5629853e691",
+  "state_snapshot_at": "2026-08-06T14:05:00Z",
   "actor_refs": [
     "human-yueming",
     "agent-continuity",
     "agent-bootstrap"
   ],
   "authorization_refs": [
+    "AUTH-0005",
     "AUTH-0004",
     "AUTH-0003",
     "AUTH-0002",
@@ -23,33 +24,39 @@
     "TASK-0001",
     "TASK-0002",
     "TASK-0003",
-    "TASK-0004"
+    "TASK-0004",
+    "TASK-0005"
   ],
   "completed": [
     "M0 可验证内核已合并",
     "两轮跨 Agent 连续性实验及协议修复已合并",
     "最小 bundle validate 与 bundle inspect CLI 已合并",
-    "Family-Space 只读外部空间试点已合并",
+    "Family-Space Manifest 模式的外部空间试点已合并",
     "Family-Space 快照成本与信息损失已量化",
-    "snapshot analyze 与 snapshot scaffold 已合并并通过 17 项回归",
-    "Snapshot CLI 明确不自动确认事实、推断意图、授予权限或生成完成证据"
+    "snapshot analyze 与 snapshot scaffold 已合并",
+    "mingos-unified 显式 Seed 模式的第二外部空间试点已合并",
+    "Manifest 与 Seed 已实现互斥，Seed 模式强制人工复核",
+    "Snapshot CLI 始终不自动确认事实、推断意图、授予权限或生成完成证据"
   ],
   "in_progress": [],
   "blockers": [],
   "next_actions": [
-    "选择第二个不同领域且来源结构不同的外部空间",
-    "仅使用固定来源与 snapshot config 运行 analyze/scaffold",
-    "记录是否出现 Family-Space 专属假设或新的信息损失",
-    "至少两个外部空间验证前不建设联网导入器、UI、模型网关或通用 Agent 平台"
+    "为 snapshot config 增加来源权威与时效元数据",
+    "从历史知识仓抽取绝对日期、当前事实源声明和可能过期主张",
+    "生成冲突与过期提示报告但不自动裁决真假",
+    "报告经真实历史资产验证前不建设联网导入器、UI、模型网关或通用 Agent 平台"
   ],
   "required_reads": [
     "docs/CURRENT_STATE.md",
     "docs/experiments/2026-08-06-family-space-snapshot-cost.md",
+    "docs/experiments/2026-08-06-unified-archive-seed-pilot.md",
     "fixtures/family-space-snapshot-input/snapshot.config.json",
+    "fixtures/mingos-unified-snapshot-input/snapshot.config.json",
     "examples/team-space/mingos-project/space.json",
     "examples/team-space/mingos-project/actors.json",
     "examples/team-space/mingos-project/agent-continuity.json",
     "examples/team-space/mingos-project/agent-bootstrap.json",
+    "examples/team-space/mingos-project/authorizations/AUTH-0005.json",
     "examples/team-space/mingos-project/authorizations/AUTH-0004.json",
     "examples/team-space/mingos-project/authorizations/AUTH-0003.json",
     "examples/team-space/mingos-project/authorizations/AUTH-0002.json",
@@ -57,22 +64,25 @@
     "examples/team-space/mingos-project/intent-contract.json",
     "examples/team-space/mingos-project/context-ledger.json",
     "examples/team-space/mingos-project/context/snapshot-scaffold-ledger.json",
+    "examples/team-space/mingos-project/context/second-space-seed-ledger.json",
+    "examples/team-space/mingos-project/tasks/TASK-0005.json",
     "examples/team-space/mingos-project/tasks/TASK-0004.json",
     "examples/team-space/mingos-project/tasks/TASK-0003.json",
     "examples/team-space/mingos-project/tasks/TASK-0002.json",
     "examples/team-space/mingos-project/tasks/TASK-0001.json",
+    "examples/team-space/mingos-project/evidence/EVIDENCE-0005.json",
     "examples/team-space/mingos-project/evidence/EVIDENCE-0004.json",
     "examples/team-space/mingos-project/evidence/EVIDENCE-0003.json",
     "examples/team-space/mingos-project/evidence/EVIDENCE-0002.json",
     "examples/team-space/mingos-project/evidence/EVIDENCE-0001.json",
-    "examples/team-space/mingos-project/handoff.json",
-    "examples/family-space-pilot/continuity-bundle.json"
+    "examples/team-space/mingos-project/handoff.json"
   ],
   "evidence_refs": [
     "EVIDENCE-0001",
     "EVIDENCE-0002",
     "EVIDENCE-0003",
-    "EVIDENCE-0004"
+    "EVIDENCE-0004",
+    "EVIDENCE-0005"
   ],
-  "created_at": "2026-08-06T13:48:00Z"
+  "created_at": "2026-08-06T14:05:00Z"
 }

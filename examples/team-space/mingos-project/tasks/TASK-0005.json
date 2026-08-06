@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "task",
+  "task_id": "TASK-0005",
+  "space_id": "mingos-project",
+  "intent_id": "INTENT-0001",
+  "title": "用显式 Seed 验证第二个外部知识档案空间",
+  "status": "completed",
+  "assigned_actor_id": "agent-continuity",
+  "authorization_ref": "AUTH-0005",
+  "allowed_actions": [
+    "create-files",
+    "update-files",
+    "run-tests",
+    "open-draft-pr",
+    "merge-pr"
+  ],
+  "completion_criteria": [
+    "固定 mingos-unified 的来源提交与文件 Blob",
+    "无 Manifest 来源可通过显式 space_seed analyze/scaffold",
+    "Manifest 与 Seed 保持互斥",
+    "Seed 模式强制人工复核且不自动语义解释",
+    "Family-Space Manifest 模式回归不受影响",
+    "GitHub Actions 全量验证通过并合并至 main"
+  ],
+  "evidence_refs": [
+    "EVIDENCE-0005"
+  ],
+  "requires_human_approval": false,
+  "human_approval_ref": null,
+  "blocked_reason": null
+}
