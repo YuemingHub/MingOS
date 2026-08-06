@@ -93,21 +93,6 @@
       "values": [
         {
           "value_id": "VALUE-mingos-canonical-entrypoint-1",
-          "asserted_value": "YuemingHub/MingOS",
-          "records": [
-            {
-              "record_kind": "reference-assertion",
-              "record_id": "REF-CURRENT-MINGOS-REPO",
-              "source_ref": "github:YuemingHub/MingOS@667b45d79ca8664d004a2a728f4486b59e64190d/README.md",
-              "authority": "current-fact-source",
-              "temporal_status": "current",
-              "valid_as_of": "2026-08-06",
-              "valid_until": null
-            }
-          ]
-        },
-        {
-          "value_id": "VALUE-mingos-canonical-entrypoint-2",
           "asserted_value": "YuemingHub/mingos-unified",
           "records": [
             {
@@ -126,6 +111,21 @@
               "authority": "historical",
               "temporal_status": "historical",
               "valid_as_of": "2026-08-03",
+              "valid_until": null
+            }
+          ]
+        },
+        {
+          "value_id": "VALUE-mingos-canonical-entrypoint-2",
+          "asserted_value": "YuemingHub/MingOS",
+          "records": [
+            {
+              "record_kind": "reference-assertion",
+              "record_id": "REF-CURRENT-MINGOS-REPO",
+              "source_ref": "github:YuemingHub/MingOS@667b45d79ca8664d004a2a728f4486b59e64190d/README.md",
+              "authority": "current-fact-source",
+              "temporal_status": "current",
+              "valid_as_of": "2026-08-06",
               "valid_until": null
             }
           ]
