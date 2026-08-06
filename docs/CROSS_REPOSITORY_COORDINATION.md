@@ -45,19 +45,25 @@ Foundation 的原则与标准复核
 - 默认分支：`main`
 - 当前主干提交：[`280a687`](https://github.com/YuemingHub/mingos-foundation/commit/280a68705d13bbb5beed3a64713575fad7cba189)
 - 可见性：public
-- 当前接受状态文件 [GOV-0001](https://github.com/YuemingHub/mingos-foundation/blob/main/governance/status/GOV-0001-current-canonical-state.md) 与 README 仍将旧路径 `YuemingHub/Ming-Foundation` 写作 canonical public repository。
+- 2026-08-06，human-yueming 已接受 `YuemingHub/mingos-foundation` 为当前 Foundation 仓库；`YuemingHub/Ming-Foundation` 仅作为历史仓库标识保留。Foundation 当前引用清理见 [PR #15](https://github.com/YuemingHub/mingos-foundation/pull/15)。
 - 开放 Draft PR：[\#12](https://github.com/YuemingHub/mingos-foundation/pull/12)。其 Kernel 文档仍为 Draft，不产生当前 conformance claim。
 
-因此，“当前操作仓库名称”和“Foundation 已接受文件中的 canonical 名称”存在冲突。该冲突已进入 MingOS source-review，不在本文件中预先裁决。
+因此，当前操作仓库名称与 Foundation 历史接受文件曾使用的名称已经完成具名复核：
+
+- 当前事实：`YuemingHub/mingos-foundation`；
+- 历史标识：`YuemingHub/Ming-Foundation`；
+- 原始历史记录不静默改写，新的当前引用统一使用当前事实。
+
+本协调文件只记录跨仓同步结果，不替代 Foundation 自身的治理文件。
 
 ### MingOS
 
 - 仓库：`YuemingHub/MingOS`
 - 默认分支：`main`
 - 当前主干提交：[`ec73647`](https://github.com/YuemingHub/MingOS/commit/ec73647f55055676deb2fb2367ec15c97782d17e)
-- 当前主干已合并 source authority / freshness / conflict reporting；真实 source-review 协议正在 [PR \#15](https://github.com/YuemingHub/MingOS/pull/15) 中等待人类决定门。
+- 当前主干已合并 source authority / freshness / conflict reporting 与具名 source-review 协议；PR #15 已合并，三份具体决定已由 human-yueming 提交并在本分支同步记录。
 - 当前无真实用户、无生产环境、无数据迁移。
-- 当前不建设联网导入器、通用 UI、模型网关、自动迁移或通用 Agent 平台，直到 pending source-review 完成具名复核。
+- 当前仍不建设联网导入器、通用 UI、模型网关、自动迁移或通用 Agent 平台；来源决定完成不等于这些能力自动获批。
 
 ### Family-Space
 
@@ -92,22 +98,17 @@ MingOS 提供跨空间能力和协议，不规定家庭领域的具体回应方�
 
 家庭产品中的字段、提示词、流程或一次有效的产品做法，不会因为已经存在就成为 MingOS 通用对象，更不会自动成为 Foundation 原则。只有经过跨仓审查、抽象和相应治理流程，才可形成上层提案。
 
-## 5. 当前人类决定门
+## 5. 已提交的人类决定
 
-MingOS [PR \#15](https://github.com/YuemingHub/MingOS/pull/15) 中保留以下三个 pending 请求：
+2026-08-06，`human-yueming` 对三个 source-review 分别提交了 `accept-value` 决定：
 
-1. Family-Space 产品仓的当前事实；
-2. Foundation 仓库名称；
-3. MingOS 规范入口仓。
+| 议题 | 当前接受值 | 历史保留 |
+|---|---|---|
+| Family-Space 产品仓 | `YuemingHub/Family-Space` | `YuemingHub/Ming-os` |
+| Foundation 仓库 | `YuemingHub/mingos-foundation` | `YuemingHub/Ming-Foundation` |
+| MingOS 规范入口仓 | `YuemingHub/MingOS` | `YuemingHub/mingos-unified` |
 
-每份请求只能由具名 active human 选择：
-
-- `accept-value`
-- `preserve-history`
-- `unresolved`
-- `request-evidence`
-
-在决定提交前，`decision`、`selected_value_ref`、`rationale`、`decided_at` 必须保持为空。一般工程推进授权不等于已经作出上述任何事实选择。
+三份决定均具名、可追溯、可撤回；原始冲突报告、候选值和历史来源继续保留。该决定只更新事实基线，不代表生产放行、真实用户启动或平台扩建自动获批。
 
 ## 6. 执行队列
 
@@ -115,12 +116,11 @@ MingOS [PR \#15](https://github.com/YuemingHub/MingOS/pull/15) 中保留以下�
 
 - 维护本协调契约和去身份化状态入口；
 - 对三个仓库进行只读核验、差异分析、测试设计和 Draft PR 准备；
-- 在不改变事实选择的前提下修复明显的引用、结构和验证问题；
+- 依据已接受事实修复明显的当前引用、结构和验证问题，同时保留历史来源；
 - 将 Family-Space 的合成反例与失败证据整理为 MingOS 可审阅的输入。
 
 ### 当前不能自动做
 
-- 替月明提交三份 source-review 决定；
 - 直接合并 PR \#12、PR \#15 或 PR \#116；
 - 把旧发布记录恢复为当前生产事实；
 - 触碰服务器、PM2、Nginx、cron、环境变量、密钥、真实数据或 `ymai.me`；
@@ -128,9 +128,9 @@ MingOS [PR \#15](https://github.com/YuemingHub/MingOS/pull/15) 中保留以下�
 
 ### 下一轮顺序
 
-1. 完成人类 source-review 决定，或明确选择保持 unresolved/request-evidence；
-2. 依据决定分别更新 Foundation、MingOS 和 Family-Space 的引用与状态入口；
-3. 以当前各自默认分支为基线逐个重审开放 Draft PR，先处理重复、过期和基线漂移；
+1. 审查本协调 PR 与 Foundation 引用统一 PR，确认三仓事实同步没有越界；
+2. 以当前各自默认分支为基线逐个重审开放 Draft PR，先处理重复、过期和基线漂移；
+3. 将 Family-Space 的真实产品证据、失败和反例继续作为 MingOS 可审阅输入，而不是自动提升为通用内核；
 4. 只有在产品闭环、自动验证与人工安全门均闭合后，才讨论真实用户或生产放行。
 
 ## 7. 每个跨仓变更必须回答
