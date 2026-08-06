@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mingos.cn/schemas/source-review.schema.json",
+  "title": "MingOS Source Review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "review_id",
+    "space_id",
+    "conflict_report_id",
+    "conflict_id",
+    "candidate_value_refs",
+    "created_by_actor_id",
+    "reviewer_actor_id",
+    "review_status",
+    "decision",
+    "selected_value_ref",
+    "rationale",
+    "supporting_refs",
+    "requested_evidence",
+    "revocable",
+    "decided_at",
+    "revoked_at",
+    "revocation_reason",
+    "supersedes_review_id",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "kind": { "const": "source-review" },
+    "review_id": { "type": "string", "minLength": 1 },
+    "space_id": { "type": "string", "minLength": 1 },
+    "conflict_report_id": { "type": "string", "minLength": 1 },
+    "conflict_id": { "type": "string", "minLength": 1 },
+    "candidate_value_refs": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "created_by_actor_id": { "type": "string", "minLength": 1 },
+    "reviewer_actor_id": { "type": "string", "minLength": 1 },
+    "review_status": { "enum": ["pending", "submitted", "revoked"] },
+    "decision": { "enum": [null, "accept-value", "preserve-history", "unresolved", "request-evidence"] },
+    "selected_value_ref": { "type": ["string", "null"] },
+    "rationale": { "type": ["string", "null"] },
+    "supporting_refs": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "requested_evidence": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "revocable": { "type": "boolean" },
+    "decided_at": { "type": ["string", "null"] },
+    "revoked_at": { "type": ["string", "null"] },
+    "revocation_reason": { "type": ["string", "null"] },
+    "supersedes_review_id": { "type": ["string", "null"] },
+    "created_at": { "type": "string", "minLength": 1 },
+    "updated_at": { "type": "string", "minLength": 1 }
+  }
+}
