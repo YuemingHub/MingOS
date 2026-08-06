@@ -20,13 +20,25 @@ function slug(value) {
     .slice(0, 80) || 'item';
 }
 
+function normalizeConflictRecord(record) {
+  return {
+    record_kind: record.record_kind,
+    record_id: record.record_id,
+    source_ref: record.source_ref,
+    authority: record.authority,
+    temporal_status: record.temporal_status,
+    valid_as_of: record.valid_as_of ?? null,
+    valid_until: record.valid_until ?? null
+  };
+}
+
 function stableValues(values, topic) {
   return [...values]
     .sort((left, right) => JSON.stringify(left.asserted_value).localeCompare(JSON.stringify(right.asserted_value)))
     .map((value, index) => ({
       value_id: `VALUE-${slug(topic)}-${index + 1}`,
       asserted_value: value.asserted_value,
-      records: value.records
+      records: value.records.map(normalizeConflictRecord)
     }));
 }
 
