@@ -10,6 +10,10 @@
   "scripts": {
     "test": "node --test tests/*.test.mjs",
     "validate:examples": "node packages/kernel/src/validate.mjs examples",
-    "check": "npm test && npm run validate:examples"
+    "check": "npm test && npm run validate:examples",
+    "ming": "node packages/cli/bin/ming.mjs"
+  },
+  "bin": {
+    "ming": "./packages/cli/bin/ming.mjs"
   }
 }
