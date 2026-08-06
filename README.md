@@ -75,6 +75,29 @@ npm run ming -- snapshot scaffold \
 
 脚手架只生成来源快照、Space 字段、主张清单、覆盖率报告和人工复核清单。它不会自动确认事实、推断意图、授予权限、创建任务或声称完成。
 
+外部仓库没有 `space-manifest.json` 时，可以在配置中显式提供 `space_seed`：
+
+```json
+{
+  "space_seed": {
+    "schema_version": "0.1.0",
+    "kind": "space",
+    "space_id": "example-archive",
+    "space_type": "custom",
+    "name": "Example Archive",
+    "owner_actor_id": "human-owner",
+    "member_actor_ids": [],
+    "purpose": "待人工确认的空间用途",
+    "lifecycle": "draft",
+    "boundaries": ["来源只读", "旧主张不自动成为当前事实"],
+    "created_at": "2026-08-06T00:00:00Z",
+    "updated_at": "2026-08-06T00:00:00Z"
+  }
+}
+```
+
+`space_seed` 是显式、可审阅的身份声明，不是工具推断。配置不得同时提供来源 Manifest 和 Seed；Seed 模式永远要求人工复核。
+
 MingOS 将首先用自己的协议持续建设 MingOS 本身。
 
 ## 核心判定
