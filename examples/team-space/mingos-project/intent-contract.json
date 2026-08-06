@@ -4,7 +4,7 @@
   "intent_id": "INTENT-0001",
   "space_id": "mingos-project",
   "original_expression": "不要让探讨一直在，而是让这件事发生，然后过程调整",
-  "current_understanding": "MingOS 已将三个真实来源冲突转为具名、可验证、可撤回的 pending 复核请求。工程已推进到必须由 human-yueming 分别作出具体决定的真实人类门；继续自动扩建不能替代该门。",
+  "current_understanding": "MingOS 已将三个真实来源冲突转为具名、可验证、可撤回的 source-review；2026-08-06 human-yueming 已分别接受 Family-Space、mingos-foundation 和 MingOS 为当前仓库事实，同时保留旧名称与旧来源的历史可追溯性。下一步是跨仓引用清理与开放 Draft PR 基线审计，不是生产放行。",
   "goals": [
     "建立跨空间对象的机器可验证 Schema",
     "建立无证据不得完成的内核不变量",
@@ -23,7 +23,7 @@
     "当前不让 Snapshot CLI 自动生成 Context、Intent、Authorization、Task 或 Evidence",
     "当前不让系统自动决定冲突来源中哪一个为真",
     "当前不让 Agent 代替具名 Actor 创建、提交、撤回或 supersede 来源复核决定",
-    "在人类决定门完成前不继续横向扩建平台能力"
+    "来源决定完成后仍不无证据横向扩建平台能力；先完成 canonical 引用清理与 Draft PR 基线审计"
   ],
   "constraints": [
     "保持 Foundation、MingOS、Space 三层边界",
@@ -48,10 +48,10 @@
     "三个具体复核只有在 human-yueming 具名提交后才视为完成"
   ],
   "human_decisions": [
-    "SOURCE-REVIEW-mingos-unified-archive-2026-08-06-1：Family-Space 产品仓应接受哪个当前值、保留哪个历史值或继续未决。",
-    "SOURCE-REVIEW-mingos-unified-archive-2026-08-06-2：Foundation 仓库名称应接受哪个当前值、保留哪个历史值或继续未决。",
-    "SOURCE-REVIEW-mingos-unified-archive-2026-08-06-3：MingOS 规范入口仓应接受哪个当前值、保留哪个历史值或继续未决。",
-    "何时允许联网导入、模型辅助映射或面向人的 UI；必须在真实人类来源复核完成后决定。"
+    "已完成：接受 YuemingHub/Family-Space 为当前家庭产品仓，YuemingHub/Ming-os 保留为历史来源。",
+    "已完成：接受 YuemingHub/mingos-foundation 为当前 Foundation 仓库，YuemingHub/Ming-Foundation 保留为历史仓库标识。",
+    "已完成：接受 YuemingHub/MingOS 为当前 MingOS 规范入口仓，YuemingHub/mingos-unified 保留为历史来源。",
+    "后续何时允许联网导入、模型辅助映射或面向人的 UI，仍需基于真实产品证据与新的人工安全门另行决定。"
   ],
   "allowed_capabilities": [
     "github-read",
@@ -60,6 +60,6 @@
   ],
   "risk_level": "low",
   "status": "active",
-  "next_action": "等待 human-yueming 对三份 pending source-review 分别提交具名决定；在此之前保持项目停在人工门。",
-  "version": 9
+  "next_action": "依据已接受的三仓事实更新当前引用，审查开放 Draft PR 的重复、过期和基线漂移；保持 Draft、无合并、无部署和无真实数据边界。",
+  "version": 10
 }
