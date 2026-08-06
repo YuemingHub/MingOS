@@ -1,0 +1,25 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "authorization",
+  "authorization_id": "AUTH-0003",
+  "space_id": "mingos-project",
+  "granted_by_actor_id": "human-yueming",
+  "granted_to_actor_id": "agent-continuity",
+  "allowed_actions": [
+    "create-files",
+    "update-files",
+    "run-tests",
+    "open-draft-pr"
+  ],
+  "resource_scope": [
+    "YuemingHub/MingOS:branches/agent/*"
+  ],
+  "requires_step_approval": false,
+  "irreversible_actions_allowed": false,
+  "budget_limit": null,
+  "revocable": true,
+  "status": "active",
+  "effective_at": "2026-08-06T12:52:00Z",
+  "expires_at": null,
+  "revoked_at": null
+}

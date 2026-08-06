@@ -1,0 +1,30 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "task",
+  "task_id": "TASK-0003",
+  "space_id": "mingos-project",
+  "intent_id": "INTENT-0001",
+  "title": "实现最小 Continuity Bundle CLI",
+  "status": "completed",
+  "assigned_actor_id": "agent-continuity",
+  "authorization_ref": "AUTH-0003",
+  "allowed_actions": [
+    "create-files",
+    "update-files",
+    "run-tests",
+    "open-draft-pr"
+  ],
+  "completion_criteria": [
+    "提供 bundle validate 命令",
+    "提供 bundle inspect 命令",
+    "CLI 只从 Bundle 指定资产恢复项目摘要",
+    "检测 Bundle 遗漏的传递依赖",
+    "全部自动测试和示例验证通过"
+  ],
+  "evidence_refs": [
+    "EVIDENCE-0003"
+  ],
+  "requires_human_approval": false,
+  "human_approval_ref": null,
+  "blocked_reason": null
+}

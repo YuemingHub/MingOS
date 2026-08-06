@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "evidence",
+  "evidence_id": "EVIDENCE-0003",
+  "space_id": "mingos-project",
+  "task_id": "TASK-0003",
+  "evidence_type": "test",
+  "summary": "最小 CLI 已实现；bundle validate 与 bundle inspect 回归通过。第二次 bundle-only 复验发现并修复传递依赖遗漏。本地 12 个测试和 15 个示例对象通过；GitHub Actions Validate MingOS run #9 成功。",
+  "uri": "https://github.com/YuemingHub/MingOS/actions/runs/31104191893",
+  "verification_status": "passed",
+  "produced_by_actor_id": "agent-continuity",
+  "verified_by_actor_id": "agent-continuity",
+  "created_at": "2026-08-06T13:00:00Z"
+}

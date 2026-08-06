@@ -6,47 +6,60 @@
   "from_actor_id": "agent-continuity",
   "to_actor_id": null,
   "current_intent_id": "INTENT-0001",
-  "source_revision": "db5189df5110635dbabc0cf8e5e22b5ea340432d",
-  "state_snapshot_at": "2026-08-06T12:48:00Z",
+  "source_revision": "8cfbf617598ba9771c37c48be54e3c66b020c2af",
+  "state_snapshot_at": "2026-08-06T13:05:00Z",
   "actor_refs": [
     "human-yueming",
-    "agent-continuity"
+    "agent-continuity",
+    "agent-bootstrap"
   ],
   "authorization_refs": [
-    "AUTH-0002"
+    "AUTH-0003",
+    "AUTH-0002",
+    "AUTH-0001"
   ],
   "task_refs": [
     "TASK-0001",
-    "TASK-0002"
+    "TASK-0002",
+    "TASK-0003"
   ],
   "completed": [
-    "M0 已合并且 CI 通过",
-    "首次仓库-only 连续性预检已执行",
-    "过时状态、缺失 Actor、过期授权和可变证据问题已转成协议修复"
+    "M0 可验证内核已合并",
+    "第一次仓库-only 连续性实验及协议修复已合并",
+    "第二次 bundle-only 复验发现并修复传递依赖遗漏",
+    "最小 bundle validate 与 bundle inspect CLI 已实现",
+    "CLI 回归和完整示例验证已通过"
   ],
   "in_progress": [],
   "blockers": [],
   "next_actions": [
-    "由下一 Agent 仅读取 continuity-bundle.json 指定资产复验恢复质量",
-    "根据第二次实验结果决定 M1 CLI 是否只实现 bundle build/validate/refresh"
+    "合并最小 Bundle CLI",
+    "下一 Agent 只能先运行 bundle validate 与 bundle inspect，不接受额外口头背景",
+    "选择一个真实但低风险的外部项目空间验证该机制"
   ],
   "required_reads": [
     "docs/CURRENT_STATE.md",
     "examples/team-space/mingos-project/space.json",
     "examples/team-space/mingos-project/actors.json",
     "examples/team-space/mingos-project/agent-continuity.json",
+    "examples/team-space/mingos-project/agent-bootstrap.json",
+    "examples/team-space/mingos-project/authorizations/AUTH-0003.json",
     "examples/team-space/mingos-project/authorizations/AUTH-0002.json",
+    "examples/team-space/mingos-project/authorization.json",
     "examples/team-space/mingos-project/intent-contract.json",
     "examples/team-space/mingos-project/context-ledger.json",
-    "examples/team-space/mingos-project/tasks/TASK-0001.json",
+    "examples/team-space/mingos-project/tasks/TASK-0003.json",
     "examples/team-space/mingos-project/tasks/TASK-0002.json",
-    "examples/team-space/mingos-project/evidence/EVIDENCE-0001.json",
+    "examples/team-space/mingos-project/tasks/TASK-0001.json",
+    "examples/team-space/mingos-project/evidence/EVIDENCE-0003.json",
     "examples/team-space/mingos-project/evidence/EVIDENCE-0002.json",
+    "examples/team-space/mingos-project/evidence/EVIDENCE-0001.json",
     "examples/team-space/mingos-project/handoff.json"
   ],
   "evidence_refs": [
     "EVIDENCE-0001",
-    "EVIDENCE-0002"
+    "EVIDENCE-0002",
+    "EVIDENCE-0003"
   ],
-  "created_at": "2026-08-06T12:48:00Z"
+  "created_at": "2026-08-06T13:05:00Z"
 }

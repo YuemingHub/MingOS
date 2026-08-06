@@ -4,7 +4,7 @@
   "intent_id": "INTENT-0001",
   "space_id": "mingos-project",
   "original_expression": "不要让探讨一直在，而是让这件事发生，然后过程调整",
-  "current_understanding": "M0 已合并；当前通过仓库资产验证跨 Agent 连续性，并将真实失败转化为协议、Schema 与测试。",
+  "current_understanding": "MingOS 已完成两轮跨 Agent 连续性实验；当前把 Continuity Bundle 固化为单一交接入口，并以最小 CLI 验证和读取它。",
   "goals": [
     "建立跨空间对象的机器可验证 Schema",
     "建立无证据不得完成的内核不变量",
@@ -13,21 +13,23 @@
   "non_goals": [
     "本轮不开发完整 UI",
     "本轮不迁移 Family-Space 业务代码",
-    "本轮不接入真实用户或生产环境"
+    "本轮不接入真实用户或生产环境",
+    "本轮不执行 MCP、模型调用或外部不可逆操作"
   ],
   "constraints": [
     "保持 Foundation、MingOS、Space 三层边界",
-    "优先采用可替换技术实现",
-    "所有示例必须通过自动验证"
+    "优先采用可替换、零依赖技术实现",
+    "所有示例必须通过自动验证",
+    "CLI 只能读取 Bundle 明确列出的资产"
   ],
   "definition_of_done": [
-    "Schema 可被自动加载并验证",
-    "示例空间通过跨对象不变量检查",
-    "CI 在 pull request 和 main push 上运行",
-    "下一位 Agent 可只读仓库文件继续"
+    "Bundle 可以独立验证全部交接依赖",
+    "CLI 可以输出项目意图、授权、证据和下一步",
+    "传递依赖遗漏形成自动回归测试",
+    "下一位 Agent 无需原聊天即可开始工作"
   ],
   "human_decisions": [
-    "未来是否进入 M2 用户界面；在连续性实验完成前不启动。"
+    "是否进入面向人的 UI；必须在至少一个外部真实项目空间验证后决定。"
   ],
   "allowed_capabilities": [
     "github-read",
@@ -36,6 +38,6 @@
   ],
   "risk_level": "low",
   "status": "active",
-  "next_action": "完成并合并第一次跨 Agent 连续性实验修复。",
-  "version": 2
+  "next_action": "合并最小 Bundle CLI，并以它作为下一项目空间的唯一启动入口。",
+  "version": 3
 }
