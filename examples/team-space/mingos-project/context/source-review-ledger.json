@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "context-ledger",
+  "space_id": "mingos-project",
+  "records": [
+    {
+      "record_id": "CTX-0021",
+      "record_type": "fact",
+      "content": "具名、可撤回的 source-review 协议 PR #14 已合并至 main，合并提交为 ec73647f55055676deb2fb2367ec15c97782d17e；GitHub Actions run 31113972604 的 29 项测试和全仓库示例验证全部通过。",
+      "source_actor_id": "agent-continuity",
+      "source_refs": [
+        "github:YuemingHub/MingOS/pull/14",
+        "github-actions:31113972604",
+        "github:YuemingHub/MingOS@ec73647f55055676deb2fb2367ec15c97782d17e"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "GitHub squash merge result and successful complete workflow run",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": null,
+      "created_at": "2026-08-06T15:05:00Z",
+      "updated_at": "2026-08-06T15:05:00Z"
+    },
+    {
+      "record_id": "CTX-0022",
+      "record_type": "decision",
+      "content": "用户授权继续推进 MingOS 工程不等于用户已经对三个来源冲突候选作出具体事实选择；Agent 只能创建 pending 请求，不能预填 decision、rationale、selected value 或 decided_at。",
+      "source_actor_id": "human-yueming",
+      "source_refs": [
+        "conversation:2026-08-06-continue",
+        "docs/experiments/2026-08-06-source-review-pilot.md",
+        "examples/source-review-pilot/README.md"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "继续执行授权的范围是工程推进；具体来源裁决被协议定义为独立的人类决定门，真实请求均保持 pending",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": "CTX-0021",
+      "created_at": "2026-08-06T15:05:00Z",
+      "updated_at": "2026-08-06T15:05:00Z"
+    },
+    {
+      "record_id": "CTX-0023",
+      "record_type": "fact",
+      "content": "当前存在 3 份指派给 human-yueming 的 pending source-review，分别对应 Family-Space 产品仓、Foundation 仓名和 MingOS 规范入口仓；已提交人类决定为 0。下一阶段被真实的人类复核门阻断，在决定出现前不得自动扩建后续能力。",
+      "source_actor_id": "agent-continuity",
+      "source_refs": [
+        "examples/source-review-pilot/conflict-report.json",
+        "examples/source-review-pilot/reviews/SOURCE-REVIEW-mingos-unified-archive-2026-08-06-1.json",
+        "examples/source-review-pilot/reviews/SOURCE-REVIEW-mingos-unified-archive-2026-08-06-2.json",
+        "examples/source-review-pilot/reviews/SOURCE-REVIEW-mingos-unified-archive-2026-08-06-3.json"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "三份固定请求均为 review_status=pending、decision=null，且内核阻止 Agent 代替 human reviewer 提交决定",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": "CTX-0022",
+      "created_at": "2026-08-06T15:05:00Z",
+      "updated_at": "2026-08-06T15:05:00Z"
+    }
+  ]
+}
