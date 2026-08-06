@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "evidence",
+  "evidence_id": "EVIDENCE-0007",
+  "space_id": "mingos-project",
+  "task_id": "TASK-0007",
+  "evidence_type": "test",
+  "summary": "具名、可撤回的来源复核协议已实现并合并。固定历史快照生成 1 份正式冲突报告和 3 份 pending 请求，真实决定字段全部为空；active human 的合成提交通过，AI 冒充 reviewer 被拒绝。29 项测试与全仓库示例验证在 GitHub Actions run 31113972604 全部通过，PR #14 已合并。",
+  "uri": "https://github.com/YuemingHub/MingOS/actions/runs/31113972604",
+  "verification_status": "passed",
+  "produced_by_actor_id": "agent-continuity",
+  "verified_by_actor_id": "agent-continuity",
+  "created_at": "2026-08-06T15:05:00Z"
+}

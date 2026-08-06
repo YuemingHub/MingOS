@@ -4,7 +4,7 @@
   "intent_id": "INTENT-0001",
   "space_id": "mingos-project",
   "original_expression": "不要让探讨一直在，而是让这件事发生，然后过程调整",
-  "current_understanding": "MingOS 已完成两种外部来源模式及来源权威、时效和冲突候选报告。下一步不是增强自动判断，而是让具名的人类复核决定成为可验证、可撤回、不中断历史的资产。",
+  "current_understanding": "MingOS 已将三个真实来源冲突转为具名、可验证、可撤回的 pending 复核请求。工程已推进到必须由 human-yueming 分别作出具体决定的真实人类门；继续自动扩建不能替代该门。",
   "goals": [
     "建立跨空间对象的机器可验证 Schema",
     "建立无证据不得完成的内核不变量",
@@ -12,7 +12,8 @@
     "验证协议可以描述真实垂直空间而不吸收其领域逻辑",
     "自动化来源校验与机械转译，同时保留人的语义确认和授权权",
     "让来源权威、时效和冲突可见但不由系统自动裁决",
-    "让人类对来源冲突的复核决定具名、可追溯、可撤回"
+    "让来源冲突复核具名、可追溯、可撤回",
+    "清楚区分 Agent 创建请求与人类提交决定"
   ],
   "non_goals": [
     "当前不开发完整 UI",
@@ -21,7 +22,8 @@
     "当前不执行 MCP、模型调用或外部不可逆操作",
     "当前不让 Snapshot CLI 自动生成 Context、Intent、Authorization、Task 或 Evidence",
     "当前不让系统自动决定冲突来源中哪一个为真",
-    "当前不让系统代替具名 Actor 创建来源复核决定"
+    "当前不让 Agent 代替具名 Actor 创建、提交、撤回或 supersede 来源复核决定",
+    "在人类决定门完成前不继续横向扩建平台能力"
   ],
   "constraints": [
     "保持 Foundation、MingOS、Space 三层边界",
@@ -29,22 +31,27 @@
     "所有示例必须通过自动验证",
     "外部空间试点只读，不修改领域仓库业务链路",
     "新功能必须由已观察到的真实重复劳动或失败驱动",
-    "Bundle 闭包与 Seed 合法不得被解释为语义完整或当前有效",
+    "Bundle 闭包、Seed 合法与冲突检测不得被解释为语义完整或事实裁决",
     "历史资料必须保留来源和时间，不可被静默覆盖",
-    "来源复核必须记录 Actor、时间、理由、证据和可撤回状态"
+    "来源复核必须记录创建者、human reviewer、时间、理由、证据和可撤回状态",
+    "一般工程授权不得替代具体来源选择"
   ],
   "definition_of_done": [
     "自举 Bundle 可以独立验证和 inspect",
     "Family-Space Manifest 模式可以稳定 analyze/scaffold",
     "mingos-unified 显式 Seed 模式可以稳定 analyze/scaffold",
-    "来源篡改、路径越界、自动授权与 Seed 推断均被阻止",
-    "来源文件和主张可以显示权威级别、快照时间、潜在过期与冲突候选",
-    "冲突报告不自动覆盖或确认任何来源主张",
-    "source-review 资产可以记录接受、保留历史、无法判断或补证请求，并验证 Actor 与候选引用"
+    "来源权威、时效和冲突候选可以确定性报告",
+    "source-conflict-report 为每个冲突和值生成稳定 ID",
+    "source-review pending、submitted 和 revoked 状态可机器验证",
+    "AI reviewer、预填 pending 决定和不完整候选引用被自动拒绝",
+    "三个真实候选以 pending 形式进入 Continuity Bundle",
+    "三个具体复核只有在 human-yueming 具名提交后才视为完成"
   ],
   "human_decisions": [
-    "每个冲突候选应接受哪个当前值、保留哪些历史值或继续保持未决，必须由具名 Actor 作出。",
-    "何时允许联网导入、模型辅助映射或面向人的 UI；必须在人类来源复核闭环经真实候选验证后决定。"
+    "SOURCE-REVIEW-mingos-unified-archive-2026-08-06-1：Family-Space 产品仓应接受哪个当前值、保留哪个历史值或继续未决。",
+    "SOURCE-REVIEW-mingos-unified-archive-2026-08-06-2：Foundation 仓库名称应接受哪个当前值、保留哪个历史值或继续未决。",
+    "SOURCE-REVIEW-mingos-unified-archive-2026-08-06-3：MingOS 规范入口仓应接受哪个当前值、保留哪个历史值或继续未决。",
+    "何时允许联网导入、模型辅助映射或面向人的 UI；必须在真实人类来源复核完成后决定。"
   ],
   "allowed_capabilities": [
     "github-read",
@@ -53,6 +60,6 @@
   ],
   "risk_level": "low",
   "status": "active",
-  "next_action": "设计并验证最小 source-review 资产，记录具名 Actor 对三个真实冲突候选的复核决定。",
-  "version": 8
+  "next_action": "等待 human-yueming 对三份 pending source-review 分别提交具名决定；在此之前保持项目停在人工门。",
+  "version": 9
 }

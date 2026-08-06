@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "task",
+  "task_id": "TASK-0007",
+  "space_id": "mingos-project",
+  "intent_id": "INTENT-0001",
+  "title": "建立具名、可撤回的来源复核协议",
+  "status": "completed",
+  "assigned_actor_id": "agent-continuity",
+  "authorization_ref": "AUTH-0007",
+  "allowed_actions": [
+    "create-files",
+    "update-files",
+    "run-tests",
+    "open-draft-pr",
+    "merge-pr",
+    "create-review-requests"
+  ],
+  "completion_criteria": [
+    "定义 source-conflict-report 与 source-review Schema",
+    "pending 请求不得携带任何人类决定字段",
+    "submitted 或 revoked 决定必须由 active human Actor 提交",
+    "接受值、保留历史、未决与补证请求均有机器不变量",
+    "三个真实冲突候选生成稳定报告与 pending 请求",
+    "AI 冒充 reviewer 的合成决定被自动拒绝",
+    "CLI 明确只生成 pending 请求，不生成决定",
+    "GitHub Actions 全量验证通过并合并至 main"
+  ],
+  "evidence_refs": [
+    "EVIDENCE-0007"
+  ],
+  "requires_human_approval": false,
+  "human_approval_ref": null,
+  "blocked_reason": null
+}

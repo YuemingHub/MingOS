@@ -3,7 +3,7 @@
   "kind": "continuity-bundle",
   "bundle_id": "BUNDLE-0001",
   "space_id": "mingos-project",
-  "source_revision": "8944c8b145c96a5e5af11855cd41c4b626c661f0",
+  "source_revision": "ec73647f55055676deb2fb2367ec15c97782d17e",
   "next_actor_id": "agent-continuity",
   "artifacts": [
     {
@@ -30,6 +30,11 @@
       "path": "examples/team-space/mingos-project/agent-bootstrap.json",
       "artifact_kind": "actor",
       "artifact_ids": ["agent-bootstrap"]
+    },
+    {
+      "path": "examples/team-space/mingos-project/authorizations/AUTH-0007.json",
+      "artifact_kind": "authorization",
+      "artifact_ids": ["AUTH-0007"]
     },
     {
       "path": "examples/team-space/mingos-project/authorizations/AUTH-0006.json",
@@ -86,29 +91,27 @@
     {
       "path": "examples/team-space/mingos-project/context/snapshot-scaffold-ledger.json",
       "artifact_kind": "context-ledger",
-      "artifact_ids": [
-        "CTX-0012",
-        "CTX-0013",
-        "CTX-0014"
-      ]
+      "artifact_ids": ["CTX-0012", "CTX-0013", "CTX-0014"]
     },
     {
       "path": "examples/team-space/mingos-project/context/second-space-seed-ledger.json",
       "artifact_kind": "context-ledger",
-      "artifact_ids": [
-        "CTX-0015",
-        "CTX-0016",
-        "CTX-0017"
-      ]
+      "artifact_ids": ["CTX-0015", "CTX-0016", "CTX-0017"]
     },
     {
       "path": "examples/team-space/mingos-project/context/source-authority-ledger.json",
       "artifact_kind": "context-ledger",
-      "artifact_ids": [
-        "CTX-0018",
-        "CTX-0019",
-        "CTX-0020"
-      ]
+      "artifact_ids": ["CTX-0018", "CTX-0019", "CTX-0020"]
+    },
+    {
+      "path": "examples/team-space/mingos-project/context/source-review-ledger.json",
+      "artifact_kind": "context-ledger",
+      "artifact_ids": ["CTX-0021", "CTX-0022", "CTX-0023"]
+    },
+    {
+      "path": "examples/team-space/mingos-project/tasks/TASK-0007.json",
+      "artifact_kind": "task",
+      "artifact_ids": ["TASK-0007"]
     },
     {
       "path": "examples/team-space/mingos-project/tasks/TASK-0006.json",
@@ -141,6 +144,11 @@
       "artifact_ids": ["TASK-0001"]
     },
     {
+      "path": "examples/team-space/mingos-project/evidence/EVIDENCE-0007.json",
+      "artifact_kind": "evidence",
+      "artifact_ids": ["EVIDENCE-0007"]
+    },
+    {
       "path": "examples/team-space/mingos-project/evidence/EVIDENCE-0006.json",
       "artifact_kind": "evidence",
       "artifact_ids": ["EVIDENCE-0006"]
@@ -171,10 +179,30 @@
       "artifact_ids": ["EVIDENCE-0001"]
     },
     {
+      "path": "examples/source-review-pilot/conflict-report.json",
+      "artifact_kind": "source-conflict-report",
+      "artifact_ids": ["CONFLICT-REPORT-mingos-unified-archive-2026-08-06"]
+    },
+    {
+      "path": "examples/source-review-pilot/reviews/SOURCE-REVIEW-mingos-unified-archive-2026-08-06-1.json",
+      "artifact_kind": "source-review",
+      "artifact_ids": ["SOURCE-REVIEW-mingos-unified-archive-2026-08-06-1"]
+    },
+    {
+      "path": "examples/source-review-pilot/reviews/SOURCE-REVIEW-mingos-unified-archive-2026-08-06-2.json",
+      "artifact_kind": "source-review",
+      "artifact_ids": ["SOURCE-REVIEW-mingos-unified-archive-2026-08-06-2"]
+    },
+    {
+      "path": "examples/source-review-pilot/reviews/SOURCE-REVIEW-mingos-unified-archive-2026-08-06-3.json",
+      "artifact_kind": "source-review",
+      "artifact_ids": ["SOURCE-REVIEW-mingos-unified-archive-2026-08-06-3"]
+    },
+    {
       "path": "examples/team-space/mingos-project/handoff.json",
       "artifact_kind": "handoff",
       "artifact_ids": ["HANDOFF-0002"]
     }
   ],
-  "created_at": "2026-08-06T14:40:00Z"
+  "created_at": "2026-08-06T15:05:00Z"
 }
