@@ -32,6 +32,11 @@
       "artifact_ids": ["agent-bootstrap"]
     },
     {
+      "path": "examples/team-space/mingos-project/authorizations/AUTH-0003.json",
+      "artifact_kind": "authorization",
+      "artifact_ids": ["AUTH-0003"]
+    },
+    {
       "path": "examples/team-space/mingos-project/authorizations/AUTH-0002.json",
       "artifact_kind": "authorization",
       "artifact_ids": ["AUTH-0002"]
@@ -49,7 +54,22 @@
     {
       "path": "examples/team-space/mingos-project/context-ledger.json",
       "artifact_kind": "context-ledger",
-      "artifact_ids": ["CTX-0003", "CTX-0004", "CTX-0005", "CTX-0006"]
+      "artifact_ids": [
+        "CTX-0001",
+        "CTX-0002",
+        "CTX-0003",
+        "CTX-0004",
+        "CTX-0005",
+        "CTX-0006",
+        "CTX-0007",
+        "CTX-0008",
+        "CTX-0009"
+      ]
+    },
+    {
+      "path": "examples/team-space/mingos-project/tasks/TASK-0003.json",
+      "artifact_kind": "task",
+      "artifact_ids": ["TASK-0003"]
     },
     {
       "path": "examples/team-space/mingos-project/tasks/TASK-0002.json",
@@ -60,6 +80,11 @@
       "path": "examples/team-space/mingos-project/tasks/TASK-0001.json",
       "artifact_kind": "task",
       "artifact_ids": ["TASK-0001"]
+    },
+    {
+      "path": "examples/team-space/mingos-project/evidence/EVIDENCE-0003.json",
+      "artifact_kind": "evidence",
+      "artifact_ids": ["EVIDENCE-0003"]
     },
     {
       "path": "examples/team-space/mingos-project/evidence/EVIDENCE-0002.json",
@@ -77,5 +102,5 @@
       "artifact_ids": ["HANDOFF-0002"]
     }
   ],
-  "created_at": "2026-08-06T12:48:00Z"
+  "created_at": "2026-08-06T13:05:00Z"
 }
