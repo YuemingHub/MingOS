@@ -1,0 +1,11 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "actor",
+  "actor_id": "human-yueming",
+  "actor_type": "human",
+  "name": "月明",
+  "roles": ["owner", "final-decision-maker"],
+  "capabilities": ["define-life-logic", "approve-boundaries"],
+  "accountability": "对项目方向、生命边界和最终授权负责",
+  "active": true
+}

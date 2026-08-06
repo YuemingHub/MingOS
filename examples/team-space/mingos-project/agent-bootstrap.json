@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "actor",
+  "actor_id": "agent-bootstrap",
+  "actor_type": "ai_agent",
+  "name": "MingOS Bootstrap Agent",
+  "roles": [
+    "implementation-agent"
+  ],
+  "capabilities": [
+    "create-files",
+    "run-tests",
+    "open-draft-pr"
+  ],
+  "accountability": "在明确授权范围内执行并保存证据；不承担最终方向责任",
+  "active": true
+}

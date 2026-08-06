@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mingos.cn/schemas/evidence.schema.json",
+  "title": "MingOS Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "kind", "evidence_id", "space_id", "task_id", "evidence_type", "summary", "verification_status", "produced_by_actor_id", "created_at"],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "kind": { "const": "evidence" },
+    "evidence_id": { "type": "string", "minLength": 1 },
+    "space_id": { "type": "string", "minLength": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "evidence_type": { "enum": ["test", "artifact", "commit", "pull_request", "inspection", "human_acceptance", "external_receipt"] },
+    "summary": { "type": "string", "minLength": 1 },
+    "uri": { "type": ["string", "null"] },
+    "verification_status": { "enum": ["pending", "passed", "failed", "accepted", "rejected"] },
+    "produced_by_actor_id": { "type": "string", "minLength": 1 },
+    "verified_by_actor_id": { "type": ["string", "null"] },
+    "created_at": { "type": "string" }
+  }
+}

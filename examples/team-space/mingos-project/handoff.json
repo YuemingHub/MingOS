@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "handoff",
+  "handoff_id": "HANDOFF-0001",
+  "space_id": "mingos-project",
+  "from_actor_id": "agent-bootstrap",
+  "to_actor_id": null,
+  "current_intent_id": "INTENT-0001",
+  "completed": [
+    "M0 Schema、验证器、测试、示例和 CI 已建立",
+    "Foundation、MingOS、Family-Space 仓库边界已记录"
+  ],
+  "in_progress": [],
+  "blockers": [
+    "首个 Draft PR 尚待人类审阅与合并"
+  ],
+  "next_actions": [
+    "合并后执行第一次跨 Agent 无聊天历史交接实验",
+    "根据实验结果设计 M1 文件型 CLI"
+  ],
+  "required_reads": [
+    "docs/CURRENT_STATE.md",
+    "examples/team-space/mingos-project/intent-contract.json",
+    "docs/decisions/ADR-0001-repository-boundaries.md",
+    "docs/decisions/ADR-0002-evidence-completion.md"
+  ],
+  "evidence_refs": ["EVIDENCE-0001"],
+  "created_at": "2026-08-06T09:42:00Z"
+}
