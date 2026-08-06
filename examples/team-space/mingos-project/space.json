@@ -5,7 +5,10 @@
   "space_type": "team",
   "name": "MingOS 自举项目空间",
   "owner_actor_id": "human-yueming",
-  "member_actor_ids": ["agent-bootstrap"],
+  "member_actor_ids": [
+    "agent-bootstrap",
+    "agent-continuity"
+  ],
   "purpose": "用 MingOS 协议持续建设并验证 MingOS 本身",
   "lifecycle": "active",
   "boundaries": [
@@ -16,5 +19,5 @@
   "foundation_repository": "YuemingHub/mingos-foundation",
   "domain_repository": "YuemingHub/MingOS",
   "created_at": "2026-08-06T09:42:00Z",
-  "updated_at": "2026-08-06T09:42:00Z"
+  "updated_at": "2026-08-06T12:40:00Z"
 }
