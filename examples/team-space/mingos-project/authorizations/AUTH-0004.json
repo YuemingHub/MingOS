@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "authorization",
+  "authorization_id": "AUTH-0004",
+  "space_id": "mingos-project",
+  "granted_by_actor_id": "human-yueming",
+  "granted_to_actor_id": "agent-continuity",
+  "allowed_actions": [
+    "create-files",
+    "update-files",
+    "run-tests",
+    "open-draft-pr",
+    "merge-pr"
+  ],
+  "resource_scope": [
+    "YuemingHub/MingOS:branches/agent/snapshot-scaffold-*",
+    "YuemingHub/MingOS:pulls/8"
+  ],
+  "requires_step_approval": false,
+  "irreversible_actions_allowed": false,
+  "budget_limit": null,
+  "revocable": true,
+  "status": "active",
+  "effective_at": "2026-08-06T13:33:00Z",
+  "expires_at": null,
+  "revoked_at": null
+}

@@ -4,34 +4,38 @@
   "intent_id": "INTENT-0001",
   "space_id": "mingos-project",
   "original_expression": "不要让探讨一直在，而是让这件事发生，然后过程调整",
-  "current_understanding": "MingOS 已完成自举连续性和 Family-Space 外部空间验证；下一步不是继续堆平台功能，而是评估手工快照是否值得自动化。",
+  "current_understanding": "MingOS 已完成自举连续性、Family-Space 外部验证和确定性快照脚手架；下一步必须验证其跨领域泛化，而不是把单一家庭样本扩张成通用平台。",
   "goals": [
     "建立跨空间对象的机器可验证 Schema",
     "建立无证据不得完成的内核不变量",
     "让 MingOS 项目自身成为第一个运行案例",
-    "验证协议可以描述真实垂直空间而不吸收其领域逻辑"
+    "验证协议可以描述真实垂直空间而不吸收其领域逻辑",
+    "自动化来源校验与机械转译，同时保留人的语义确认和授权权"
   ],
   "non_goals": [
     "当前不开发完整 UI",
     "当前不迁移 Family-Space 业务代码",
     "当前不接入真实用户或生产环境",
-    "当前不执行 MCP、模型调用或外部不可逆操作"
+    "当前不执行 MCP、模型调用或外部不可逆操作",
+    "当前不让 Snapshot CLI 自动生成 Context、Intent、Authorization、Task 或 Evidence"
   ],
   "constraints": [
     "保持 Foundation、MingOS、Space 三层边界",
     "优先采用可替换、零依赖技术实现",
     "所有示例必须通过自动验证",
     "外部空间试点只读，不修改领域仓库业务链路",
-    "新功能必须由已观察到的真实重复劳动或失败驱动"
+    "新功能必须由已观察到的真实重复劳动或失败驱动",
+    "Bundle 闭包不得被解释为语义完整"
   ],
   "definition_of_done": [
     "自举 Bundle 可以独立验证和 inspect",
     "Family-Space Bundle 可以独立验证和 inspect",
-    "领域边界、无生产事实和只读授权均被回归测试守护",
-    "下一阶段由实际试点成本决定，而不是预设平台蓝图"
+    "Snapshot CLI 可以验证来源 Blob、字段保真和语义覆盖",
+    "来源篡改、路径越界和自动授权均被阻止",
+    "第二个不同领域空间可以复用同一协议而不引入 Family-Space 专属逻辑"
   ],
   "human_decisions": [
-    "是否进入面向人的 UI；必须在更多外部空间或真实工作流验证后决定。"
+    "是否进入面向人的 UI、联网导入器或模型辅助映射；必须在至少两个不同外部空间验证后决定。"
   ],
   "allowed_capabilities": [
     "github-read",
@@ -40,6 +44,6 @@
   ],
   "risk_level": "low",
   "status": "active",
-  "next_action": "评估 Family-Space 手工转译成本，决定是否实现只读 snapshot/import。",
-  "version": 5
+  "next_action": "选择并验证第二个不同领域、不同来源结构的外部空间。",
+  "version": 6
 }

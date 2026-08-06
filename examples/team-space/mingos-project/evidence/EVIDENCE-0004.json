@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "evidence",
+  "evidence_id": "EVIDENCE-0004",
+  "space_id": "mingos-project",
+  "task_id": "TASK-0004",
+  "evidence_type": "test",
+  "summary": "Family-Space 快照成本已量化：3 个来源文件、9 个试点资产、6 个机械控制面资产、39 条 Markdown 原子主张、6 条明确映射，覆盖率 15.4%。snapshot analyze/scaffold 与篡改检测已实现；GitHub Actions run 31107614467 的 17 项测试和示例验证全部通过，PR #8 已合并。",
+  "uri": "https://github.com/YuemingHub/MingOS/actions/runs/31107614467",
+  "verification_status": "passed",
+  "produced_by_actor_id": "agent-continuity",
+  "verified_by_actor_id": "agent-continuity",
+  "created_at": "2026-08-06T13:48:00Z"
+}
