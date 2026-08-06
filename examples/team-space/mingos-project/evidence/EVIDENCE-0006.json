@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "evidence",
+  "evidence_id": "EVIDENCE-0006",
+  "space_id": "mingos-project",
+  "task_id": "TASK-0006",
+  "evidence_type": "test",
+  "summary": "来源权威、时效与冲突候选报告已实现并合并。Family-Space 保持 39 条主张与 6 条映射；mingos-unified 历史知识仓提取 36 条主张、5 条显式标注、3 条当前参考断言、1 个绝对日期、2 个到期复核文件和 3 个冲突候选。automatic_resolution 固定为 false。GitHub Actions run 31111797977 全部通过，PR #12 已合并。",
+  "uri": "https://github.com/YuemingHub/MingOS/actions/runs/31111797977",
+  "verification_status": "passed",
+  "produced_by_actor_id": "agent-continuity",
+  "verified_by_actor_id": "agent-continuity",
+  "created_at": "2026-08-06T14:40:00Z"
+}
