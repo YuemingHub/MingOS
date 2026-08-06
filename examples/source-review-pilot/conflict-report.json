@@ -1,0 +1,137 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "source-conflict-report",
+  "conflict_report_id": "CONFLICT-REPORT-mingos-unified-archive-2026-08-06",
+  "snapshot_id": "mingos-unified-archive-2026-08-06",
+  "subject_space_id": "mingos-unified-archive",
+  "automatic_resolution": false,
+  "candidates": [
+    {
+      "conflict_id": "CONFLICT-family-space-product-repository",
+      "topic": "family-space-product-repository",
+      "values": [
+        {
+          "value_id": "VALUE-family-space-product-repository-1",
+          "asserted_value": "YuemingHub/Family-Space",
+          "records": [
+            {
+              "record_kind": "reference-assertion",
+              "record_id": "REF-CURRENT-FAMILY-REPO",
+              "source_ref": "github:YuemingHub/Family-Space@4e77e245bf4dfa49249e53a258e9ed575c428a41/CURRENT_PROJECT_STATUS.md",
+              "authority": "current-fact-source",
+              "temporal_status": "current",
+              "valid_as_of": "2026-08-06",
+              "valid_until": null
+            }
+          ]
+        },
+        {
+          "value_id": "VALUE-family-space-product-repository-2",
+          "asserted_value": "YuemingHub/Ming-os",
+          "records": [
+            {
+              "record_kind": "claim",
+              "record_id": "REPOSITORY-MAP.md:L12",
+              "source_ref": "REPOSITORY-MAP.md:L12",
+              "authority": "historical",
+              "temporal_status": "historical",
+              "valid_as_of": "2026-08-03",
+              "valid_until": null
+            },
+            {
+              "record_kind": "claim",
+              "record_id": "REPOSITORY-MAP.md:L58",
+              "source_ref": "REPOSITORY-MAP.md:L58",
+              "authority": "historical",
+              "temporal_status": "historical",
+              "valid_as_of": "2026-08-03",
+              "valid_until": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "conflict_id": "CONFLICT-foundation-repository",
+      "topic": "foundation-repository",
+      "values": [
+        {
+          "value_id": "VALUE-foundation-repository-1",
+          "asserted_value": "YuemingHub/Ming-Foundation",
+          "records": [
+            {
+              "record_kind": "claim",
+              "record_id": "REPOSITORY-MAP.md:L13",
+              "source_ref": "REPOSITORY-MAP.md:L13",
+              "authority": "historical",
+              "temporal_status": "historical",
+              "valid_as_of": "2026-08-03",
+              "valid_until": null
+            }
+          ]
+        },
+        {
+          "value_id": "VALUE-foundation-repository-2",
+          "asserted_value": "YuemingHub/mingos-foundation",
+          "records": [
+            {
+              "record_kind": "reference-assertion",
+              "record_id": "REF-CURRENT-FOUNDATION-REPO",
+              "source_ref": "github:YuemingHub/MingOS@667b45d79ca8664d004a2a728f4486b59e64190d/README.md",
+              "authority": "current-fact-source",
+              "temporal_status": "current",
+              "valid_as_of": "2026-08-06",
+              "valid_until": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "conflict_id": "CONFLICT-mingos-canonical-entrypoint",
+      "topic": "mingos-canonical-entrypoint",
+      "values": [
+        {
+          "value_id": "VALUE-mingos-canonical-entrypoint-1",
+          "asserted_value": "YuemingHub/MingOS",
+          "records": [
+            {
+              "record_kind": "reference-assertion",
+              "record_id": "REF-CURRENT-MINGOS-REPO",
+              "source_ref": "github:YuemingHub/MingOS@667b45d79ca8664d004a2a728f4486b59e64190d/README.md",
+              "authority": "current-fact-source",
+              "temporal_status": "current",
+              "valid_as_of": "2026-08-06",
+              "valid_until": null
+            }
+          ]
+        },
+        {
+          "value_id": "VALUE-mingos-canonical-entrypoint-2",
+          "asserted_value": "YuemingHub/mingos-unified",
+          "records": [
+            {
+              "record_kind": "claim",
+              "record_id": "README.md:L3",
+              "source_ref": "README.md:L3",
+              "authority": "historical",
+              "temporal_status": "historical",
+              "valid_as_of": "2026-08-03",
+              "valid_until": null
+            },
+            {
+              "record_kind": "claim",
+              "record_id": "REPOSITORY-MAP.md:L11",
+              "source_ref": "REPOSITORY-MAP.md:L11",
+              "authority": "historical",
+              "temporal_status": "historical",
+              "valid_as_of": "2026-08-03",
+              "valid_until": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "created_at": "2026-08-06T00:00:00Z"
+}
