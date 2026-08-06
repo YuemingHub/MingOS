@@ -11,17 +11,19 @@
   ],
   "created_by_actor_id": "agent-continuity",
   "reviewer_actor_id": "human-yueming",
-  "review_status": "pending",
-  "decision": null,
-  "selected_value_ref": null,
-  "rationale": null,
-  "supporting_refs": [],
+  "review_status": "submitted",
+  "decision": "accept-value",
+  "selected_value_ref": "VALUE-family-space-product-repository-1",
+  "rationale": "月明接受 YuemingHub/Family-Space 为当前家庭产品仓；YuemingHub/Ming-os 仅保留为 2026-08-03 的历史来源，不作为当前产品仓。",
+  "supporting_refs": [
+    "github:YuemingHub/Family-Space@4e77e245bf4dfa49249e53a258e9ed575c428a41/CURRENT_PROJECT_STATUS.md"
+  ],
   "requested_evidence": [],
   "revocable": true,
-  "decided_at": null,
+  "decided_at": "2026-08-06T15:51:07Z",
   "revoked_at": null,
   "revocation_reason": null,
   "supersedes_review_id": null,
   "created_at": "2026-08-06T14:50:00Z",
-  "updated_at": "2026-08-06T14:50:00Z"
+  "updated_at": "2026-08-06T15:51:07Z"
 }
