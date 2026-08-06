@@ -1,0 +1,33 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "task",
+  "task_id": "TASK-0006",
+  "space_id": "mingos-project",
+  "intent_id": "INTENT-0001",
+  "title": "实现来源权威、时效与冲突候选报告",
+  "status": "completed",
+  "assigned_actor_id": "agent-continuity",
+  "authorization_ref": "AUTH-0006",
+  "allowed_actions": [
+    "create-files",
+    "update-files",
+    "run-tests",
+    "open-draft-pr",
+    "merge-pr"
+  ],
+  "completion_criteria": [
+    "来源文件可显式声明权威角色、有效日期、复核日期与当前事实源议题",
+    "绝对日期和到期复核状态可确定性报告",
+    "只有显式 topic/value 不同时才形成冲突候选",
+    "冲突报告保留来源、权威和时间且不自动选择赢家",
+    "Family-Space 原有 39 条主张与 Manifest 模式回归保持稳定",
+    "mingos-unified 历史知识仓稳定复现 3 个冲突候选",
+    "GitHub Actions 全量验证通过并合并至 main"
+  ],
+  "evidence_refs": [
+    "EVIDENCE-0006"
+  ],
+  "requires_human_approval": false,
+  "human_approval_ref": null,
+  "blocked_reason": null
+}

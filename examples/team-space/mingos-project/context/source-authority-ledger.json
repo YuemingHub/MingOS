@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "context-ledger",
+  "space_id": "mingos-project",
+  "records": [
+    {
+      "record_id": "CTX-0018",
+      "record_type": "fact",
+      "content": "第二外部空间试点证明，固定来源和合法 Seed 仍不足以判断资料是否为当前事实；mingos-unified 历史知识仓保留了旧入口、旧仓名和 2026-08-03 待执行计划。",
+      "source_actor_id": "agent-continuity",
+      "source_refs": [
+        "github:YuemingHub/mingos-unified@250a59dff30b13a57d826ede7b396a4102ea03a4/README.md",
+        "github:YuemingHub/mingos-unified@250a59dff30b13a57d826ede7b396a4102ea03a4/REPOSITORY-MAP.md",
+        "docs/experiments/2026-08-06-source-authority-temporal-conflict.md"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "固定 Git Blob 中存在旧仓库名称、唯一入口声明和绝对日期整理记录",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": null,
+      "created_at": "2026-08-06T14:40:00Z",
+      "updated_at": "2026-08-06T14:40:00Z"
+    },
+    {
+      "record_id": "CTX-0019",
+      "record_type": "decision",
+      "content": "来源权威、有效日期和冲突议题必须由配置显式声明；系统只在同一显式 topic 出现不同 asserted_value 时生成候选，不使用模型相似度判断冲突，不自动选择赢家或覆盖历史。",
+      "source_actor_id": "human-yueming",
+      "source_refs": [
+        "conversation:2026-08-06-continue",
+        "docs/experiments/2026-08-06-source-authority-temporal-conflict.md",
+        "packages/cli/src/snapshot.mjs"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "用户授权持续直接推进；规则由真实历史知识仓的旧状态风险驱动，并由自动回归守护",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": "CTX-0018",
+      "created_at": "2026-08-06T14:40:00Z",
+      "updated_at": "2026-08-06T14:40:00Z"
+    },
+    {
+      "record_id": "CTX-0020",
+      "record_type": "fact",
+      "content": "来源权威与冲突报告 PR #12 已合并至 main，合并提交为 8944c8b145c96a5e5af11855cd41c4b626c661f0；GitHub Actions run 31111797977 全部通过。真实样本形成 3 个未自动消解的冲突候选，下一缺口是用可验证的人类复核记录保存接受、保留历史或暂不决定的结果。",
+      "source_actor_id": "agent-continuity",
+      "source_refs": [
+        "github:YuemingHub/MingOS/pull/12",
+        "github-actions:31111797977",
+        "github:YuemingHub/MingOS@8944c8b145c96a5e5af11855cd41c4b626c661f0",
+        "fixtures/mingos-unified-snapshot-input/snapshot.config.json"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "GitHub squash merge、成功 CI 与固定配置中稳定复现的三个冲突候选",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": "CTX-0019",
+      "created_at": "2026-08-06T14:40:00Z",
+      "updated_at": "2026-08-06T14:40:00Z"
+    }
+  ]
+}

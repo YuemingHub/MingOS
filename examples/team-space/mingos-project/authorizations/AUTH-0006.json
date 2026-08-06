@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "authorization",
+  "authorization_id": "AUTH-0006",
+  "space_id": "mingos-project",
+  "granted_by_actor_id": "human-yueming",
+  "granted_to_actor_id": "agent-continuity",
+  "allowed_actions": [
+    "create-files",
+    "update-files",
+    "run-tests",
+    "open-draft-pr",
+    "merge-pr"
+  ],
+  "resource_scope": [
+    "YuemingHub/MingOS:branches/agent/source-authority-*",
+    "YuemingHub/MingOS:pulls/12",
+    "YuemingHub/Family-Space:read-only@4e77e245bf4dfa49249e53a258e9ed575c428a41",
+    "YuemingHub/mingos-unified:read-only@250a59dff30b13a57d826ede7b396a4102ea03a4"
+  ],
+  "requires_step_approval": false,
+  "irreversible_actions_allowed": false,
+  "budget_limit": null,
+  "revocable": true,
+  "status": "active",
+  "effective_at": "2026-08-06T14:25:00Z",
+  "expires_at": null,
+  "revoked_at": null
+}
