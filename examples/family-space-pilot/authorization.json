@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "authorization",
+  "authorization_id": "AUTH-FAMILY-PILOT-0001",
+  "space_id": "family-space",
+  "granted_by_actor_id": "human-yueming",
+  "granted_to_actor_id": "agent-continuity",
+  "allowed_actions": [
+    "read-external-repository",
+    "create-files",
+    "update-files",
+    "run-tests",
+    "open-draft-pr"
+  ],
+  "resource_scope": [
+    "YuemingHub/Family-Space:read-only@4e77e245bf4dfa49249e53a258e9ed575c428a41",
+    "YuemingHub/MingOS:agent/family-space-readonly-pilot"
+  ],
+  "requires_step_approval": false,
+  "irreversible_actions_allowed": false,
+  "budget_limit": null,
+  "revocable": true,
+  "status": "active",
+  "effective_at": "2026-08-06T13:12:00Z",
+  "expires_at": null,
+  "revoked_at": null
+}
