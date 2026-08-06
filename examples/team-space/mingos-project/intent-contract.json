@@ -4,7 +4,7 @@
   "intent_id": "INTENT-0001",
   "space_id": "mingos-project",
   "original_expression": "不要让探讨一直在，而是让这件事发生，然后过程调整",
-  "current_understanding": "MingOS 的 M1 可验证内核、连续性实验和最小 Bundle CLI 已进入主干；下一步必须在真实垂直空间上验证，而不是继续扩大通用平台。",
+  "current_understanding": "MingOS 已完成自举连续性和 Family-Space 外部空间验证；下一步不是继续堆平台功能，而是评估手工快照是否值得自动化。",
   "goals": [
     "建立跨空间对象的机器可验证 Schema",
     "建立无证据不得完成的内核不变量",
@@ -12,25 +12,26 @@
     "验证协议可以描述真实垂直空间而不吸收其领域逻辑"
   ],
   "non_goals": [
-    "本轮不开发完整 UI",
-    "本轮不迁移 Family-Space 业务代码",
-    "本轮不接入真实用户或生产环境",
-    "本轮不执行 MCP、模型调用或外部不可逆操作"
+    "当前不开发完整 UI",
+    "当前不迁移 Family-Space 业务代码",
+    "当前不接入真实用户或生产环境",
+    "当前不执行 MCP、模型调用或外部不可逆操作"
   ],
   "constraints": [
     "保持 Foundation、MingOS、Space 三层边界",
     "优先采用可替换、零依赖技术实现",
     "所有示例必须通过自动验证",
-    "外部空间试点只读，不修改领域仓库业务链路"
+    "外部空间试点只读，不修改领域仓库业务链路",
+    "新功能必须由已观察到的真实重复劳动或失败驱动"
   ],
   "definition_of_done": [
-    "Bundle 可以独立验证全部交接依赖",
-    "CLI 可以输出项目意图、授权、证据和下一步",
-    "传递依赖遗漏形成自动回归测试",
-    "Family-Space 可以被描述为外部 Space 而不搬运家庭业务代码"
+    "自举 Bundle 可以独立验证和 inspect",
+    "Family-Space Bundle 可以独立验证和 inspect",
+    "领域边界、无生产事实和只读授权均被回归测试守护",
+    "下一阶段由实际试点成本决定，而不是预设平台蓝图"
   ],
   "human_decisions": [
-    "是否进入面向人的 UI；必须在至少一个外部真实项目空间验证后决定。"
+    "是否进入面向人的 UI；必须在更多外部空间或真实工作流验证后决定。"
   ],
   "allowed_capabilities": [
     "github-read",
@@ -39,6 +40,6 @@
   ],
   "risk_level": "low",
   "status": "active",
-  "next_action": "对 Family-Space 执行只读外部空间接入实验。",
-  "version": 4
+  "next_action": "评估 Family-Space 手工转译成本，决定是否实现只读 snapshot/import。",
+  "version": 5
 }
