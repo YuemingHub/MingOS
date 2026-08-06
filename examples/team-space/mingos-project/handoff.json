@@ -6,7 +6,7 @@
   "from_actor_id": "agent-continuity",
   "to_actor_id": null,
   "current_intent_id": "INTENT-0001",
-  "source_revision": "agent/m1-continuity-experiment",
+  "source_revision": "db5189df5110635dbabc0cf8e5e22b5ea340432d",
   "state_snapshot_at": "2026-08-06T12:48:00Z",
   "actor_refs": [
     "human-yueming",
