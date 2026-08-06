@@ -3,7 +3,7 @@
   "kind": "continuity-bundle",
   "bundle_id": "BUNDLE-0001",
   "space_id": "mingos-project",
-  "source_revision": "agent/m1-bundle-cli",
+  "source_revision": "2d427210d9a4635a9d908168640184498dc28736",
   "next_actor_id": "agent-continuity",
   "artifacts": [
     {
