@@ -114,3 +114,110 @@ export function checkActorReferences(documents) {
   }
   return errors;
 }
+
+function documentIdentifiers(document) {
+  const ids = [];
+  const primaryKeys = {
+    space: 'space_id',
+    actor: 'actor_id',
+    authorization: 'authorization_id',
+    'intent-contract': 'intent_id',
+    task: 'task_id',
+    evidence: 'evidence_id',
+    handoff: 'handoff_id',
+    'continuity-bundle': 'bundle_id'
+  };
+  const primaryKey = primaryKeys[document.kind];
+  if (primaryKey && document[primaryKey]) ids.push(document[primaryKey]);
+  if (document.kind === 'context-ledger') {
+    for (const record of document.records ?? []) ids.push(record.record_id);
+  }
+  return ids;
+}
+
+export function checkHandoffReferences(handoff, documents) {
+  const errors = [];
+  const actors = new Set(documents.filter((d) => d.kind === 'actor').map((d) => d.actor_id));
+  const authorizations = new Set(documents.filter((d) => d.kind === 'authorization').map((d) => d.authorization_id));
+  const tasks = new Set(documents.filter((d) => d.kind === 'task').map((d) => d.task_id));
+  const evidence = new Set(documents.filter((d) => d.kind === 'evidence').map((d) => d.evidence_id));
+
+  for (const actorId of handoff.actor_refs ?? []) {
+    if (!actors.has(actorId)) errors.push(`${handoff.handoff_id}: actor_ref ${actorId} not found`);
+  }
+  for (const authorizationId of handoff.authorization_refs ?? []) {
+    if (!authorizations.has(authorizationId)) errors.push(`${handoff.handoff_id}: authorization_ref ${authorizationId} not found`);
+  }
+  for (const taskId of handoff.task_refs ?? []) {
+    if (!tasks.has(taskId)) errors.push(`${handoff.handoff_id}: task_ref ${taskId} not found`);
+  }
+  for (const evidenceId of handoff.evidence_refs ?? []) {
+    if (!evidence.has(evidenceId)) errors.push(`${handoff.handoff_id}: evidence_ref ${evidenceId} not found`);
+  }
+  return errors;
+}
+
+export function checkContinuityBundle(bundle, documents) {
+  const errors = [];
+  const requiredKinds = ['space', 'actor', 'authorization', 'intent-contract', 'context-ledger', 'task', 'evidence', 'handoff'];
+  const artifactKinds = new Set(bundle.artifacts.map((artifact) => artifact.artifact_kind));
+  for (const kind of requiredKinds) {
+    if (!artifactKinds.has(kind)) errors.push(`${bundle.bundle_id}: missing required artifact kind ${kind}`);
+  }
+
+  const paths = bundle.artifacts.map((artifact) => artifact.path);
+  if (new Set(paths).size !== paths.length) errors.push(`${bundle.bundle_id}: artifact paths must be unique`);
+
+  const idIndex = new Map();
+  for (const document of documents) {
+    for (const id of documentIdentifiers(document)) idIndex.set(id, document);
+  }
+
+  for (const artifact of bundle.artifacts) {
+    for (const id of artifact.artifact_ids ?? []) {
+      const document = idIndex.get(id);
+      if (!document) {
+        errors.push(`${bundle.bundle_id}: artifact id ${id} not found`);
+        continue;
+      }
+      if (document.__file && document.__file !== artifact.path) {
+        errors.push(`${bundle.bundle_id}: artifact id ${id} is stored in ${document.__file}, not ${artifact.path}`);
+      }
+    }
+  }
+
+  const nextActor = documents.find((d) => d.kind === 'actor' && d.actor_id === bundle.next_actor_id);
+  if (!nextActor) errors.push(`${bundle.bundle_id}: next_actor_id ${bundle.next_actor_id} not found`);
+  else if (nextActor.active === false) errors.push(`${bundle.bundle_id}: next actor ${bundle.next_actor_id} is inactive`);
+
+  const bundledAuthorizationIds = new Set(
+    bundle.artifacts
+      .filter((artifact) => artifact.artifact_kind === 'authorization')
+      .flatMap((artifact) => artifact.artifact_ids ?? [])
+  );
+  const activeAuthorization = documents.find((d) =>
+    d.kind === 'authorization' &&
+    bundledAuthorizationIds.has(d.authorization_id) &&
+    d.space_id === bundle.space_id &&
+    d.granted_to_actor_id === bundle.next_actor_id &&
+    d.status === 'active'
+  );
+  if (!activeAuthorization) errors.push(`${bundle.bundle_id}: next actor lacks bundled active authorization`);
+
+  const handoffIds = bundle.artifacts
+    .filter((artifact) => artifact.artifact_kind === 'handoff')
+    .flatMap((artifact) => artifact.artifact_ids ?? []);
+  for (const handoffId of handoffIds) {
+    const handoff = documents.find((d) => d.kind === 'handoff' && d.handoff_id === handoffId);
+    if (!handoff) continue;
+    if (handoff.source_revision !== bundle.source_revision) {
+      errors.push(`${bundle.bundle_id}: source_revision differs from ${handoffId}`);
+    }
+    for (const path of paths) {
+      if (!handoff.required_reads.includes(path)) {
+        errors.push(`${bundle.bundle_id}: ${handoffId} required_reads omits ${path}`);
+      }
+    }
+  }
+  return errors;
+}
