@@ -4,7 +4,7 @@ import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { analyzeSnapshot, scaffoldSnapshot } from '../packages/cli/src/snapshot.mjs';
 
-const config = 'examples/family-space-snapshot-input/snapshot.config.json';
+const config = 'fixtures/family-space-snapshot-input/snapshot.config.json';
 
 test('snapshot analyze quantifies deterministic work and semantic loss', async () => {
   const report = await analyzeSnapshot(config);
