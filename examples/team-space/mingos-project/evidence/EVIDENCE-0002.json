@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "evidence",
+  "evidence_id": "EVIDENCE-0002",
+  "space_id": "mingos-project",
+  "task_id": "TASK-0002",
+  "evidence_type": "test",
+  "summary": "首次连续性实验识别 4 类缺口；Continuity Bundle、handoff freshness/dependency 约束与回归测试已建立。本地 npm run check 通过，GitHub Actions Validate MingOS run #6 成功。",
+  "uri": "https://github.com/YuemingHub/MingOS/actions/runs/31103128637",
+  "verification_status": "passed",
+  "produced_by_actor_id": "agent-continuity",
+  "verified_by_actor_id": "agent-continuity",
+  "created_at": "2026-08-06T12:48:00Z"
+}

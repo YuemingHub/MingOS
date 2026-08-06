@@ -1,7 +1,7 @@
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
-import { checkActorReferences, checkAuthorization, checkContextLedger, checkSpaceReferences, checkTaskAuthorization, checkTaskCompletion } from './invariants.mjs';
+import { checkActorReferences, checkAuthorization, checkContextLedger, checkContinuityBundle, checkHandoffReferences, checkSpaceReferences, checkTaskAuthorization, checkTaskCompletion } from './invariants.mjs';
 import { validateSchema } from './schema-validator.mjs';
 
 const root = path.resolve(process.cwd());
@@ -16,7 +16,8 @@ const schemaFiles = {
   'intent-contract': 'intent-contract.schema.json',
   task: 'task.schema.json',
   evidence: 'evidence.schema.json',
-  handoff: 'handoff.schema.json'
+  handoff: 'handoff.schema.json',
+  'continuity-bundle': 'continuity-bundle.schema.json'
 };
 
 async function walk(directory) {
@@ -54,6 +55,7 @@ for (const file of await walk(target)) {
     continue;
   }
   for (const error of validateSchema(schema, document)) failures.push(`${relative}: ${error}`);
+  Object.defineProperty(document, '__file', { value: relative, enumerable: false });
   documents.push(document);
 }
 
@@ -65,6 +67,8 @@ for (const task of documents.filter((d) => d.kind === 'task')) {
 }
 for (const authorization of documents.filter((d) => d.kind === 'authorization')) failures.push(...checkAuthorization(authorization));
 for (const ledger of documents.filter((d) => d.kind === 'context-ledger')) failures.push(...checkContextLedger(ledger));
+for (const handoff of documents.filter((d) => d.kind === 'handoff')) failures.push(...checkHandoffReferences(handoff, documents));
+for (const bundle of documents.filter((d) => d.kind === 'continuity-bundle')) failures.push(...checkContinuityBundle(bundle, documents));
 failures.push(...checkSpaceReferences(documents));
 failures.push(...checkActorReferences(documents));
 

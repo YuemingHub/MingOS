@@ -30,6 +30,62 @@
       "derived_from": "CTX-0001",
       "created_at": "2026-08-06T09:42:00Z",
       "updated_at": "2026-08-06T09:42:00Z"
+    },
+    {
+      "record_id": "CTX-0003",
+      "record_type": "fact",
+      "content": "MingOS M0 PR #1 已合并至 main，GitHub Actions run 31101288262 成功。",
+      "source_actor_id": "agent-continuity",
+      "source_refs": ["github:YuemingHub/MingOS/pull/1", "github-actions:31101288262"],
+      "status": "confirmed",
+      "confidence_basis": "GitHub merge result and completed successful workflow run",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": "CTX-0001",
+      "created_at": "2026-08-06T12:34:00Z",
+      "updated_at": "2026-08-06T12:34:00Z"
+    },
+    {
+      "record_id": "CTX-0004",
+      "record_type": "fact",
+      "content": "首次仓库-only 交接预检发现：状态、意图、证据和 handoff 在合并后均已过时。",
+      "source_actor_id": "agent-continuity",
+      "source_refs": ["docs/experiments/2026-08-06-continuity-preflight.md"],
+      "status": "confirmed",
+      "confidence_basis": "Repository assets still stated PR pending and CI future tense after merge",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": "CTX-0003",
+      "created_at": "2026-08-06T12:38:00Z",
+      "updated_at": "2026-08-06T12:38:00Z"
+    },
+    {
+      "record_id": "CTX-0005",
+      "record_type": "fact",
+      "content": "原实验输入未包含 Actor 定义，且 AUTH-0001 只授权旧 M0 分支，Agent B 无法解析责任主体或合法执行下一任务。",
+      "source_actor_id": "agent-continuity",
+      "source_refs": ["github:YuemingHub/MingOS/issues/2", "examples/team-space/mingos-project/authorization.json"],
+      "status": "confirmed",
+      "confidence_basis": "Allowed input list omitted actor artifacts; authorization resource_scope referenced agent/m0-bootstrap-v0.1",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": "CTX-0004",
+      "created_at": "2026-08-06T12:38:00Z",
+      "updated_at": "2026-08-06T12:38:00Z"
+    },
+    {
+      "record_id": "CTX-0006",
+      "record_type": "decision",
+      "content": "跨 Agent 交接必须由 Continuity Bundle 显式列出 actor、authorization、intent、context、task、evidence 与 handoff，并记录源 revision。",
+      "source_actor_id": "human-yueming",
+      "source_refs": ["conversation:2026-08-06-direct-completion", "docs/experiments/2026-08-06-continuity-preflight.md"],
+      "status": "confirmed",
+      "confidence_basis": "User authorized direct completion; protocol repair derived from observed experiment failure",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": "CTX-0005",
+      "created_at": "2026-08-06T12:40:00Z",
+      "updated_at": "2026-08-06T12:40:00Z"
     }
   ]
 }

@@ -1,0 +1,30 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "task",
+  "task_id": "TASK-0002",
+  "space_id": "mingos-project",
+  "intent_id": "INTENT-0001",
+  "title": "执行首次跨 Agent 连续性实验并修复协议缺口",
+  "status": "completed",
+  "assigned_actor_id": "agent-continuity",
+  "authorization_ref": "AUTH-0002",
+  "allowed_actions": [
+    "create-files",
+    "update-files",
+    "run-tests",
+    "open-draft-pr"
+  ],
+  "completion_criteria": [
+    "仅凭仓库资产识别项目目标与边界",
+    "记录所有过时或缺失上下文",
+    "建立 Continuity Bundle Schema 和不变量测试",
+    "更新项目状态、证据与 handoff",
+    "本地 npm run check 通过"
+  ],
+  "evidence_refs": [
+    "EVIDENCE-0002"
+  ],
+  "requires_human_approval": false,
+  "human_approval_ref": null,
+  "blocked_reason": null
+}

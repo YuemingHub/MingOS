@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "actor",
+  "actor_id": "agent-continuity",
+  "actor_type": "ai_agent",
+  "name": "MingOS Continuity Agent",
+  "roles": [
+    "continuity-experiment",
+    "protocol-repair"
+  ],
+  "capabilities": [
+    "github-read",
+    "github-write-branch",
+    "local-validation"
+  ],
+  "accountability": "只能在显式授权范围内执行；必须记录缺失上下文、验证证据与交接状态。",
+  "active": true
+}

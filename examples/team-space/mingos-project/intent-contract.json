@@ -4,7 +4,7 @@
   "intent_id": "INTENT-0001",
   "space_id": "mingos-project",
   "original_expression": "不要让探讨一直在，而是让这件事发生，然后过程调整",
-  "current_understanding": "建立可运行、可验证、可持续交接的 MingOS 公共内核，而不是继续扩写概念文档",
+  "current_understanding": "M0 已合并；当前通过仓库资产验证跨 Agent 连续性，并将真实失败转化为协议、Schema 与测试。",
   "goals": [
     "建立跨空间对象的机器可验证 Schema",
     "建立无证据不得完成的内核不变量",
@@ -27,12 +27,15 @@
     "下一位 Agent 可只读仓库文件继续"
   ],
   "human_decisions": [
-    "是否合并首个 Draft PR",
-    "M1 是否优先实现 CLI 还是先做双 Agent 连续性实验"
+    "未来是否进入 M2 用户界面；在连续性实验完成前不启动。"
   ],
-  "allowed_capabilities": ["github-read", "github-write-branch", "local-validation"],
+  "allowed_capabilities": [
+    "github-read",
+    "github-write-branch",
+    "local-validation"
+  ],
   "risk_level": "low",
   "status": "active",
-  "next_action": "审阅并合并 M0 bootstrap Draft PR",
-  "version": 1
+  "next_action": "完成并合并第一次跨 Agent 连续性实验修复。",
+  "version": 2
 }

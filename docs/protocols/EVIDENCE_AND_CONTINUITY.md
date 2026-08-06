@@ -26,3 +26,18 @@ Handoff 必须让另一个执行者在不读取原聊天历史的前提下回答
 - 当前阻断是什么；
 - 下一步是什么；
 - 应读取哪些证据。
+
+## Continuity Bundle
+
+跨 Agent 交接不得只给一段摘要。每次交接应生成一个 `continuity-bundle`，至少覆盖：
+
+- Space；
+- Actor；
+- Active Authorization；
+- Intent Contract；
+- Context Ledger；
+- Tasks；
+- Evidence；
+- Handoff。
+
+Bundle 必须记录源 revision。若状态、授权或证据在该 revision 后发生变化，旧 Bundle 不得被默认为当前事实。
