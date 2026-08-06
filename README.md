@@ -21,7 +21,8 @@ MingOS 不是某一个聊天机器人、Agent、知识库或家庭教育产品�
 3. Context Ledger：事实、陈述、推断、决定与撤回；
 4. Intent Contract：意图、非目标、约束、完成标准与人工决策点；
 5. Task / Authorization：执行与授权；
-6. Evidence / Handoff：证据、连续性与跨 Agent 恢复。
+6. Evidence / Handoff：证据、连续性与跨 Agent 恢复；
+7. Continuity Bundle：一次交接所需资产的完整、可验证闭包。
 
 当前明确不做：通用聊天 UI、MCP 商店、多模型网关、Skill 市场、复杂工作流编辑器和家庭领域逻辑。
 
@@ -29,8 +30,7 @@ MingOS 不是某一个聊天机器人、Agent、知识库或家庭教育产品�
 
 ```bash
 npm ci
-npm test
-npm run validate:examples
+npm run check
 ```
 
 查看第一个自举空间：
@@ -38,6 +38,23 @@ npm run validate:examples
 ```text
 examples/team-space/mingos-project/
 ```
+
+## Continuity Bundle CLI
+
+验证一个交接包是否完整、授权有效、任务与证据可追溯：
+
+```bash
+npm run ming -- bundle validate examples/team-space/mingos-project/continuity-bundle.json
+```
+
+只从 Bundle 指定资产恢复项目摘要：
+
+```bash
+npm run ming -- bundle inspect examples/team-space/mingos-project/continuity-bundle.json
+npm run ming -- bundle inspect examples/team-space/mingos-project/continuity-bundle.json --json
+```
+
+CLI 只读取仓库资产，不调用模型、不连接外部工具、不执行不可逆操作。
 
 MingOS 将首先用自己的协议持续建设 MingOS 本身。
 
