@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mingos.cn/schemas/source-conflict-report.schema.json",
+  "title": "MingOS Source Conflict Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "conflict_report_id",
+    "snapshot_id",
+    "subject_space_id",
+    "automatic_resolution",
+    "candidates",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "kind": { "const": "source-conflict-report" },
+    "conflict_report_id": { "type": "string", "minLength": 1 },
+    "snapshot_id": { "type": "string", "minLength": 1 },
+    "subject_space_id": { "type": "string", "minLength": 1 },
+    "automatic_resolution": { "const": false },
+    "candidates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["conflict_id", "topic", "values"],
+        "properties": {
+          "conflict_id": { "type": "string", "minLength": 1 },
+          "topic": { "type": "string", "minLength": 1 },
+          "values": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["value_id", "asserted_value", "records"],
+              "properties": {
+                "value_id": { "type": "string", "minLength": 1 },
+                "asserted_value": { "type": ["string", "number", "boolean", "null"] },
+                "records": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "record_kind",
+                      "record_id",
+                      "source_ref",
+                      "authority",
+                      "temporal_status",
+                      "valid_as_of",
+                      "valid_until"
+                    ],
+                    "properties": {
+                      "record_kind": { "enum": ["claim", "reference-assertion"] },
+                      "record_id": { "type": "string", "minLength": 1 },
+                      "source_ref": { "type": "string", "minLength": 1 },
+                      "authority": { "enum": ["current-fact-source", "governance", "reference", "historical", "unknown"] },
+                      "temporal_status": { "enum": ["current", "historical", "unknown"] },
+                      "valid_as_of": { "type": ["string", "null"] },
+                      "valid_until": { "type": ["string", "null"] }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "created_at": { "type": "string", "minLength": 1 }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "source-review",
+  "review_id": "SOURCE-REVIEW-mingos-unified-archive-2026-08-06-3",
+  "space_id": "mingos-project",
+  "conflict_report_id": "CONFLICT-REPORT-mingos-unified-archive-2026-08-06",
+  "conflict_id": "CONFLICT-mingos-canonical-entrypoint",
+  "candidate_value_refs": [
+    "VALUE-mingos-canonical-entrypoint-1",
+    "VALUE-mingos-canonical-entrypoint-2"
+  ],
+  "created_by_actor_id": "agent-continuity",
+  "reviewer_actor_id": "human-yueming",
+  "review_status": "pending",
+  "decision": null,
+  "selected_value_ref": null,
+  "rationale": null,
+  "supporting_refs": [],
+  "requested_evidence": [],
+  "revocable": true,
+  "decided_at": null,
+  "revoked_at": null,
+  "revocation_reason": null,
+  "supersedes_review_id": null,
+  "created_at": "2026-08-06T14:50:00Z",
+  "updated_at": "2026-08-06T14:50:00Z"
+}

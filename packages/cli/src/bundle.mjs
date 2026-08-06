@@ -6,6 +6,7 @@ import {
   checkContextLedger,
   checkContinuityBundle,
   checkHandoffReferences,
+  checkSourceReview,
   checkSpaceReferences,
   checkTaskAuthorization,
   checkTaskCompletion,
@@ -21,7 +22,9 @@ const SCHEMA_FILES = {
   task: 'task.schema.json',
   evidence: 'evidence.schema.json',
   handoff: 'handoff.schema.json',
-  'continuity-bundle': 'continuity-bundle.schema.json'
+  'continuity-bundle': 'continuity-bundle.schema.json',
+  'source-conflict-report': 'source-conflict-report.schema.json',
+  'source-review': 'source-review.schema.json'
 };
 
 async function readJson(file) {
@@ -88,6 +91,7 @@ export async function validateBundle(bundleFile, { root = process.cwd() } = {}) 
   }
   for (const authorization of documents.filter((d) => d.kind === 'authorization')) errors.push(...checkAuthorization(authorization));
   for (const ledger of documents.filter((d) => d.kind === 'context-ledger')) errors.push(...checkContextLedger(ledger));
+  for (const review of documents.filter((d) => d.kind === 'source-review')) errors.push(...checkSourceReview(review, documents));
   for (const handoff of documents.filter((d) => d.kind === 'handoff')) errors.push(...checkHandoffReferences(handoff, documents));
   errors.push(...checkContinuityBundle(bundle, documents));
   errors.push(...checkSpaceReferences(documents));
@@ -106,6 +110,8 @@ export function inspectBundle(bundle, documents) {
   ) ?? documents.find((d) => d.kind === 'authorization' && d.granted_to_actor_id === bundle.next_actor_id && d.status === 'active');
   const tasks = documents.filter((d) => d.kind === 'task');
   const evidence = documents.filter((d) => d.kind === 'evidence');
+  const conflicts = documents.filter((d) => d.kind === 'source-conflict-report');
+  const sourceReviews = documents.filter((d) => d.kind === 'source-review');
 
   return {
     bundle_id: bundle.bundle_id,
@@ -116,6 +122,19 @@ export function inspectBundle(bundle, documents) {
     authorization: authorization ? { id: authorization.authorization_id, status: authorization.status, allowed_actions: authorization.allowed_actions, resource_scope: authorization.resource_scope } : null,
     tasks: tasks.map((task) => ({ id: task.task_id, title: task.title, status: task.status, evidence_refs: task.evidence_refs })),
     evidence: evidence.map((item) => ({ id: item.evidence_id, status: item.verification_status, uri: item.uri })),
+    source_conflicts: conflicts.flatMap((report) => report.candidates.map((candidate) => ({
+      report_id: report.conflict_report_id,
+      conflict_id: candidate.conflict_id,
+      topic: candidate.topic,
+      value_refs: candidate.values.map((value) => value.value_id)
+    }))),
+    source_reviews: sourceReviews.map((review) => ({
+      id: review.review_id,
+      conflict_id: review.conflict_id,
+      reviewer_actor_id: review.reviewer_actor_id,
+      status: review.review_status,
+      decision: review.decision
+    })),
     blockers: handoff?.blockers ?? [],
     next_actions: handoff?.next_actions ?? []
   };

@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 import process from 'node:process';
 import { inspectBundle, validateBundle } from '../src/bundle.mjs';
+import { scaffoldSourceReviews } from '../src/source-review.mjs';
 import { analyzeSnapshot, scaffoldSnapshot } from '../src/snapshot.mjs';
 
 function usage() {
   console.error(`Usage:
   ming bundle <validate|inspect> <bundle-file> [--json]
   ming snapshot analyze <config-file> [--json]
-  ming snapshot scaffold <config-file> --out <directory> [--force] [--json]`);
+  ming snapshot scaffold <config-file> --out <directory> [--force] [--json]
+  ming source-review scaffold <config-file> --out <directory> --space <space-id> --created-by <actor-id> --reviewer <human-actor-id> --created-at <timestamp> [--force] [--json]`);
 }
 
 function flagValue(flags, name) {
@@ -38,6 +40,7 @@ try {
         console.log(`Intent: ${summary.intent?.understanding ?? 'unknown'}`);
         console.log(`Next actor: ${summary.next_actor_id}`);
         console.log(`Authorization: ${summary.authorization?.id ?? 'missing'} (${summary.authorization?.status ?? 'missing'})`);
+        console.log(`Pending source reviews: ${summary.source_reviews.filter((review) => review.status === 'pending').length}`);
         console.log(`Blockers: ${summary.blockers.length}`);
         console.log('Next actions:');
         for (const action of summary.next_actions) console.log(`- ${action}`);
@@ -66,6 +69,21 @@ try {
       console.log(`MingOS snapshot scaffold created: ${result.outputDir}`);
       for (const file of result.files) console.log(`- ${file}`);
       console.log('Semantic interpretation and authorization still require review.');
+    }
+  } else if (group === 'source-review' && command === 'scaffold' && target) {
+    const result = await scaffoldSourceReviews(target, flagValue(flags, '--out'), {
+      spaceId: flagValue(flags, '--space'),
+      createdByActorId: flagValue(flags, '--created-by'),
+      reviewerActorId: flagValue(flags, '--reviewer'),
+      createdAt: flagValue(flags, '--created-at'),
+      force: flags.includes('--force')
+    });
+    if (flags.includes('--json')) console.log(JSON.stringify(result, null, 2));
+    else {
+      console.log(`MingOS source review scaffold created: ${result.outputDir}`);
+      console.log(`Conflict candidates: ${result.conflictReport.candidates.length}`);
+      console.log(`Pending human reviews: ${result.reviews.length}`);
+      console.log('No review decision was generated.');
     }
   } else {
     usage();

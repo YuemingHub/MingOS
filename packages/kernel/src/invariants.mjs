@@ -77,6 +77,117 @@ export function checkContextLedger(ledger) {
   return errors;
 }
 
+function equalSets(left, right) {
+  if (left.size !== right.size) return false;
+  for (const value of left) if (!right.has(value)) return false;
+  return true;
+}
+
+export function checkSourceReview(review, documents) {
+  const errors = [];
+  const report = documents.find((document) =>
+    document.kind === 'source-conflict-report' && document.conflict_report_id === review.conflict_report_id
+  );
+  const actors = new Map(documents.filter((document) => document.kind === 'actor').map((actor) => [actor.actor_id, actor]));
+  const reviewer = actors.get(review.reviewer_actor_id);
+
+  if (!report) {
+    errors.push(`${review.review_id}: conflict report ${review.conflict_report_id} not found`);
+  } else {
+    const conflict = report.candidates.find((candidate) => candidate.conflict_id === review.conflict_id);
+    if (!conflict) {
+      errors.push(`${review.review_id}: conflict ${review.conflict_id} not found in ${review.conflict_report_id}`);
+    } else {
+      const expected = new Set(conflict.values.map((value) => value.value_id));
+      const supplied = new Set(review.candidate_value_refs ?? []);
+      if (!equalSets(expected, supplied)) {
+        errors.push(`${review.review_id}: candidate_value_refs must exactly cover conflict values`);
+      }
+      if (review.selected_value_ref && !expected.has(review.selected_value_ref)) {
+        errors.push(`${review.review_id}: selected_value_ref ${review.selected_value_ref} is not a conflict value`);
+      }
+    }
+  }
+
+  if (reviewer && reviewer.actor_type !== 'human') {
+    errors.push(`${review.review_id}: reviewer_actor_id must reference a human actor`);
+  }
+  if (reviewer && reviewer.active === false) {
+    errors.push(`${review.review_id}: reviewer actor is inactive`);
+  }
+  if (review.revocable !== true) {
+    errors.push(`${review.review_id}: source review must remain revocable`);
+  }
+
+  const supportingRefs = review.supporting_refs ?? [];
+  const requestedEvidence = review.requested_evidence ?? [];
+  const requiresSelectedValue = ['accept-value', 'preserve-history'].includes(review.decision);
+  const forbidsSelectedValue = ['unresolved', 'request-evidence'].includes(review.decision);
+
+  if (review.review_status === 'pending') {
+    if (review.decision !== null) errors.push(`${review.review_id}: pending review must not contain a decision`);
+    if (review.selected_value_ref !== null) errors.push(`${review.review_id}: pending review must not select a value`);
+    if (review.rationale !== null) errors.push(`${review.review_id}: pending review must not contain rationale`);
+    if (review.decided_at !== null) errors.push(`${review.review_id}: pending review must not contain decided_at`);
+    if (supportingRefs.length > 0) errors.push(`${review.review_id}: pending review must not contain supporting_refs`);
+    if (requestedEvidence.length > 0) errors.push(`${review.review_id}: pending review must not request evidence before a human decision`);
+    if (review.revoked_at !== null || review.revocation_reason !== null) {
+      errors.push(`${review.review_id}: pending review must not contain revocation fields`);
+    }
+    if (review.supersedes_review_id !== null) errors.push(`${review.review_id}: pending review must not supersede another review`);
+    return errors;
+  }
+
+  if (review.decision === null) errors.push(`${review.review_id}: ${review.review_status} review requires a decision`);
+  if (!review.decided_at) errors.push(`${review.review_id}: ${review.review_status} review requires decided_at`);
+  if (!review.rationale || review.rationale.trim() === '') {
+    errors.push(`${review.review_id}: ${review.review_status} review requires rationale`);
+  }
+  if (requiresSelectedValue && !review.selected_value_ref) {
+    errors.push(`${review.review_id}: decision ${review.decision} requires selected_value_ref`);
+  }
+  if (forbidsSelectedValue && review.selected_value_ref !== null) {
+    errors.push(`${review.review_id}: decision ${review.decision} must not select a value`);
+  }
+  if (review.decision === 'accept-value' && supportingRefs.length === 0) {
+    errors.push(`${review.review_id}: accept-value requires supporting_refs`);
+  }
+  if (review.decision === 'request-evidence' && requestedEvidence.length === 0) {
+    errors.push(`${review.review_id}: request-evidence requires requested_evidence`);
+  }
+  if (review.decision !== 'request-evidence' && requestedEvidence.length > 0) {
+    errors.push(`${review.review_id}: requested_evidence is only valid for request-evidence`);
+  }
+
+  if (review.review_status === 'submitted') {
+    if (review.revoked_at !== null || review.revocation_reason !== null) {
+      errors.push(`${review.review_id}: submitted review must not contain revocation fields`);
+    }
+  } else if (review.review_status === 'revoked') {
+    if (!review.revoked_at) errors.push(`${review.review_id}: revoked review requires revoked_at`);
+    if (!review.revocation_reason || review.revocation_reason.trim() === '') {
+      errors.push(`${review.review_id}: revoked review requires revocation_reason`);
+    }
+  }
+
+  if (review.supersedes_review_id) {
+    if (review.supersedes_review_id === review.review_id) {
+      errors.push(`${review.review_id}: review cannot supersede itself`);
+    } else {
+      const previous = documents.find((document) =>
+        document.kind === 'source-review' && document.review_id === review.supersedes_review_id
+      );
+      if (!previous) {
+        errors.push(`${review.review_id}: superseded review ${review.supersedes_review_id} not found`);
+      } else if (previous.conflict_report_id !== review.conflict_report_id || previous.conflict_id !== review.conflict_id) {
+        errors.push(`${review.review_id}: superseded review belongs to another conflict`);
+      }
+    }
+  }
+
+  return errors;
+}
+
 export function checkSpaceReferences(documents) {
   const errors = [];
   const spaces = new Set(documents.filter((d) => d.kind === 'space').map((d) => d.space_id));
@@ -110,6 +221,9 @@ export function checkActorReferences(documents) {
     } else if (doc.kind === 'handoff') {
       requireActor(doc.from_actor_id, `${doc.handoff_id}.from_actor_id`);
       requireActor(doc.to_actor_id, `${doc.handoff_id}.to_actor_id`);
+    } else if (doc.kind === 'source-review') {
+      requireActor(doc.created_by_actor_id, `${doc.review_id}.created_by_actor_id`);
+      requireActor(doc.reviewer_actor_id, `${doc.review_id}.reviewer_actor_id`);
     }
   }
   return errors;
@@ -125,12 +239,20 @@ function documentIdentifiers(document) {
     task: 'task_id',
     evidence: 'evidence_id',
     handoff: 'handoff_id',
-    'continuity-bundle': 'bundle_id'
+    'continuity-bundle': 'bundle_id',
+    'source-conflict-report': 'conflict_report_id',
+    'source-review': 'review_id'
   };
   const primaryKey = primaryKeys[document.kind];
   if (primaryKey && document[primaryKey]) ids.push(document[primaryKey]);
   if (document.kind === 'context-ledger') {
     for (const record of document.records ?? []) ids.push(record.record_id);
+  }
+  if (document.kind === 'source-conflict-report') {
+    for (const candidate of document.candidates ?? []) {
+      ids.push(candidate.conflict_id);
+      for (const value of candidate.values ?? []) ids.push(value.value_id);
+    }
   }
   return ids;
 }
@@ -141,6 +263,8 @@ export function checkHandoffReferences(handoff, documents) {
   const authorizations = new Set(documents.filter((d) => d.kind === 'authorization').map((d) => d.authorization_id));
   const tasks = new Set(documents.filter((d) => d.kind === 'task').map((d) => d.task_id));
   const evidence = new Set(documents.filter((d) => d.kind === 'evidence').map((d) => d.evidence_id));
+  const conflictReports = new Set(documents.filter((d) => d.kind === 'source-conflict-report').map((d) => d.conflict_report_id));
+  const sourceReviews = new Set(documents.filter((d) => d.kind === 'source-review').map((d) => d.review_id));
 
   for (const actorId of handoff.actor_refs ?? []) {
     if (!actors.has(actorId)) errors.push(`${handoff.handoff_id}: actor_ref ${actorId} not found`);
@@ -153,6 +277,12 @@ export function checkHandoffReferences(handoff, documents) {
   }
   for (const evidenceId of handoff.evidence_refs ?? []) {
     if (!evidence.has(evidenceId)) errors.push(`${handoff.handoff_id}: evidence_ref ${evidenceId} not found`);
+  }
+  for (const reportId of handoff.source_conflict_report_refs ?? []) {
+    if (!conflictReports.has(reportId)) errors.push(`${handoff.handoff_id}: source_conflict_report_ref ${reportId} not found`);
+  }
+  for (const reviewId of handoff.source_review_refs ?? []) {
+    if (!sourceReviews.has(reviewId)) errors.push(`${handoff.handoff_id}: source_review_ref ${reviewId} not found`);
   }
   return errors;
 }
