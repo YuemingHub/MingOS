@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "task",
+  "task_id": "TASK-0004",
+  "space_id": "mingos-project",
+  "intent_id": "INTENT-0001",
+  "title": "量化外部空间快照成本并实现确定性脚手架",
+  "status": "completed",
+  "assigned_actor_id": "agent-continuity",
+  "authorization_ref": "AUTH-0004",
+  "allowed_actions": [
+    "create-files",
+    "update-files",
+    "run-tests",
+    "open-draft-pr",
+    "merge-pr"
+  ],
+  "completion_criteria": [
+    "量化 Family-Space 手工快照的来源文件、生成资产与语义覆盖",
+    "提供 snapshot analyze 命令",
+    "提供 snapshot scaffold 命令",
+    "固定来源 Git Blob SHA 并检测篡改",
+    "不自动确认事实、推断意图、授予权限或生成完成证据",
+    "全量 GitHub Actions 验证通过并合并至 main"
+  ],
+  "evidence_refs": [
+    "EVIDENCE-0004"
+  ],
+  "requires_human_approval": false,
+  "human_approval_ref": null,
+  "blocked_reason": null
+}
