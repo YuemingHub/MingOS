@@ -14,7 +14,7 @@ test('Foundation dependency pins the observed main baseline', () => {
 
 test('Foundation Drafts cannot become silent MingOS authority', () => {
   assert.match(dependency, /Foundation PR #15/);
-  assert.match(dependency, /e6d7c0ec092bb095870ef68af55f456ed3252047/);
+  assert.match(dependency, /bc13ebb8dd7aa49b6b8fd9a394a6b073ef61f38a/);
   assert.match(dependency, /Foundation PR #12/);
   assert.match(dependency, /187c11b68b908e3e0baa0fd5a43371351aa2e84c/);
   assert.match(dependency, /NoCurrentKernelConformanceClaim/);
