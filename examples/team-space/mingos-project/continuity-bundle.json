@@ -3,7 +3,7 @@
   "kind": "continuity-bundle",
   "bundle_id": "BUNDLE-0001",
   "space_id": "mingos-project",
-  "source_revision": "e33b88e40e01ea221a04e3ac06f512fec83e2dcf",
+  "source_revision": "5986298c9dce7dbb037787c84e8313e288b838b0",
   "next_actor_id": "agent-continuity",
   "artifacts": [
     {
@@ -64,7 +64,8 @@
         "CTX-0007",
         "CTX-0008",
         "CTX-0009",
-        "CTX-0010"
+        "CTX-0010",
+        "CTX-0011"
       ]
     },
     {
@@ -103,5 +104,5 @@
       "artifact_ids": ["HANDOFF-0002"]
     }
   ],
-  "created_at": "2026-08-06T13:10:00Z"
+  "created_at": "2026-08-06T13:22:00Z"
 }

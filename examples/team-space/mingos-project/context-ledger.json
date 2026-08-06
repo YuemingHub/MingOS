@@ -142,6 +142,20 @@
       "derived_from": "CTX-0009",
       "created_at": "2026-08-06T13:08:00Z",
       "updated_at": "2026-08-06T13:08:00Z"
+    },
+    {
+      "record_id": "CTX-0011",
+      "record_type": "fact",
+      "content": "Family-Space 只读外部空间试点 PR #6 已合并至 main，合并提交为 1e77ec8a70ddd05c0594906958717d004dd48834；最终 GitHub Actions run 31105336055 全部步骤成功，来源仓库零写入。",
+      "source_actor_id": "agent-continuity",
+      "source_refs": ["github:YuemingHub/MingOS/pull/6", "github-actions:31105336055", "github:YuemingHub/Family-Space@4e77e245bf4dfa49249e53a258e9ed575c428a41"],
+      "status": "confirmed",
+      "confidence_basis": "MingOS merge and CI evidence plus unchanged Family-Space production head",
+      "valid_until": null,
+      "supersedes": null,
+      "derived_from": "CTX-0010",
+      "created_at": "2026-08-06T13:22:00Z",
+      "updated_at": "2026-08-06T13:22:00Z"
     }
   ]
 }
