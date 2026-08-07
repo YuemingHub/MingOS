@@ -5,25 +5,31 @@ import { readFile } from 'node:fs/promises';
 const dependencyPath = new URL('../docs/FOUNDATION_DEPENDENCY.md', import.meta.url);
 const dependency = await readFile(dependencyPath, 'utf8');
 
-test('Foundation dependency pins the observed main baseline', () => {
+test('Foundation dependency pins the observed merged main baseline', () => {
   assert.match(dependency, /status: Proposed/);
   assert.match(dependency, /YuemingHub\/mingos-foundation/);
-  assert.match(dependency, /280a68705d13bbb5beed3a64713575fad7cba189/);
+  assert.match(dependency, /7eb33ffc806db1da2fde488a617860ca34b76c0e/);
   assert.match(dependency, /1\.0\.0-alpha\.18/);
+  assert.match(dependency, /PR #15, #12 and #16 merged/);
 });
 
-test('Foundation Drafts cannot become silent MingOS authority', () => {
-  assert.match(dependency, /Foundation PR #15/);
-  assert.match(dependency, /bc13ebb8dd7aa49b6b8fd9a394a6b073ef61f38a/);
-  assert.match(dependency, /Foundation PR #12/);
-  assert.match(dependency, /bc45a870ea2f3c85320b47cd7b5b42a50436d103/);
+test('merged Draft Kernel documents do not become silent MingOS authority', () => {
+  assert.match(dependency, /KERNEL-0004/);
+  assert.match(dependency, /KERNEL-0005/);
+  assert.match(dependency, /remain `Draft`/);
   assert.match(dependency, /NoCurrentKernelConformanceClaim/);
-  assert.match(dependency, /Do not claim Kernel conformance/);
-  assert.match(dependency, /not merged/);
+  assert.match(dependency, /no conformance, certification or completeness claim/);
+  assert.match(dependency, /A Draft document does not become binding/);
+});
+
+test('downstream adoption remains flexible and risk-proportionate', () => {
+  assert.match(dependency, /flexibility in language, pacing, mode selection and family-context interpretation/);
+  assert.match(dependency, /life-safety, violence, abuse, privacy, rights or professional-authority risks/);
+  assert.match(dependency, /successful product behavior is evidence for review/);
 });
 
 test('downstream product evidence cannot promote Foundation or Kernel authority', () => {
   assert.match(dependency, /never silently promote product fields/);
-  assert.match(dependency, /successful behavior is evidence for review/);
-  assert.match(dependency, /must remain easy to revise/);
+  assert.match(dependency, /cannot directly rewrite/);
+  assert.match(dependency, /remains Proposed and easy to revise/);
 });
