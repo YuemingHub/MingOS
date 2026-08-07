@@ -1,7 +1,7 @@
 # 当前状态
 
 - 日期：2026-08-06
-- 阶段：M5 source review protocol complete / accepted source decisions
+- 阶段：M5 source review protocol complete / coordination baseline integrated
 - 状态：可验证内核、连续性 CLI、两种外部来源模式、权威/时效/冲突报告与具名复核协议均已合并
 - 真实用户：无
 - 生产环境：无
@@ -50,7 +50,8 @@ npm run ming -- source-review scaffold \
 - active human 的合成决定通过，AI 冒充 reviewer 被拒绝；
 - PR #14 已合并，提交为 `ec73647f55055676deb2fb2367ec15c97782d17e`；
 - GitHub Actions run `31113972604` 的 29 项测试和全仓库示例验证全部通过。
-- human-yueming 已对三个来源冲突分别提交 accept-value 决定；决定保持可撤回，原始候选与历史来源继续保留。
+- human-yueming 已对三个来源冲突分别提交 accept-value 决定；决定保持可撤回，原始候选与历史来源继续保留；
+- Foundation #15/#12/#16 与 MingOS #17/#18 已通过最终 Review 并合入各自主干；Round 09 Kernel 仍全部为 Draft。
 
 ## 当前结论
 
@@ -64,7 +65,7 @@ MingOS 已证明：
 6. 撤回不删除旧决定，新的复核可以显式 supersede 旧记录；
 7. 原始来源、历史表述和冲突报告始终保留；
 8. 当前协议已抵达真实的人类决定门，后续自动扩建不能替代该门。
-9. 三份具体 source-review 已由具名 human-yueming 提交，当前仓库身份基线可以进入跨仓引用清理与 Draft PR 基线审计。
+9. 三份具体 source-review 已由具名 human-yueming 提交，Foundation 与 MingOS 的跨仓引用、依赖基线和协调契约已进入主干。
 
 ## 当前边界
 
@@ -89,7 +90,7 @@ MingOS 已证明：
 
 ## 当前推进条件
 
-- 依据上述事实分别更新 Foundation、MingOS 与 Family-Space 的当前引用和状态入口；
-- 以各仓库最新默认分支为基线逐个重审开放 Draft PR，先处理重复、过期和基线漂移；
+- Foundation 与 MingOS 的当前引用、依赖基线和协调入口已完成；Foundation 再次前进时必须重新生成依赖快照；
+- Family-Space 继续由月明独立推进；总协调只接收 production 与 CURRENT_PROJECT_STATUS.md 的已验证事实；
 - 保持无真实用户、无生产环境、无数据迁移与不自动部署边界；
-- 不因来源决定已提交，就自动建设联网导入器、通用 UI、模型网关或通用 Agent 平台。
+- 不因治理基线完成，就自动建设联网导入器、通用 UI、模型网关或通用 Agent 平台。
