@@ -12,7 +12,7 @@ test('bundle validate passes for self-hosting space', async () => {
   assert.match(stdout, /MingOS bundle validation passed: BUNDLE-0001/);
 });
 
-test('bundle inspect recovers stable intent, authorization and explicit human review gate', async () => {
+test('bundle inspect recovers accepted source decisions and explicit merge gate', async () => {
   const { stdout } = await execFileAsync(process.execPath, ['packages/cli/bin/ming.mjs', 'bundle', 'inspect', bundle, '--json']);
   const result = JSON.parse(stdout);
   assert.equal(result.space.id, 'mingos-project');
@@ -21,10 +21,11 @@ test('bundle inspect recovers stable intent, authorization and explicit human re
   assert.equal(result.authorization.status, 'active');
   assert.ok(typeof result.intent.next_action === 'string' && result.intent.next_action.length > 0);
   assert.equal(result.blockers.length, 1);
-  assert.ok(result.blockers[0].includes('source-review'));
+  assert.ok(result.blockers[0].includes('Draft PR'));
   assert.equal(result.source_reviews.length, 3);
-  assert.ok(result.source_reviews.every((review) => review.status === 'pending'));
-  assert.ok(result.source_reviews.every((review) => review.decision === null));
+  assert.ok(result.source_reviews.every((review) => review.status === 'submitted'));
+  assert.ok(result.source_reviews.every((review) => review.decision === 'accept-value'));
+  assert.ok(result.source_reviews.every((review) => typeof review.selected_value_ref === 'string'));
   assert.ok(result.next_actions.length > 0);
 });
 

@@ -57,6 +57,77 @@
       "derived_from": "CTX-0022",
       "created_at": "2026-08-06T15:05:00Z",
       "updated_at": "2026-08-06T15:05:00Z"
+    },
+    {
+      "record_id": "CTX-0024",
+      "record_type": "decision",
+      "content": "2026-08-06，human-yueming 提交 accept-value 决定，接受 YuemingHub/Family-Space 为当前家庭产品仓，并将 YuemingHub/Ming-os 保留为历史来源。",
+      "source_actor_id": "human-yueming",
+      "source_refs": [
+        "examples/source-review-pilot/reviews/SOURCE-REVIEW-mingos-unified-archive-2026-08-06-1.json",
+        "conversation:2026-08-06-accept"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "当前对话中的明确人类接受决定，已写入对应 source-review",
+      "valid_until": null,
+      "supersedes": "CTX-0023",
+      "derived_from": "CTX-0023",
+      "created_at": "2026-08-06T15:51:07Z",
+      "updated_at": "2026-08-06T15:51:07Z"
+    },
+    {
+      "record_id": "CTX-0025",
+      "record_type": "decision",
+      "content": "2026-08-06，human-yueming 提交 accept-value 决定，接受 YuemingHub/mingos-foundation 为当前 Foundation 仓库，并将 YuemingHub/Ming-Foundation 保留为历史仓库标识。",
+      "source_actor_id": "human-yueming",
+      "source_refs": [
+        "examples/source-review-pilot/reviews/SOURCE-REVIEW-mingos-unified-archive-2026-08-06-2.json",
+        "conversation:2026-08-06-accept"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "当前对话中的明确人类接受决定，已写入对应 source-review",
+      "valid_until": null,
+      "supersedes": "CTX-0023",
+      "derived_from": "CTX-0023",
+      "created_at": "2026-08-06T15:51:07Z",
+      "updated_at": "2026-08-06T15:51:07Z"
+    },
+    {
+      "record_id": "CTX-0026",
+      "record_type": "decision",
+      "content": "2026-08-06，human-yueming 提交 accept-value 决定，接受 YuemingHub/MingOS 为当前 MingOS 规范入口仓，并将 YuemingHub/mingos-unified 保留为历史来源。",
+      "source_actor_id": "human-yueming",
+      "source_refs": [
+        "examples/source-review-pilot/reviews/SOURCE-REVIEW-mingos-unified-archive-2026-08-06-3.json",
+        "conversation:2026-08-06-accept"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "当前对话中的明确人类接受决定，已写入对应 source-review",
+      "valid_until": null,
+      "supersedes": "CTX-0023",
+      "derived_from": "CTX-0023",
+      "created_at": "2026-08-06T15:51:07Z",
+      "updated_at": "2026-08-06T15:51:07Z"
+    },
+    {
+      "record_id": "CTX-0027",
+      "record_type": "fact",
+      "content": "三份 source-review 已由 human-yueming 分别提交 accept-value 决定；原始冲突报告、候选值和历史来源继续保留，决定仍可撤回。",
+      "source_actor_id": "human-yueming",
+      "source_refs": [
+        "examples/source-review-pilot/conflict-report.json",
+        "examples/source-review-pilot/reviews/SOURCE-REVIEW-mingos-unified-archive-2026-08-06-1.json",
+        "examples/source-review-pilot/reviews/SOURCE-REVIEW-mingos-unified-archive-2026-08-06-2.json",
+        "examples/source-review-pilot/reviews/SOURCE-REVIEW-mingos-unified-archive-2026-08-06-3.json",
+        "conversation:2026-08-06-accept"
+      ],
+      "status": "confirmed",
+      "confidence_basis": "三个对应 review 文件均为 submitted，decision=accept-value，且具有 selected_value_ref、supporting_refs 与 decided_at",
+      "valid_until": null,
+      "supersedes": "CTX-0023",
+      "derived_from": "CTX-0023",
+      "created_at": "2026-08-06T15:51:07Z",
+      "updated_at": "2026-08-06T15:51:07Z"
     }
   ]
 }
