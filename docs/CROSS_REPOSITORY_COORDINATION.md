@@ -1,11 +1,13 @@
 # MingOS 三仓协调契约
 
 > 状态：Proposed coordination contract  
-> 日期：2026-08-06  
+> 日期：2026-08-07  
 > 维护位置：`YuemingHub/MingOS`  
 > 适用范围：`mingos-foundation`、`MingOS`、`Family-Space`
 
 本文件是三仓协作的导航、边界和执行状态入口。它不替代各仓事实源，也不把 Draft、开放 PR、产品字段、对话结论或 AI 判断自动提升为 Accepted 事实。
+
+本次协调快照建立在 Family-Space PR #152 合并后。开放 PR 数量是本次核验时的点状事实，不应被解释为未来持续为零。
 
 ## 1. 三层关系
 
@@ -24,27 +26,33 @@
 ### Foundation
 
 - 仓库：`YuemingHub/mingos-foundation`；默认分支：`main`；
-- 当前主干：`7eb33ffc806db1da2fde488a617860ca34b76c0e`；
+- 本次核验主干：`7eb33ffc806db1da2fde488a617860ca34b76c0e`；
 - PR #15 已合并：当前仓库身份为 `YuemingHub/mingos-foundation`，旧路径只作 provenance；
 - PR #12 已合并：KERNEL-0004、KERNEL-0005、REF-0045–REF-0051 进入主干，但全部仍为 Draft；
 - PR #16 已合并：Round 09 的 9 个 ID 已完成 reservation integration；
-- 当前仍是 `NoCurrentKernelConformanceClaim`，0 executed tests、0 assessments、0 claims、0 badges。
+- 当前仍是 `NoCurrentKernelConformanceClaim`；主干中的 Draft 不因 merge 自动成为 Accepted/Stable；
+- 本次核验时开放 PR：0。
 
 ### MingOS
 
 - 仓库：`YuemingHub/MingOS`；默认分支：`main`；
-- 当前主干：`356887e83d3685641226d98851c152d0e73a7482`；
+- 本次核验主干：`9f64bca9b0926bd169bb6914043e756d23cdf902`；
 - PR #17 已合并：三份 source-review 均为具名、可撤回的 `submitted / accept-value`；
-- 当前唯一协调候选是 PR #18；它必须锁定已合并的 Foundation 主干，同时保留 Draft/Accepted 权威差异；
-- 当前无真实用户、无生产环境、无数据迁移；来源决定不代表生产放行或平台扩建授权。
+- PR #18 已合并：三仓协调契约与 Foundation dependency baseline 已进入主干；
+- PR #19 已合并：协调连续性状态已闭合，Family-Space 保持独立产品治理；
+- 当前无真实用户、无生产环境、无数据迁移；来源决定不代表生产放行或平台扩建授权；
+- 本次核验时开放 PR：0。
 
 ### Family-Space
 
 - 仓库：`YuemingHub/Family-Space`；默认分支：`production`；
-- 当前主干：`4e77e245bf4dfa49249e53a258e9ed575c428a41`；
+- 本次核验主干：`5b51a4c1507d87dede97961518786aed50f1a65e`（PR #152）；
 - `CURRENT_PROJECT_STATUS.md` 仍是运行事实源：真实家长无、生产环境无、对外正式服务无；
-- PR #118–#123 均仍为未合并 Draft；#123 是 Parent V1 产品候选；
-- Family-Space 当前由月明独立推进；MingOS 总协调只读取已验证产品事实，不替代产品侧合并决定；
+- PR #145–#152 已连续合并，产品主线从产品合同、Today 首次进入、Conversation V4 认识论 shadow、前三轮关系质量门，推进到 runtime / Writer / postprocess / framework 的 action-optional 约束；
+- PR #152 的 Prelaunch Safety run `31179493804` 全绿；旧 `framework-engine.js` 以相同 Git blob `307a7933e6d50c3d7c46924524f8482300021e9d` 保存为 legacy，实现没有在迁移中被暗改；
+- Conversation V4 当前产品事实是：普通路径不把动作当默认终点；明确方法请求只能形成可拒绝 candidate；red/yellow safety 保留 required-for-safety 路径；
+- 下一产品缺口是 development contract：必须继续区分 system candidate、parent-chosen action 与 execution/evidence；该产品结构尚不是 MingOS 通用协议或 Foundation 标准；
+- 本次核验时开放 PR：0；
 - 历史发布、服务器与 NO-GO 记录不能被解释为当前生产事实。
 
 ## 3. 权威顺序与冲突规则
@@ -54,6 +62,7 @@
 3. Family-Space `production` 与 `CURRENT_PROJECT_STATUS.md` 决定家庭产品实现边界与运行事实。
 4. Draft、Proposed、Candidate、开放 PR、Issue、旧发布记录和对话只能作为提案、证据或历史来源。
 5. 跨仓冲突必须保留原始来源，并通过具名、可撤回的 source-review 处理。
+6. 产品中有效的 V4 结构只能作为上层学习证据，不能因为已经进入 `production` 就自动成为 MingOS Kernel 或 Foundation 规范。
 
 ## 4. 三个硬边界
 
@@ -83,24 +92,25 @@ MingOS 提供跨空间能力，不规定家庭领域的固定回应方式。Fami
 
 ### 当前可执行
 
-- 审查并同步 MingOS PR #18 到 Foundation `main@7eb33ffc` 与 MingOS `main@356887e8`；
-- 运行 MingOS 契约测试，确认 Draft Kernel 未被提升为稳定依赖；
-- 只读接收 Family-Space 已验证事实，留待最后三仓统一核验；
-- 把产品失败、反例和未知整理为上层可审阅证据，而不是自动标准。
+- 对任何新出现的 Foundation / MingOS / Family-Space PR 按所属层级做 Review 与最终合并门；
+- 只读接收 Family-Space `production` 与 `CURRENT_PROJECT_STATUS.md` 的已验证事实；
+- 将 Family-Space 的失败、反例、未知和可重复产品证据整理为 MingOS 候选，不自动抽象为通用对象；
+- Foundation 主干再次变化时，重新核对 `FOUNDATION_DEPENDENCY.md`，继续保留 Draft/Accepted 权威差异。
 
 ### 当前禁止
 
 - 未经 Review、基线同步和成功 CI 就合并任何候选；
-- 代替月明处理 Family-Space 的产品合并门；
 - 触碰服务器、PM2、Nginx、cron、环境变量、密钥、真实数据或 `ymai.me`；
-- 把 Draft Kernel、产品字段或一次有效做法表述为通用合规结论。
+- 把 Draft Kernel、产品字段或一次有效做法表述为通用合规结论；
+- 因当前三仓开放 PR 为 0 就自行解释为“产品已完成”或“可以进入生产”。
 
 ### 当前顺序
 
-1. 完成 MingOS #18 的 Foundation 依赖重写与契约测试；
-2. 通过最终 Review 后合并 #18；
-3. 对 Foundation main、MingOS main 与 Family-Space 当前事实源做只读统一核验；
-4. 在产品闭环、安全门和人工验收完成前，不讨论真实用户或生产放行。
+1. 保持三仓基线无冲突，新的候选出现时先确认它属于 Foundation、MingOS 还是 Family-Space；
+2. Family-Space 下一产品候选优先验证 development contract 对 candidate / chosen action / execution-evidence 的分离，而不是继续增加动作模板；
+3. 只有产品证据跨场景重复成立且具有跨空间价值时，才形成 MingOS 协议提案；
+4. Foundation 仅复核真正上升到原则、权利、安全或治理层的问题；
+5. 在产品闭环、安全门和人工验收完成前，不讨论真实用户或生产放行。
 
 ## 7. 每个跨仓变更必须回答
 
