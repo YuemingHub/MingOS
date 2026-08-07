@@ -23,5 +23,5 @@ test('coordination snapshot does not revive superseded execution queues', () => 
 test('Family-Space product evidence remains downstream evidence, not universal authority', () => {
   assert.match(coordination, /该产品结构尚不是 MingOS 通用协议或 Foundation 标准/);
   assert.match(coordination, /不能因为已经进入 `production` 就自动成为 MingOS Kernel 或 Foundation 规范/);
-  assert.match(coordination, /不自行解释为“产品已完成”或“可以进入生产”/);
+  assert.match(coordination, /因当前三仓开放 PR 为 0 就自行解释为“产品已完成”或“可以进入生产”/);
 });
