@@ -16,7 +16,7 @@ test('Foundation Drafts cannot become silent MingOS authority', () => {
   assert.match(dependency, /Foundation PR #15/);
   assert.match(dependency, /bc13ebb8dd7aa49b6b8fd9a394a6b073ef61f38a/);
   assert.match(dependency, /Foundation PR #12/);
-  assert.match(dependency, /187c11b68b908e3e0baa0fd5a43371351aa2e84c/);
+  assert.match(dependency, /bc45a870ea2f3c85320b47cd7b5b42a50436d103/);
   assert.match(dependency, /NoCurrentKernelConformanceClaim/);
   assert.match(dependency, /Do not claim Kernel conformance/);
   assert.match(dependency, /not merged/);
