@@ -16,7 +16,7 @@
   "selected_value_ref": "VALUE-mingos-canonical-entrypoint-2",
   "rationale": "月明接受 YuemingHub/MingOS 为当前 MingOS 规范入口仓；YuemingHub/mingos-unified 仅保留为历史来源，不作为当前规范入口。",
   "supporting_refs": [
-    "github:YuemingHub/MingOS@ec73647f55055676deb2fb2367ec15c97782d17e/README.md"
+    "github:YuemingHub/MingOS@979a0e32f1e4c760f7e339f4b503bba44edfbbb0/README.md"
   ],
   "requested_evidence": [],
   "revocable": true,
@@ -25,5 +25,5 @@
   "revocation_reason": null,
   "supersedes_review_id": null,
   "created_at": "2026-08-06T14:50:00Z",
-  "updated_at": "2026-08-06T15:51:07Z"
+  "updated_at": "2026-08-07T02:07:00Z"
 }
