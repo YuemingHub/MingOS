@@ -4,7 +4,7 @@
   "intent_id": "INTENT-0001",
   "space_id": "mingos-project",
   "original_expression": "不要让探讨一直在，而是让这件事发生，然后过程调整",
-  "current_understanding": "MingOS 已将三个真实来源冲突转为具名、可验证、可撤回的 source-review；2026-08-06 human-yueming 已分别接受 Family-Space、mingos-foundation 和 MingOS 为当前仓库事实，同时保留旧名称与旧来源的历史可追溯性。下一步是跨仓引用清理与开放 Draft PR 基线审计，不是生产放行。",
+  "current_understanding": "三项仓库事实已由 human-yueming 具名接受并保持可撤回；Foundation #15、#12、#16 已通过最终 Review 合入 main，Round 09 Kernel 仍全部为 Draft。当前下一步是完成 MingOS #17/#18 的串行 Review 与依赖同步；Family-Space 由月明独立推进，不因治理合并而获得生产或真实用户授权。",
   "goals": [
     "建立跨空间对象的机器可验证 Schema",
     "建立无证据不得完成的内核不变量",
@@ -60,6 +60,6 @@
   ],
   "risk_level": "low",
   "status": "active",
-  "next_action": "依据已接受的三仓事实更新当前引用，审查开放 Draft PR 的重复、过期和基线漂移；保持 Draft、无合并、无部署和无真实数据边界。",
-  "version": 10
+  "next_action": "完成 MingOS #17 最终合并门；随后基于新 main 更新并审查 #18 的 Foundation 依赖基线，保持无部署、无真实数据和不自动扩建边界。",
+  "version": 11
 }
