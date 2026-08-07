@@ -46,7 +46,7 @@ Foundation 的原则与标准复核
 - 当前主干：[`280a687`](https://github.com/YuemingHub/mingos-foundation/commit/280a68705d13bbb5beed3a64713575fad7cba189)
 - 当前仓库身份已由用户在三仓 source-review 中接受为 `YuemingHub/mingos-foundation`；`YuemingHub/Ming-Foundation` 只作为历史标识保留。
 - 引用清理在 Draft [Foundation PR #15](https://github.com/YuemingHub/mingos-foundation/pull/15) 中，尚未合并。
-- [Foundation PR #12](https://github.com/YuemingHub/mingos-foundation/pull/12) 仍开放；Kernel 文档保持 Draft，不产生当前 conformance claim。
+- [Foundation PR #12](https://github.com/YuemingHub/mingos-foundation/pull/12) 仍开放，当前身份同步后的 head 为 [`bc45a87`](https://github.com/YuemingHub/mingos-foundation/commit/bc45a870ea2f3c85320b47cd7b5b42a50436d103)；Kernel 文档保持 Draft，不产生当前 conformance claim。
 
 因此，当前“用户已接受的仓库身份”与“Foundation main 已合入的文档状态”必须分开记录：前者是已确认的协调事实，后者仍等待 Draft PR 审查和合并。
 
@@ -71,6 +71,7 @@ Foundation 的原则与标准复核
 - [Family-Space PR #120](https://github.com/YuemingHub/Family-Space/pull/120) 从当前 `production` 重建了登录会话兜底的最小修复，尚未合并。
 - [Family-Space PR #121](https://github.com/YuemingHub/Family-Space/pull/121) 从当前 `production` 移除被 `.gitignore` 排除但仍被 Git 跟踪的 63 个运行产物，尚未合并。
 - [Family-Space PR #122](https://github.com/YuemingHub/Family-Space/pull/122) 从当前 `production` 重建依赖锁文件安全修复，尚未合并。
+- [Family-Space PR #123](https://github.com/YuemingHub/Family-Space/pull/123) 是当前 Parent V1 产品候选，仍未合并、未部署，继续由产品侧独立推进。
 - [Family-Space PR #116](https://github.com/YuemingHub/Family-Space/pull/116) 仍以较早基线承载大范围系统健康变更，不能直接合并或部署。
 - 旧发布、服务器与 NO-GO 文档保留为历史证据，不能被解释为当前生产事实。
 
@@ -114,7 +115,7 @@ MingOS 提供跨空间能力和协议，不规定家庭领域的具体回应方�
 
 ### 可继续执行
 
-- 继续验证 Foundation #15、MingOS #17/#18、当前协调契约 Draft 和 Family-Space #119/#120/#121/#122 的 CI 与文档一致性；
+- 继续验证 Foundation #15、MingOS #17/#18、当前协调契约 Draft 和 Family-Space #119/#120/#121/#122/#123 的 CI 与文档一致性；
 - 以各仓库最新默认分支逐个重审旧 Draft PR，先处理重复、过期和基线漂移；
 - 在 Family-Space 当前基线上重建仍有证据支持的最小修复；
 - 将家庭空间中的合成反例、失败和未知整理为 MingOS 可审阅输入，而不自动提升为通用内核。
@@ -128,9 +129,9 @@ MingOS 提供跨空间能力和协议，不规定家庭领域的具体回应方�
 
 ### 顺序
 
-1. 让当前 Draft（Foundation #15、MingOS #17/#18、Family-Space #119/#120/#121/#122）完成远程验证；
+1. 让当前 Draft（Foundation #15、MingOS #17/#18、Family-Space #119/#120/#121/#122/#123）完成远程验证；
 2. 复核 Foundation #15 与 MingOS source-review 决定记录之间的引用一致性；
-3. 继续观察 Family-Space 当前基线候选：登录缺口由 #120 重建，运行产物治理由 #121 重建，依赖安全修复由 #122 重建；#118 只负责当前状态入口，均不代表已合入或生产放行；
+3. 继续观察 Family-Space 当前基线候选：登录缺口由 #120 重建，运行产物治理由 #121 重建，依赖安全修复由 #122 重建，Parent V1 由 #123 承载；#118 只负责当前状态入口，均不代表已合入或生产放行；
 4. 对大范围 #116 和过期 #107 保留证据，不直接合入；
 5. 在产品闭环、自动验证与人工安全门均闭合前，不讨论真实用户或生产放行。
 
