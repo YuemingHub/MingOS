@@ -7,7 +7,7 @@
   "to_actor_id": null,
   "current_intent_id": "INTENT-0001",
   "source_revision": "ec73647f55055676deb2fb2367ec15c97782d17e",
-  "state_snapshot_at": "2026-08-06T15:51:07Z",
+  "state_snapshot_at": "2026-08-07T02:07:00Z",
   "actor_refs": [
     "human-yueming",
     "agent-continuity",
@@ -50,19 +50,20 @@
     "三个真实冲突候选已生成稳定报告和 pending 请求",
     "29 项测试和全仓库示例验证已通过",
     "系统已证明 Agent 可创建复核请求但不可冒充人类提交决定",
-    "human-yueming 已提交三份 accept-value source-review 决定，当前事实基线已确定且仍可撤回"
+    "human-yueming 已提交三份 accept-value source-review 决定，当前事实基线已确定且仍可撤回",
+    "Foundation #15、#12、#16 已通过最终 Review 并合入 main；Round 09 Kernel 仍全部为 Draft，NoCurrentKernelConformanceClaim 保持生效"
   ],
   "in_progress": [
-    "按已接受的三仓事实统一当前引用，并完成 Family-Space 开放 Draft PR 基线审计"
+    "MingOS #17 与 #18 的最终 Review、串行合并及 Foundation 主干依赖同步"
   ],
   "blockers": [
-    "三仓同步变更仍需分别完成 Draft PR 人工审查和合并；本轮不自动合并或部署"
+    "MingOS #18 必须在 #17 合并后同步到 Foundation main@7eb33ffc，并重新通过契约验证；不因此授权部署、真实用户或平台扩建"
   ],
   "next_actions": [
-    "审查并处理 MingOS PR #16、Foundation PR #15 与 Family-Space 基线审计 Draft PR",
-    "以当前默认分支为基线继续重审 Family-Space #116、#113、#112、#111、#110、#107 与 #118",
-    "保留原始 source-conflict-report、候选值和历史仓库名称，不做静默覆盖",
-    "在重新建立安全、隐私、同意、发布和人工验收门前，不进入真实用户或生产运行"
+    "完成 MingOS #17 最终审查与合并",
+    "基于 #17 合并后的 main 重审并同步 MingOS #18 的 Foundation 依赖基线",
+    "Family-Space 继续由月明独立推进，三仓最终统一时只接收已验证产品事实",
+    "保持原始 source-conflict-report、候选值和历史仓库名称，不做静默覆盖"
   ],
   "required_reads": [
     "docs/CURRENT_STATE.md",
