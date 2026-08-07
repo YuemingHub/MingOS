@@ -12,6 +12,12 @@ MingOS 不是某一个聊天机器人、Agent、知识库或家庭教育产品�
 | **本仓库 `YuemingHub/MingOS`** | 跨空间协议、Schema、内核与运行时 |
 | `YuemingHub/Family-Space` | 第一个垂直空间：家庭空间；家庭业务不进入 MingOS 内核 |
 
+当前三仓的正式边界、事实源、Draft PR 和执行队列见：
+[docs/CROSS_REPOSITORY_COORDINATION.md](docs/CROSS_REPOSITORY_COORDINATION.md)。
+
+MingOS 采用的 Foundation 版本、Draft 依赖与非主干声明见：
+[docs/FOUNDATION_DEPENDENCY.md](docs/FOUNDATION_DEPENDENCY.md)。
+
 ## v0.1 范围
 
 第一版只建立可验证的公共骨架：
