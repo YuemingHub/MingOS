@@ -1,13 +1,13 @@
 # 当前状态
 
 - 日期：2026-08-06
-- 阶段：M5 source review protocol complete / human decision gate
+- 阶段：M5 source review protocol complete / accepted source decisions
 - 状态：可验证内核、连续性 CLI、两种外部来源模式、权威/时效/冲突报告与具名复核协议均已合并
 - 真实用户：无
 - 生产环境：无
 - 数据迁移：无
-- 待人复核：3
-- 已提交复核决定：0
+- 待人复核：0
+- 已提交复核决定：3
 
 ## 当前能力
 
@@ -50,6 +50,7 @@ npm run ming -- source-review scaffold \
 - active human 的合成决定通过，AI 冒充 reviewer 被拒绝；
 - PR #14 已合并，提交为 `ec73647f55055676deb2fb2367ec15c97782d17e`；
 - GitHub Actions run `31113972604` 的 29 项测试和全仓库示例验证全部通过。
+- human-yueming 已对三个来源冲突分别提交 accept-value 决定；决定保持可撤回，原始候选与历史来源继续保留。
 
 ## 当前结论
 
@@ -63,6 +64,7 @@ MingOS 已证明：
 6. 撤回不删除旧决定，新的复核可以显式 supersede 旧记录；
 7. 原始来源、历史表述和冲突报告始终保留；
 8. 当前协议已抵达真实的人类决定门，后续自动扩建不能替代该门。
+9. 三份具体 source-review 已由具名 human-yueming 提交，当前仓库身份基线可以进入跨仓引用清理与 Draft PR 基线审计。
 
 ## 当前边界
 
@@ -77,12 +79,17 @@ MingOS 已证明：
 - 未经有效 Authorization，Agent 不得执行新任务；
 - 没有 passed/accepted Evidence，不得标记 Task completed。
 
-## 当前阻断
+## 已提交的人类决定
 
-以下三份请求等待 `human-yueming` 的独立决定：
+- `SOURCE-REVIEW-mingos-unified-archive-2026-08-06-1`：`accept-value` → `VALUE-family-space-product-repository-1`；
+- `SOURCE-REVIEW-mingos-unified-archive-2026-08-06-2`：`accept-value` → `VALUE-foundation-repository-2`；
+- `SOURCE-REVIEW-mingos-unified-archive-2026-08-06-3`：`accept-value` → `VALUE-mingos-canonical-entrypoint-2`。
 
-1. `SOURCE-REVIEW-mingos-unified-archive-2026-08-06-1`：Family-Space 产品仓；
-2. `SOURCE-REVIEW-mingos-unified-archive-2026-08-06-2`：Foundation 仓库名称；
-3. `SOURCE-REVIEW-mingos-unified-archive-2026-08-06-3`：MingOS 规范入口仓。
+三份决定均由 `human-yueming` 提交，均保持 `revocable: true`。本次决定只确定当前事实基线，不代表生产放行、真实用户启动或后续平台能力自动获批。
 
-每份请求可以选择：`accept-value`、`preserve-history`、`unresolved` 或 `request-evidence`。在具名决定出现前，不进入联网导入器、通用 UI、模型网关、自动迁移或通用 Agent 平台。
+## 当前推进条件
+
+- 依据上述事实分别更新 Foundation、MingOS 与 Family-Space 的当前引用和状态入口；
+- 以各仓库最新默认分支为基线逐个重审开放 Draft PR，先处理重复、过期和基线漂移；
+- 保持无真实用户、无生产环境、无数据迁移与不自动部署边界；
+- 不因来源决定已提交，就自动建设联网导入器、通用 UI、模型网关或通用 Agent 平台。

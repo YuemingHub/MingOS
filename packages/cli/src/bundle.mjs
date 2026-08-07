@@ -133,7 +133,11 @@ export function inspectBundle(bundle, documents) {
       conflict_id: review.conflict_id,
       reviewer_actor_id: review.reviewer_actor_id,
       status: review.review_status,
-      decision: review.decision
+      decision: review.decision,
+      selected_value_ref: review.selected_value_ref,
+      supporting_refs: review.supporting_refs,
+      decided_at: review.decided_at,
+      revocable: review.revocable
     })),
     blockers: handoff?.blockers ?? [],
     next_actions: handoff?.next_actions ?? []

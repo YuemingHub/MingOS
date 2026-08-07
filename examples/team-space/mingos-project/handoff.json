@@ -7,7 +7,7 @@
   "to_actor_id": null,
   "current_intent_id": "INTENT-0001",
   "source_revision": "ec73647f55055676deb2fb2367ec15c97782d17e",
-  "state_snapshot_at": "2026-08-06T15:05:00Z",
+  "state_snapshot_at": "2026-08-07T02:07:00Z",
   "actor_refs": [
     "human-yueming",
     "agent-continuity",
@@ -49,18 +49,21 @@
     "source-review scaffold CLI 已合并",
     "三个真实冲突候选已生成稳定报告和 pending 请求",
     "29 项测试和全仓库示例验证已通过",
-    "系统已证明 Agent 可创建复核请求但不可冒充人类提交决定"
+    "系统已证明 Agent 可创建复核请求但不可冒充人类提交决定",
+    "human-yueming 已提交三份 accept-value source-review 决定，当前事实基线已确定且仍可撤回",
+    "Foundation #15、#12、#16 已通过最终 Review 并合入 main；Round 09 Kernel 仍全部为 Draft，NoCurrentKernelConformanceClaim 保持生效"
   ],
-  "in_progress": [],
+  "in_progress": [
+    "MingOS #17 与 #18 的最终 Review、串行合并及 Foundation 主干依赖同步"
+  ],
   "blockers": [
-    "三份 source-review 均为 pending，等待 human-yueming 分别提交具名决定；在此之前不得自动进入下一能力阶段"
+    "MingOS #18 Draft PR 必须在 #17 合并后同步到 Foundation main@7eb33ffc，并重新通过契约验证；不因此授权部署、真实用户或平台扩建"
   ],
   "next_actions": [
-    "human-yueming 复核 SOURCE-REVIEW-mingos-unified-archive-2026-08-06-1：Family-Space 产品仓",
-    "human-yueming 复核 SOURCE-REVIEW-mingos-unified-archive-2026-08-06-2：Foundation 仓库名称",
-    "human-yueming 复核 SOURCE-REVIEW-mingos-unified-archive-2026-08-06-3：MingOS 规范入口仓",
-    "每份复核选择 accept-value、preserve-history、unresolved 或 request-evidence，并提供对应理由或补证要求",
-    "全部复核仍 pending 时不建设联网导入器、UI、模型网关、自动迁移或通用 Agent 平台"
+    "完成 MingOS #17 最终审查与合并",
+    "基于 #17 合并后的 main 重审并同步 MingOS #18 的 Foundation 依赖基线",
+    "Family-Space 继续由月明独立推进，三仓最终统一时只接收已验证产品事实",
+    "保持原始 source-conflict-report、候选值和历史仓库名称，不做静默覆盖"
   ],
   "required_reads": [
     "docs/CURRENT_STATE.md",
