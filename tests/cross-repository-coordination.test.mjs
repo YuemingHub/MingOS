@@ -34,5 +34,7 @@ test('coordination snapshot does not revive stale or unsafe execution assumption
   assert.doesNotMatch(coordination, /本次核验主干：`5b51a4c1507d87dede97961518786aed50f1a65e`/);
   assert.match(coordination, /#153 \/ #154 均基于旧基线/);
   assert.match(coordination, /不得把它们直接当作下一执行队列/);
-  assert.match(coordination, /不把当前 synthetic journey 测试表述为真实家庭验证/);
+
+  const prohibitedSection = coordination.match(/### 当前禁止[\s\S]*?### 当前顺序/)?.[0] || '';
+  assert.match(prohibitedSection, /把当前 synthetic journey 测试表述为真实家庭验证/);
 });
