@@ -29,7 +29,7 @@
 - 本次核验主干：`7eb33ffc806db1da2fde488a617860ca34b76c0e`；
 - Accepted/Stable 权威仍按仓库 canonical state 判定；主干中的 Draft 不因 merge 自动成为稳定标准；
 - 当前原则线继续支持：生命优先、主体性、解释可修正、证据/纠正/权利优先于系统确定性；
-- 本次核验时开放 PR：0。
+- 本次核验时开放 PR：0（verified GitHub state）。
 
 ### MingOS
 
@@ -38,7 +38,7 @@
 - 已有跨空间核心对象仍是 Space / Actor / Context / Intent / Authorization / Task / Evidence / Handoff / Continuity Bundle；
 - MingOS 不拥有 Family-Space 的产品合并权，也不把 Family-specific profile、memory revision UI、clarification gate、Family rights editor 或家庭阶段字段变成通用协议；
 - 当前无真实用户、无生产环境、无数据迁移；
-- 本次核验时开放 PR：0。
+- 本次核验时开放 coordination PR：#25（OPEN / DRAFT / NOT ACCEPTED；Codex B active audit）与 #26（OPEN / DRAFT / NOT ACCEPTED；overlapping coordination refresh，待 Integration / GPT merge gate 去重）；
 
 ### Family-Space
 
@@ -55,7 +55,7 @@
 - PR #165：补充 real-model journey harness 与 synthetic transcripts；仍属于 development/synthetic/internal evidence，不把产品行为提升为 MingOS 新协议；
 - PR #160 同时把 `CURRENT_STATE.md` / `CURRENT_PROJECT_STATUS.md` 从“V4/修正链仍待建设”的旧执行语义更新到当前事实；
 - PR #160 最新 head `49aabad4f5c3fe732659e51f3dac3c4283396b39` 的 Prelaunch Safety run `31262209996` 全绿；
-- 本次核验时三仓开放 PR：0；
+- 本次核验时开放 Family candidates：#166（OPEN / DRAFT / NOT ACCEPTED）、#168（OPEN / CANDIDATE / NOT ACCEPTED）、#169（OPEN / DRAFT / NOT ACCEPTED）；均为 Family product candidates，不是 MingOS Core evidence；
 - 历史发布、服务器与 NO-GO 记录不能被解释为当前生产事实。
 
 ## 3. 当前一致性判断

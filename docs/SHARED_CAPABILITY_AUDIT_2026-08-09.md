@@ -8,7 +8,10 @@ Status: Draft evidence checkpoint. This document records a reuse-before-build re
 - MingOS `main`: `defd45a31c0fb437ad4531a9aa79d750251339d3` (PR #24).
 - Family-Space `origin/production` reference: `1e70c5933675db1591edb7dc3f3c63159e6240c5` (PR #165).
 - Family-Space PR #164 and #165 are development/synthetic/internal evidence only. They do not establish real-family, production, or public-service readiness.
-- Family-Space remote PR state was not independently readable from the available API credentials; no claim about its open-PR count is made here.
+- Verified GitHub open state at this snapshot: Foundation has 0 open PRs; MingOS has #25 OPEN / DRAFT / NOT ACCEPTED (Codex B active audit) and #26 OPEN / DRAFT / NOT ACCEPTED (overlapping coordination refresh, pending Integration/GPT dedup).
+- Verified open Family candidates: #166 OPEN / DRAFT / NOT ACCEPTED; #168 OPEN / CANDIDATE / NOT ACCEPTED; #169 OPEN / DRAFT / NOT ACCEPTED.
+- All open candidates are product-layer candidates only: not merged, not accepted, and not Core evidence until accepted and revalidated.
+- MingOS PR #25 remains the Codex B-owned active audit; this audit opens no additional coordination PR.
 
 ## Shared capability map
 

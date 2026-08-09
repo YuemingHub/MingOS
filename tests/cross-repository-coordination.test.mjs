@@ -11,6 +11,9 @@ test('coordination snapshot pins the reviewed three-repository baselines', () =>
   assert.match(coordination, /1e70c5933675db1591edb7dc3f3c63159e6240c5/);
   assert.match(coordination, /PR #164/);
   assert.match(coordination, /PR #165/);
+  assert.match(coordination, /开放 coordination PR：#25（OPEN \/ DRAFT \/ NOT ACCEPTED；Codex B active audit）与 #26（OPEN \/ DRAFT \/ NOT ACCEPTED；overlapping coordination refresh/);
+  assert.match(coordination, /开放 Family candidates：#166（OPEN \/ DRAFT \/ NOT ACCEPTED）、#168（OPEN \/ CANDIDATE \/ NOT ACCEPTED）、#169（OPEN \/ DRAFT \/ NOT ACCEPTED）/);
+  assert.doesNotMatch(coordination, /本次核验时三仓开放 PR：0/);
   assert.match(coordination, /PR #158/);
   assert.match(coordination, /PR #159/);
   assert.match(coordination, /PR #160/);
