@@ -31,6 +31,28 @@ test('snapshot analyze quantifies deterministic work and semantic loss', async (
   assert.equal(report.decision.manual_review_required, true);
 });
 
+test('snapshot accepts canonical Git blob SHA from CRLF text worktrees', async () => {
+  const original = JSON.parse(await readFile(config, 'utf8'));
+  const temp = await mkdtemp(path.join(process.cwd(), '.tmp-crlf-snapshot-'));
+  try {
+    const sources = path.join(temp, 'sources');
+    await mkdir(sources, { recursive: true });
+    const originalRoot = path.dirname(path.resolve(config));
+    for (const source of original.source.files) {
+      const content = await readFile(path.join(originalRoot, source.local_path), 'utf8');
+      const crlfContent = content.replace(/\r?\n/g, '\r\n');
+      await writeFile(path.join(sources, path.basename(source.local_path)), crlfContent, 'utf8');
+      source.local_path = `sources/${path.basename(source.local_path)}`;
+    }
+    delete original.existing_pilot_dir;
+    const tempConfig = path.join(temp, 'snapshot.config.json');
+    await writeFile(tempConfig, JSON.stringify(original));
+    const relativeConfig = path.relative(process.cwd(), tempConfig);
+    await assert.doesNotReject(() => analyzeSnapshot(relativeConfig));
+  } finally {
+    await rm(temp, { recursive: true, force: true });
+  }
+});
 test('snapshot scaffold creates provenance and review assets without granting authority', async () => {
   const temp = await mkdtemp(path.join(process.cwd(), '.tmp-output-'));
   const relative = path.relative(process.cwd(), temp);
