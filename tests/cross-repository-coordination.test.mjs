@@ -7,12 +7,19 @@ const coordination = await readFile(coordinationPath, 'utf8');
 
 test('coordination snapshot pins the reviewed three-repository baselines', () => {
   assert.match(coordination, /7eb33ffc806db1da2fde488a617860ca34b76c0e/);
-  assert.match(coordination, /6253fbd8ffe4bf9f47a2cd3075f808347561e4be/);
-  assert.match(coordination, /f62341a8a0d35750be901cf96f04626692f2b6fc/);
+  assert.match(coordination, /defd45a31c0fb437ad4531a9aa79d750251339d3/);
+  assert.match(coordination, /1e70c5933675db1591edb7dc3f3c63159e6240c5/);
   assert.match(coordination, /PR #158/);
   assert.match(coordination, /PR #159/);
   assert.match(coordination, /PR #160/);
   assert.match(coordination, /31262209996/);
+  assert.match(coordination, /PR #164/);
+  assert.match(coordination, /PR #165/);
+  assert.match(coordination, /PR #166/);
+  assert.match(coordination, /PR #168/);
+  assert.match(coordination, /PR #169/);
+  assert.doesNotMatch(coordination, /6253fbd8ffe4bf9f47a2cd3075f808347561e4be/);
+  assert.doesNotMatch(coordination, /f62341a8a0d35750be901cf96f04626692f2b6fc/);
 });
 
 test('coordination snapshot records the proven family-controlled revision journey without promotion', () => {
@@ -48,4 +55,13 @@ test('coordination snapshot returns Family execution to the real parent journey'
   assert.match(coordination, /评估“我想纠正系统理解”是否能自然走到“我的 → 系统记下的内容”/);
   assert.doesNotMatch(coordination, /下一产品步优先补齐“澄清后的显式确认桥”/);
   assert.doesNotMatch(coordination, /在最新 `production` 上设计最小显式确认桥/);
+});
+
+test('coordination snapshot classifies open Family candidates without promotion', () => {
+  assert.match(coordination, /当前开放 Family 产品候选/);
+  assert.match(coordination, /PR #166：Draft/);
+  assert.match(coordination, /PR #168：开放候选/);
+  assert.match(coordination, /PR #169：Draft/);
+  assert.match(coordination, /不自动成为 MingOS primitive、Foundation principle 或 release authorization/);
+  assert.match(coordination, /不是 MingOS upstream candidate/);
 });
