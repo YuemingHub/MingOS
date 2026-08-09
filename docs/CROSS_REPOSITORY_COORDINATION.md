@@ -55,7 +55,7 @@
 - PR #165：补充 real-model journey harness 与 synthetic transcripts；仍属于 development/synthetic/internal evidence，不把产品行为提升为 MingOS 新协议；
 - PR #160 同时把 `CURRENT_STATE.md` / `CURRENT_PROJECT_STATUS.md` 从“V4/修正链仍待建设”的旧执行语义更新到当前事实；
 - PR #160 最新 head `49aabad4f5c3fe732659e51f3dac3c4283396b39` 的 Prelaunch Safety run `31262209996` 全绿；
-- 本次核验时开放 Family candidates：#166（OPEN / DRAFT / NOT ACCEPTED）、#168（OPEN / CANDIDATE / NOT ACCEPTED）、#169（OPEN / DRAFT / NOT ACCEPTED）；均为 Family product candidates，不是 MingOS Core evidence；
+- 本次核验时开放 Family candidates：#166（OPEN / DRAFT / NOT ACCEPTED）、#168（OPEN / DRAFT / NOT ACCEPTED）、#169（OPEN / DRAFT / NOT ACCEPTED）；均为 Family product candidates，不是 MingOS Core evidence；
 - 历史发布、服务器与 NO-GO 记录不能被解释为当前生产事实。
 
 ## 3. 当前一致性判断
@@ -154,3 +154,4 @@ MingOS 提供跨空间能力，不规定家庭领域的固定回应方式、家�
 - 是否会让使用者失去主体性、拒绝权、暂停权、纠正权、数据权利或现实中的安全支持？
 
 如果这些问题不能回答，变更只能停留在 Draft 或 pending。
+
