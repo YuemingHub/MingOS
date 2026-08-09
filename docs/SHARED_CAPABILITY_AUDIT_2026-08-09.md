@@ -9,8 +9,8 @@ Status: Draft evidence checkpoint. This document records a reuse-before-build re
 - Family-Space `origin/production` reference: `1e70c5933675db1591edb7dc3f3c63159e6240c5` (PR #165).
 - Family-Space PR #164 and #165 are development/synthetic/internal evidence only. They do not establish real-family, production, or public-service readiness.
 - Verified current GitHub state at this snapshot: Foundation has 0 open PRs; MingOS #25 OPEN / DRAFT / NOT ACCEPTED (Codex B active audit); #26 CLOSED / MERGED (overlapping coordination refresh; external merge, not treated as Core semantic acceptance); #27 OPEN / DRAFT / NOT ACCEPTED (focused CRLF snapshot infrastructure fix, not a coordination/Core semantic candidate).
-- Verified open Family candidates: #166 OPEN / DRAFT / NOT ACCEPTED; #168 OPEN / CANDIDATE / NOT ACCEPTED; #169 OPEN / DRAFT / NOT ACCEPTED.
-- Family open candidates remain product-layer candidates only: #166 OPEN / DRAFT / NOT ACCEPTED; #168 OPEN / CANDIDATE / NOT ACCEPTED; #169 OPEN / DRAFT / NOT ACCEPTED. MingOS #25 and #27 remain Drafts and are not accepted Core changes.
+- Verified open Family candidates: #166 OPEN / DRAFT / NOT ACCEPTED; #168 OPEN / DRAFT / NOT ACCEPTED; #169 OPEN / DRAFT / NOT ACCEPTED.
+- Family open candidates remain product-layer candidates only: #166 OPEN / DRAFT / NOT ACCEPTED; #168 OPEN / DRAFT / NOT ACCEPTED; #169 OPEN / DRAFT / NOT ACCEPTED. MingOS #25 and #27 remain Drafts and are not accepted Core changes.
 - MingOS PR #25 remains the Codex B-owned active audit; PR #27 is a separate focused test-infrastructure Draft; this audit opens no additional coordination PR.
 
 ## Shared capability map
@@ -53,3 +53,4 @@ None. No new Core primitive satisfies the evidence, generality, minimality, comp
 - This checkpoint does not authorize merge, release, deployment, real-data access, or a conformance claim.
 
 FINAL STATUS: READY_FOR_GPT_ARCHITECTURE_GATE
+

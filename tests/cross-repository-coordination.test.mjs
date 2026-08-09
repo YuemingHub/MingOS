@@ -12,7 +12,7 @@ test('coordination snapshot pins the reviewed three-repository baselines', () =>
   assert.match(coordination, /PR #164/);
   assert.match(coordination, /PR #165/);
   assert.match(coordination, /开放 MingOS PR：#25（OPEN \/ DRAFT \/ NOT ACCEPTED；Codex B active audit）与 #27（OPEN \/ DRAFT \/ NOT ACCEPTED；focused CRLF snapshot infrastructure fix/);\n  assert.match(coordination, /PR #26 已 CLOSED \/ MERGED（overlapping coordination refresh；外部合并，不等同于 Core semantic acceptance）/);
-  assert.match(coordination, /开放 Family candidates：#166（OPEN \/ DRAFT \/ NOT ACCEPTED）、#168（OPEN \/ CANDIDATE \/ NOT ACCEPTED）、#169（OPEN \/ DRAFT \/ NOT ACCEPTED）/);
+  assert.match(coordination, /开放 Family candidates：#166（OPEN \/ DRAFT \/ NOT ACCEPTED）、#168（OPEN \/ DRAFT \/ NOT ACCEPTED）、#169（OPEN \/ DRAFT \/ NOT ACCEPTED）/);
   assert.doesNotMatch(coordination, /本次核验时三仓开放 PR：0/);
   assert.match(coordination, /PR #158/);
   assert.match(coordination, /PR #159/);
@@ -54,3 +54,4 @@ test('coordination snapshot returns Family execution to the real parent journey'
   assert.doesNotMatch(coordination, /下一产品步优先补齐“澄清后的显式确认桥”/);
   assert.doesNotMatch(coordination, /在最新 `production` 上设计最小显式确认桥/);
 });
+
