@@ -7,7 +7,7 @@
 
 本文件是三仓协作的导航、边界和执行状态入口。它不替代各仓事实源，也不把 Draft、开放 PR、产品字段、对话结论或 AI 判断自动提升为 Accepted 事实。
 
-本次协调快照建立在 Family-Space PR #160 合并后。它记录的是本次核验时的远程事实，不授权部署、真实用户启动或 Foundation / MingOS 自动扩张。
+本次协调快照建立在 Family-Space PR #165 合并后。它记录的是本次核验时的远程事实，不授权部署、真实用户启动或 Foundation / MingOS 自动扩张；#166、#168、#169 仍是开放的 Family 产品候选。
 
 ## 1. 三层关系
 
@@ -34,7 +34,7 @@
 ### MingOS
 
 - 仓库：`YuemingHub/MingOS`；默认分支：`main`；
-- 本次核验基线：`6253fbd8ffe4bf9f47a2cd3075f808347561e4be`（PR #23）；
+- 本次核验基线：`defd45a31c0fb437ad4531a9aa79d750251339d3`（PR #24）；
 - 已有跨空间核心对象仍是 Space / Actor / Context / Intent / Authorization / Task / Evidence / Handoff / Continuity Bundle；
 - MingOS 不拥有 Family-Space 的产品合并权，也不把 Family-specific profile、memory revision UI、clarification gate、Family rights editor 或家庭阶段字段变成通用协议；
 - 当前无真实用户、无生产环境、无数据迁移；
@@ -43,7 +43,7 @@
 ### Family-Space
 
 - 仓库：`YuemingHub/Family-Space`；默认分支：`production`；
-- 本次核验主干：`f62341a8a0d35750be901cf96f04626692f2b6fc`（PR #160）；
+- 本次核验主干：`1e70c5933675db1591edb7dc3f3c63159e6240c5`（PR #165）；
 - `CURRENT_PROJECT_STATUS.md` 仍是运行事实源：真实家长无、生产环境无、对外正式服务无；
 - Conversation V4 已存在；当前是守住 Context Ledger / Life Translator / Response Posture / action-optional 边界，不再把“建立 V4”当未来任务；
 - PR #156：家长可见家庭理解 evidence-first，raw inference 与 legacy profile label 不自动成为家庭事实；
@@ -53,7 +53,13 @@
 - PR #160 将 #158 与 #159 串成跨模块回归：clarification 零写入 → 家长主动走既有数据权利入口 correction → revision chain 生成新版本 → 旧版本退出 AI context → 下一轮 AI 只看到家长修正后的当前版本；
 - PR #160 同时把 `CURRENT_STATE.md` / `CURRENT_PROJECT_STATUS.md` 从“V4/修正链仍待建设”的旧执行语义更新到当前事实；
 - PR #160 最新 head `49aabad4f5c3fe732659e51f3dac3c4283396b39` 的 Prelaunch Safety run `31262209996` 全绿；
-- 本次核验时三仓开放 PR：0；
+- PR #164：Layer A runtime evidence 已合入，证明主链执行、跨轮历史传递与 intake 边界，但不证明真实模型质量或真实家庭体验；
+- PR #165：Layer B real-model journey evidence 已合入，记录了 action leakage / multi-action overdose 等开发期 VERIFIED_FAILURE，以及 AMBIGUOUS / PROVIDER_ERROR；这些是开发证据，不是生产放行；
+- 当前开放 Family 产品候选：
+  - PR #166：Draft，action-optional final boundary，base 为 production，head 为 `f87e616`；
+  - PR #168：开放候选，epistemic clause-level boundary，堆叠在 #166 head 之上；
+  - PR #169：Draft，First Entry product affordance，独立于 #166 → #168；
+- #166 / #168 / #169 均不自动成为 MingOS primitive、Foundation principle 或 release authorization；
 - 历史发布、服务器与 NO-GO 记录不能被解释为当前生产事实。
 
 ## 3. 当前一致性判断
@@ -80,7 +86,7 @@ PR #160 证明了一个重要产品判断：**不需要为了“澄清之后怎�
 
 因此“显式确认桥”不再被定义为一个必须新增的系统对象。若真实家长使用证明从对话到“我的”存在明显寻找成本，Family-Space 可以补一个轻量导航 affordance；但它仍只能导航到既有权利入口，不能把自由文本或按钮选择自动翻译成记忆改写。
 
-这仍然是 Family-Space 产品实现和验证结果，不是 MingOS 新通用对象，也不是 Foundation 新标准。只有当“证据来源 + 人类修正权 + 澄清优先 + 版本替代 + 当前上下文失效”在多个非家庭空间重复成为同类问题时，才值得形成 MingOS 候选协议。
+这仍然是 Family-Space 产品实现和验证结果，不是 MingOS 新通用对象，也不是 Foundation 新标准。当前 #166 / #168 / #169 仍属于 Family 产品候选，不是 MingOS upstream candidate。只有当“证据来源 + 人类修正权 + 澄清优先 + 版本替代 + 当前上下文失效”在多个非家庭空间重复成为同类问题时，才值得形成 MingOS 候选协议。
 
 ## 4. 权威顺序与冲突规则
 
