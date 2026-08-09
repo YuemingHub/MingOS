@@ -5,13 +5,13 @@ Status: Draft evidence checkpoint. This document records a reuse-before-build re
 ## Reviewed baselines
 
 - Foundation `main`: `7eb33ffc806db1da2fde488a617860ca34b76c0e`.
-- MingOS `main`: `defd45a31c0fb437ad4531a9aa79d750251339d3` (PR #24).
+- MingOS `main`: `7f73f9fb6061f438384ece5a7c8394120f939dc9` (PR #26 merge commit). PR #25 remains based on PR #24 and is currently conflicting/non-mergeable.
 - Family-Space `origin/production` reference: `1e70c5933675db1591edb7dc3f3c63159e6240c5` (PR #165).
 - Family-Space PR #164 and #165 are development/synthetic/internal evidence only. They do not establish real-family, production, or public-service readiness.
-- Verified GitHub open state at this snapshot: Foundation has 0 open PRs; MingOS has #25 OPEN / DRAFT / NOT ACCEPTED (Codex B active audit) and #26 OPEN / DRAFT / NOT ACCEPTED (overlapping coordination refresh, pending Integration/GPT dedup).
+- Verified current GitHub state at this snapshot: Foundation has 0 open PRs; MingOS #25 OPEN / DRAFT / NOT ACCEPTED (Codex B active audit); #26 CLOSED / MERGED (overlapping coordination refresh; external merge, not treated as Core semantic acceptance); #27 OPEN / DRAFT / NOT ACCEPTED (focused CRLF snapshot infrastructure fix, not a coordination/Core semantic candidate).
 - Verified open Family candidates: #166 OPEN / DRAFT / NOT ACCEPTED; #168 OPEN / CANDIDATE / NOT ACCEPTED; #169 OPEN / DRAFT / NOT ACCEPTED.
-- All open candidates are product-layer candidates only: not merged, not accepted, and not Core evidence until accepted and revalidated.
-- MingOS PR #25 remains the Codex B-owned active audit; this audit opens no additional coordination PR.
+- Family open candidates remain product-layer candidates only: #166 OPEN / DRAFT / NOT ACCEPTED; #168 OPEN / CANDIDATE / NOT ACCEPTED; #169 OPEN / DRAFT / NOT ACCEPTED. MingOS #25 and #27 remain Drafts and are not accepted Core changes.
+- MingOS PR #25 remains the Codex B-owned active audit; PR #27 is a separate focused test-infrastructure Draft; this audit opens no additional coordination PR.
 
 ## Shared capability map
 
@@ -44,11 +44,11 @@ None. No new Core primitive satisfies the evidence, generality, minimality, comp
 - Downstream integration: none. Family-Space needs no migration from this audit; it continues to own clarification, response posture, parent-facing behavior, and domain interpretation.
 - Product evidence: repeated development/synthetic/internal evidence across #156–#165, with no real users or production service.
 - Foundation review candidates: the cross-space representation of evidence/provenance, correction/revision, continuity, consent, and safety boundary semantics only after a second non-family Life Space confirms the same need.
-- Next highest-value Core gap: obtain a second independent Life Space or equivalent non-family evidence, then rerun the generality and minimality tests. Separately, repair the Windows snapshot test line-ending assumption; that is test infrastructure, not a semantic Core gap.
+- Next highest-value Core gap: obtain a second independent Life Space or equivalent non-family evidence, then rerun the generality and minimality tests. Separately, PR #27 repairs the Windows snapshot test line-ending assumption; that is test infrastructure, not a semantic Core gap.
 
 ## Risks and non-goals
 
-- MingOS's full check currently has Windows CRLF snapshot mismatches in source-review fixtures; the fixture/index SHA mismatch is tracked as a separate engineering issue.
+- MingOS's full check currently has Windows CRLF snapshot mismatches in source-review fixtures; the fixture/index SHA mismatch is tracked by separate Draft PR #27.
 - Foundation's current validator reports a document-registry reviewed-commit mismatch; this audit does not modify the reference repository.
 - This checkpoint does not authorize merge, release, deployment, real-data access, or a conformance claim.
 

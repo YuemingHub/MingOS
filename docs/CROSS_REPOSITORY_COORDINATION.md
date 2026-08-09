@@ -34,11 +34,11 @@
 ### MingOS
 
 - 仓库：`YuemingHub/MingOS`；默认分支：`main`；
-- 本次核验基线：`defd45a31c0fb437ad4531a9aa79d750251339d3`（PR #24）；
+- 本次核验基线：`7f73f9fb6061f438384ece5a7c8394120f939dc9`（PR #26 merge commit）；PR #25 仍基于 PR #24，当前为不可合并的 Draft；
 - 已有跨空间核心对象仍是 Space / Actor / Context / Intent / Authorization / Task / Evidence / Handoff / Continuity Bundle；
 - MingOS 不拥有 Family-Space 的产品合并权，也不把 Family-specific profile、memory revision UI、clarification gate、Family rights editor 或家庭阶段字段变成通用协议；
 - 当前无真实用户、无生产环境、无数据迁移；
-- 本次核验时开放 coordination PR：#25（OPEN / DRAFT / NOT ACCEPTED；Codex B active audit）与 #26（OPEN / DRAFT / NOT ACCEPTED；overlapping coordination refresh，待 Integration / GPT merge gate 去重）；
+- 本次核验时开放 MingOS PR：#25（OPEN / DRAFT / NOT ACCEPTED；Codex B active audit）与 #27（OPEN / DRAFT / NOT ACCEPTED；focused CRLF snapshot infrastructure fix，不是 coordination/Core semantic candidate）；PR #26 已 CLOSED / MERGED（overlapping coordination refresh；外部合并，不等同于 Core semantic acceptance）；
 
 ### Family-Space
 
