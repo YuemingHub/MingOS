@@ -1,93 +1,156 @@
-# MingOS 涓変粨鍗忚皟濂戠害
+# MingOS 三仓协调契约
 
-> 鐘舵€侊細Proposed coordination contract  
-> 鏃ユ湡锛?026-08-08  
-> 缁存姢浣嶇疆锛歚YuemingHub/MingOS`  
-> 閫傜敤鑼冨洿锛歚mingos-foundation`銆乣MingOS`銆乣Family-Space`
+> 状态：Proposed coordination contract  
+> 日期：2026-08-08  
+> 维护位置：`YuemingHub/MingOS`  
+> 适用范围：`mingos-foundation`、`MingOS`、`Family-Space`
 
-鏈枃浠舵槸涓変粨鍗忎綔鐨勫鑸€佽竟鐣屽拰鎵ц鐘舵€佸叆鍙ｃ€傚畠涓嶆浛浠ｅ悇浠撲簨瀹炴簮锛屼篃涓嶆妸 Draft銆佸紑鏀?PR銆佷骇鍝佸瓧娈点€佸璇濈粨璁烘垨 AI 鍒ゆ柇鑷姩鎻愬崌涓?Accepted 浜嬪疄銆?
-鏈鍗忚皟蹇収寤虹珛鍦?Family-Space PR #165 鍚堝苟鍚庛€傚畠璁板綍鐨勬槸鏈鏍搁獙鏃剁殑杩滅▼浜嬪疄锛屼笉鎺堟潈閮ㄧ讲銆佺湡瀹炵敤鎴峰惎鍔ㄦ垨 Foundation / MingOS 鑷姩鎵╁紶銆?
-## 1. 涓夊眰鍏崇郴
+本文件是三仓协作的导航、边界和执行状态入口。它不替代各仓事实源，也不把 Draft、开放 PR、产品字段、对话结论或 AI 判断自动提升为 Accepted 事实。
 
-| 灞傜骇 | 浠撳簱 | 璐熻矗浠€涔?| 涓嶈礋璐ｄ粈涔?|
+本次协调快照建立在 Family-Space PR #165 合并后。它记录的是本次核验时的远程事实，不授权部署、真实用户启动或 Foundation / MingOS 自动扩张。
+
+## 1. 三层关系
+
+| 层级 | 仓库 | 负责什么 | 不负责什么 |
 |---|---|---|---|
-| 鍘熷垯涓庢不鐞嗗眰 | `YuemingHub/mingos-foundation` | 鐢熷懡瀹珷銆丮ingOS 瀹珷銆佷鸡鐞嗚竟鐣屻€佹不鐞嗘祦绋嬨€佹爣鍑嗕笌鍚堣鍒ゅ畾 | 瀹跺涵涓氬姟浠ｇ爜銆佸闀挎。妗堛€佺敓浜ц繍琛屼笌浜у搧鐣岄潰 |
-| 閫氱敤鍐呮牳涓庡崗璁眰 | `YuemingHub/MingOS` | Space銆丄ctor銆丆ontext銆両ntent銆丄uthorization銆乀ask銆丒vidence銆丠andoff銆丆ontinuity Bundle 绛夎法绌洪棿鍗忚銆丼chema 涓庨獙璇佸櫒 | 瀹跺涵鐢诲儚銆佸闀垮洖澶嶃€佸搴樁娈电瓑鍨傜洿瀛楁 |
-| 瀹跺涵鍨傜洿浜у搧灞?| `YuemingHub/Family-Space` | 瀹跺涵鐪熷疄鐢熸椿銆佺悊瑙ｄ笌杞瘧銆佸闀垮洖澶嶃€佸畨鍏ㄩ棬銆佸彲鎷掔粷琛屽姩銆佺敓娲诲弽棣堛€佸搴洖鏈涖€佸彲淇璁板繂涓庢暟鎹潈鍒?| MingOS 閫氱敤瀵硅薄鍜?Foundation 鍘熷垯鐨勮嚜鍔ㄥ畾涔夋潈 |
+| 原则与治理层 | `YuemingHub/mingos-foundation` | 生命宪章、MingOS 宪章、伦理边界、治理流程、标准与合规判定 | 家庭业务代码、家长档案、生产运行与产品界面 |
+| 通用内核与协议层 | `YuemingHub/MingOS` | Space、Actor、Context、Intent、Authorization、Task、Evidence、Handoff、Continuity Bundle 等跨空间协议、Schema 与验证器 | 家庭画像、家长回复、家庭阶段等垂直字段 |
+| 家庭垂直产品层 | `YuemingHub/Family-Space` | 家庭真实生活、理解与转译、家长回复、安全门、可拒绝行动、生活反馈、家庭回望、可修正记忆与数据权利 | MingOS 通用对象和 Foundation 原则的自动定义权 |
 
-姝ｅ悜绾︽潫锛欶oundation 宸叉帴鍙楃殑鍘熷垯涓庢爣鍑?鈫?MingOS 鍙獙璇佸崗璁?鈫?Family-Space 浜у搧闂幆銆?
-鍙嶅悜瀛︿範锛欶amily-Space 鐨勯獙璇併€佸け璐ャ€佸弽渚嬩笌鏈煡 鈫?MingOS 鍗忚鍊欓€?鈫?Foundation 澶嶆牳銆傚弽鍚戞潗鏂欏彧鑳芥垚涓鸿瘉鎹垨鎻愭锛屼笉鍥犱骇鍝佹湁鏁堣€岃嚜鍔ㄥ崌绾с€?
-## 2. 褰撳墠杩滅▼浜嬪疄
+正向约束：Foundation 已接受的原则与标准 → MingOS 可验证协议 → Family-Space 产品闭环。
+
+反向学习：Family-Space 的验证、失败、反例与未知 → MingOS 协议候选 → Foundation 复核。反向材料只能成为证据或提案，不因产品有效而自动升级。
+
+## 2. 当前远程事实
 
 ### Foundation
 
-- 浠撳簱锛歚YuemingHub/mingos-foundation`锛涢粯璁ゅ垎鏀細`main`锛?- 鏈鏍搁獙涓诲共锛歚7eb33ffc806db1da2fde488a617860ca34b76c0e`锛?- Accepted/Stable 鏉冨▉浠嶆寜浠撳簱 canonical state 鍒ゅ畾锛涗富骞蹭腑鐨?Draft 涓嶅洜 merge 鑷姩鎴愪负绋冲畾鏍囧噯锛?- 褰撳墠鍘熷垯绾跨户缁敮鎸侊細鐢熷懡浼樺厛銆佷富浣撴€с€佽В閲婂彲淇銆佽瘉鎹?绾犳/鏉冨埄浼樺厛浜庣郴缁熺‘瀹氭€э紱
-- 鏈鏍搁獙鏃跺紑鏀?PR锛?銆?
+- 仓库：`YuemingHub/mingos-foundation`；默认分支：`main`；
+- 本次核验主干：`7eb33ffc806db1da2fde488a617860ca34b76c0e`；
+- Accepted/Stable 权威仍按仓库 canonical state 判定；主干中的 Draft 不因 merge 自动成为稳定标准；
+- 当前原则线继续支持：生命优先、主体性、解释可修正、证据/纠正/权利优先于系统确定性；
+- 本次核验时开放 PR：0。
+
 ### MingOS
 
-- 浠撳簱锛歚YuemingHub/MingOS`锛涢粯璁ゅ垎鏀細`main`锛?- 鏈鏍搁獙鍩虹嚎锛歚defd45a31c0fb437ad4531a9aa79d750251339d3`锛圥R #24锛夛紱
-- 宸叉湁璺ㄧ┖闂存牳蹇冨璞′粛鏄?Space / Actor / Context / Intent / Authorization / Task / Evidence / Handoff / Continuity Bundle锛?- MingOS 涓嶆嫢鏈?Family-Space 鐨勪骇鍝佸悎骞舵潈锛屼篃涓嶆妸 Family-specific profile銆乵emory revision UI銆乧larification gate銆丗amily rights editor 鎴栧搴樁娈靛瓧娈靛彉鎴愰€氱敤鍗忚锛?- 褰撳墠鏃犵湡瀹炵敤鎴枫€佹棤鐢熶骇鐜銆佹棤鏁版嵁杩佺Щ锛?- 鏈鏍搁獙鏃跺紑鏀?PR锛?銆?
+- 仓库：`YuemingHub/MingOS`；默认分支：`main`；
+- 本次核验基线：`defd45a31c0fb437ad4531a9aa79d750251339d3`（PR #24）；
+- 已有跨空间核心对象仍是 Space / Actor / Context / Intent / Authorization / Task / Evidence / Handoff / Continuity Bundle；
+- MingOS 不拥有 Family-Space 的产品合并权，也不把 Family-specific profile、memory revision UI、clarification gate、Family rights editor 或家庭阶段字段变成通用协议；
+- 当前无真实用户、无生产环境、无数据迁移；
+- 本次核验时开放 PR：0。
+
 ### Family-Space
 
-- 浠撳簱锛歚YuemingHub/Family-Space`锛涢粯璁ゅ垎鏀細`production`锛?- 鏈鏍搁獙涓诲共锛歚1e70c5933675db1591edb7dc3f3c63159e6240c5`锛圥R #165锛夛紱
-- `CURRENT_PROJECT_STATUS.md` 浠嶆槸杩愯浜嬪疄婧愶細鐪熷疄瀹堕暱鏃犮€佺敓浜х幆澧冩棤銆佸澶栨寮忔湇鍔℃棤锛?- Conversation V4 宸插瓨鍦紱褰撳墠鏄畧浣?Context Ledger / Life Translator / Response Posture / action-optional 杈圭晫锛屼笉鍐嶆妸鈥滃缓绔?V4鈥濆綋鏈潵浠诲姟锛?- PR #156锛氬闀垮彲瑙佸搴悊瑙?evidence-first锛宺aw inference 涓?legacy profile label 涓嶈嚜鍔ㄦ垚涓哄搴簨瀹烇紱
-- PR #157锛歱rivate memory 蹇呴』 evidence-backed / provenance-backed锛岀己澶辨垨涓嶅彲褰掍竴鍖栨潵婧愭椂 fail-closed锛?- PR #158锛氬闀夸慨姝ｅ舰鎴?revision chain锛涙柊鐗堟湰鎴愪负褰撳墠鐗堟湰锛屾棫鐗堟湰 `stale` 涓?`ai_usable=0`锛屽惁璁ゅ彲娓呴櫎鍏宠仈淇閾撅紱
-- PR #159锛欶amily-only memory clarification gate 淇濆畧璇嗗埆鏄庣‘绾犳/鍙樺寲锛涙櫘閫氬ソ杞€佹櫘閫氬姣斻€佸搴垚鍛樻剰瑙佷笉鍚屼笉浼氳鍖呰鎴愮郴缁熷啿绐侊紱`situation_changed` 涓嶇瓑浜庘€滀箣鍓嶇悊瑙ｉ敊浜嗏€濓紱婢勬竻鏈韩 read-only锛屽畨鍏ㄩ棬浼樺厛锛屾緞娓呭墠涓嶇户缁部鏃х悊瑙ｇ粰 action/method锛?- PR #160 灏?#158 涓?#159 涓叉垚璺ㄦā鍧楀洖褰掞細clarification 闆跺啓鍏?鈫?瀹堕暱涓诲姩璧版棦鏈夋暟鎹潈鍒╁叆鍙?correction 鈫?revision chain 鐢熸垚鏂扮増鏈?鈫?鏃х増鏈€€鍑?AI context 鈫?涓嬩竴杞?AI 鍙湅鍒板闀夸慨姝ｅ悗鐨勫綋鍓嶇増鏈紱
-- PR #164锛氬缓绔嬪墠涓夎疆 runtime 楠岃瘉鐨?development/synthetic/internal evidence锛涗笉浠ｈ〃鐪熷疄 LLM 璐ㄩ噺銆佺湡瀹炲搴垨鐢熶骇鏀捐锛?- PR #165锛氳ˉ鍏?real-model journey harness 涓?synthetic transcripts锛涗粛灞炰簬 development/synthetic/internal evidence锛屼笉鎶婁骇鍝佽涓烘彁鍗囦负 MingOS 鏂板崗璁紱
-- PR #160 鍚屾椂鎶?`CURRENT_STATE.md` / `CURRENT_PROJECT_STATUS.md` 浠庘€淰4/淇閾句粛寰呭缓璁锯€濈殑鏃ф墽琛岃涔夋洿鏂板埌褰撳墠浜嬪疄锛?- PR #160 鏈€鏂?head `49aabad4f5c3fe732659e51f3dac3c4283396b39` 鐨?Prelaunch Safety run `31262209996` 鍏ㄧ豢锛?- 鏈鏍搁獙鏃朵笁浠撳紑鏀?PR锛?锛?- 鍘嗗彶鍙戝竷銆佹湇鍔″櫒涓?NO-GO 璁板綍涓嶈兘琚В閲婁负褰撳墠鐢熶骇浜嬪疄銆?
-## 3. 褰撳墠涓€鑷存€у垽鏂?
-涓変粨褰撳墠浠嶆槸涓€鏉＄嚎锛?
+- 仓库：`YuemingHub/Family-Space`；默认分支：`production`；
+- 本次核验主干：`1e70c5933675db1591edb7dc3f3c63159e6240c5`（PR #165）；
+- `CURRENT_PROJECT_STATUS.md` 仍是运行事实源：真实家长无、生产环境无、对外正式服务无；
+- Conversation V4 已存在；当前是守住 Context Ledger / Life Translator / Response Posture / action-optional 边界，不再把“建立 V4”当未来任务；
+- PR #156：家长可见家庭理解 evidence-first，raw inference 与 legacy profile label 不自动成为家庭事实；
+- PR #157：private memory 必须 evidence-backed / provenance-backed，缺失或不可归一化来源时 fail-closed；
+- PR #158：家长修正形成 revision chain；新版本成为当前版本，旧版本 `stale` 且 `ai_usable=0`，否认可清除关联修订链；
+- PR #159：Family-only memory clarification gate 保守识别明确纠正/变化；普通好转、普通对比、家庭成员意见不同不会被包装成系统冲突；`situation_changed` 不等于“之前理解错了”；澄清本身 read-only，安全门优先，澄清前不继续沿旧理解给 action/method；
+- PR #160 将 #158 与 #159 串成跨模块回归：clarification 零写入 → 家长主动走既有数据权利入口 correction → revision chain 生成新版本 → 旧版本退出 AI context → 下一轮 AI 只看到家长修正后的当前版本；
+- PR #164：建立前三轮 runtime 验证的 development/synthetic/internal evidence；不代表真实 LLM 质量、真实家庭或生产放行；
+- PR #165：补充 real-model journey harness 与 synthetic transcripts；仍属于 development/synthetic/internal evidence，不把产品行为提升为 MingOS 新协议；
+- PR #160 同时把 `CURRENT_STATE.md` / `CURRENT_PROJECT_STATUS.md` 从“V4/修正链仍待建设”的旧执行语义更新到当前事实；
+- PR #160 最新 head `49aabad4f5c3fe732659e51f3dac3c4283396b39` 的 Prelaunch Safety run `31262209996` 全绿；
+- 本次核验时三仓开放 PR：0；
+- 历史发布、服务器与 NO-GO 记录不能被解释为当前生产事实。
+
+## 3. 当前一致性判断
+
+三仓当前仍是一条线：
+
 ```text
 Foundation
-鐢熷懡浼樺厛 / 涓讳綋鎬?/ 鍙慨姝?/ 璇佹嵁涓庢潈鍒?        鈫?MingOS
+生命优先 / 主体性 / 可修正 / 证据与权利
+        ↓
+MingOS
 Context / Evidence / Authorization / Handoff / Continuity
-        鈫?Family-Space
-鐪熷疄鐢熸椿杩涘叆 鈫?鍖哄垎浜嬪疄/瑙ｉ噴/鏈煡 鈫?鏈夋潵婧愮殑鏆傛椂鐞嗚В
-鈫?鏂扮幇瀹炲彲鑳芥寫鎴樻棫鐞嗚В 鈫?绯荤粺鍏堟緞娓咃紝涓嶈嚜鍔ㄥ垽鐪熴€佷笉鑷姩鍐?鈫?瀹堕暱濡傛灉鎰挎剰淇锛屽彧璧扮幇鏈夋暟鎹潈鍒╁叆鍙?鈫?revision chain 浜х敓鏂扮殑褰撳墠鐗堟湰
-鈫?鏃х増鏈€€鍑哄綋鍓?AI 涓婁笅鏂囦絾淇濈暀蹇呰鍘嗗彶
-鈫?涓嬩竴杞彧浣跨敤鏂扮殑褰撳墠鐗堟湰
+        ↓
+Family-Space
+真实生活进入 → 区分事实/解释/未知 → 有来源的暂时理解
+→ 新现实可能挑战旧理解 → 系统先澄清，不自动判真、不自动写
+→ 家长如果愿意修正，只走现有数据权利入口
+→ revision chain 产生新的当前版本
+→ 旧版本退出当前 AI 上下文但保留必要历史
+→ 下一轮只使用新的当前版本
 ```
 
-PR #160 璇佹槑浜嗕竴涓噸瑕佷骇鍝佸垽鏂細**涓嶉渶瑕佷负浜嗏€滄緞娓呬箣鍚庢€庝箞鍔炩€濆啀閫?pending clarification 琛ㄣ€佺浜屽 memory API 鎴栬嚜鍔ㄧ‘璁ょ姸鎬佹満銆?* Family-Space 宸茬粡鏈変袱鏉¤亴璐ｆ竻鏅扮殑鑳藉姏锛氬璇濆眰璐熻矗鎵胯涓嶇‘瀹氬苟閭€璇锋緞娓咃紱鈥滄垜鐨?鈫?绯荤粺璁颁笅鐨勫唴瀹光€濊礋璐ｅ闀夸富鍔ㄤ慨姝ｏ紱revision chain 璐熻矗鐗堟湰鏇夸唬銆?
-鍥犳鈥滄樉寮忕‘璁ゆˉ鈥濅笉鍐嶈瀹氫箟涓轰竴涓繀椤绘柊澧炵殑绯荤粺瀵硅薄銆傝嫢鐪熷疄瀹堕暱浣跨敤璇佹槑浠庡璇濆埌鈥滄垜鐨勨€濆瓨鍦ㄦ槑鏄惧鎵炬垚鏈紝Family-Space 鍙互琛ヤ竴涓交閲忓鑸?affordance锛涗絾瀹冧粛鍙兘瀵艰埅鍒版棦鏈夋潈鍒╁叆鍙ｏ紝涓嶈兘鎶婅嚜鐢辨枃鏈垨鎸夐挳閫夋嫨鑷姩缈昏瘧鎴愯蹇嗘敼鍐欍€?
-杩欎粛鐒舵槸 Family-Space 浜у搧瀹炵幇鍜岄獙璇佺粨鏋滐紝涓嶆槸 MingOS 鏂伴€氱敤瀵硅薄锛屼篃涓嶆槸 Foundation 鏂版爣鍑嗐€傚彧鏈夊綋鈥滆瘉鎹潵婧?+ 浜虹被淇鏉?+ 婢勬竻浼樺厛 + 鐗堟湰鏇夸唬 + 褰撳墠涓婁笅鏂囧け鏁堚€濆湪澶氫釜闈炲搴┖闂撮噸澶嶆垚涓哄悓绫婚棶棰樻椂锛屾墠鍊煎緱褰㈡垚 MingOS 鍊欓€夊崗璁€?
-## 4. 鏉冨▉椤哄簭涓庡啿绐佽鍒?
-1. Foundation `main` 涓?Accepted/Stable 鏂囦欢鍐冲畾鍘熷垯銆佷鸡鐞嗕笌娌荤悊绾︽潫锛涗富骞蹭腑鐨?Draft 浠嶅彧鏄?Draft銆?2. MingOS `main` 鍐冲畾宸茬粡鍚堝叆鐨勮法绌洪棿鍗忚銆丼chema銆侀獙璇佸櫒涓庤繛缁€т簨瀹炪€?3. Family-Space `production`銆乣CURRENT_PROJECT_STATUS.md` 涓?Family 浜у搧鍚堝悓鍐冲畾瀹跺涵浜у搧瀹炵幇杈圭晫涓庤繍琛屼簨瀹炪€?4. Draft銆丳roposed銆丆andidate銆佸紑鏀?PR銆両ssue銆佹棫鍙戝竷璁板綍鍜屽璇濆彧鑳戒綔涓烘彁妗堛€佽瘉鎹垨鍘嗗彶鏉ユ簮銆?5. 璺ㄤ粨鍐茬獊蹇呴』淇濈暀鍘熷鏉ユ簮锛屽苟閫氳繃鍏峰悕銆佸彲鎾ゅ洖鐨?source-review 澶勭悊銆?6. 浜у搧涓湁鏁堢殑 V4銆乪vidence-first projection銆乵emory revision chain銆乧larification gate銆乺ights editor 鎴?action lifecycle 鍙兘浣滀负涓婂眰瀛︿範璇佹嵁锛屼笉鑳藉洜涓哄凡缁忚繘鍏?`production` 灏辫嚜鍔ㄦ垚涓?MingOS Kernel 鎴?Foundation 瑙勮寖銆?
-## 5. 涓変釜纭竟鐣?
-### Foundation 鈫?MingOS
+PR #160 证明了一个重要产品判断：**不需要为了“澄清之后怎么办”再造 pending clarification 表、第二套 memory API 或自动确认状态机。** Family-Space 已经有两条职责清晰的能力：对话层负责承认不确定并邀请澄清；“我的 → 系统记下的内容”负责家长主动修正；revision chain 负责版本替代。
 
-Foundation 瑙勫畾鍘熷垯鍜屽垽瀹氳竟鐣岋紱MingOS 灏嗗凡鎺ュ彈瑕佹眰杞负鍗忚銆侻ingOS 鍙互绮剧‘寮曠敤 Draft Kernel 姒傚康锛屼絾涓嶅緱鎶婂畠浠啓鎴愮ǔ瀹氭爣鍑嗘垨 conformance銆?
-### MingOS 鈫?Family-Space
+因此“显式确认桥”不再被定义为一个必须新增的系统对象。若真实家长使用证明从对话到“我的”存在明显寻找成本，Family-Space 可以补一个轻量导航 affordance；但它仍只能导航到既有权利入口，不能把自由文本或按钮选择自动翻译成记忆改写。
 
-MingOS 鎻愪緵璺ㄧ┖闂磋兘鍔涳紝涓嶈瀹氬搴鍩熺殑鍥哄畾鍥炲簲鏂瑰紡銆佸搴敾鍍忓瓧娈点€佸搴樁娈点€侀〉闈俊鎭灦鏋勩€佸叿浣撹蹇嗙増鏈?UI 鎴栨緞娓呮枃妗堛€侳amily-Space 鍙繚鐣欏搴儏澧冭В閲婁笌琛ㄨ揪鐏垫椿鎬э紝浣嗙敓鍛藉畨鍏ㄣ€侀殣绉併€佹巿鏉冦€佽瘉鎹潵婧愩€佺籂姝?鎾ゅ洖鍜屼富浣撴€т笉寰楄杞寲銆?
-### Family-Space 鈫?涓婂眰
+这仍然是 Family-Space 产品实现和验证结果，不是 MingOS 新通用对象，也不是 Foundation 新标准。只有当“证据来源 + 人类修正权 + 澄清优先 + 版本替代 + 当前上下文失效”在多个非家庭空间重复成为同类问题时，才值得形成 MingOS 候选协议。
 
-瀹跺涵浜у搧瀛楁銆佹彁绀鸿瘝銆乸rofile銆侀〉闈€乺evision facade銆乧larification gate銆乺ights editor 鍜屼竴娆℃湁鏁堝仛娉曚笉浼氬洜涓哄瓨鍦ㄦ垨閫氳繃娴嬭瘯灏辫嚜鍔ㄦ垚涓?MingOS 瀵硅薄鎴?Foundation 鍘熷垯銆傚繀椤诲厛璇佹槑瀹冩槸璺ㄧ┖闂撮棶棰橈紝鍐嶉€氳繃璇佹嵁銆佹娊璞″拰娌荤悊澶嶆牳銆?
-## 6. 褰撳墠鎵ц涓庢渶缁堥棬
+## 4. 权威顺序与冲突规则
 
-### 褰撳墠鍙墽琛?
-- 淇濇寔 Family-Space 褰撳墠鍙闂幆銆乪vidence-first銆乺evision-chain 涓?clarification-first 杈圭晫绋冲畾锛?- Family 涓嬩竴浜у搧浼樺厛绾у洖鍒扳€滅涓€娆¤繘鍏?鈫?绗竴鍙ヨ瘽 鈫?鍓嶄笁杞?鈫?绗簩娆″洖鏉モ€濓紝骞堕獙璇佸闀挎兂绾犳绯荤粺鐞嗚В鏃惰兘鍚﹁嚜鐒舵壘鍒扮幇鏈夋潈鍒╁叆鍙ｏ紱
-- 濡傛灉鐪熷疄浣跨敤璇佹槑绾犳鍏ュ彛瀵绘壘鎴愭湰楂橈紝鍙ˉ杞婚噺瀵艰埅锛屼笉鏂板 pending clarification 鐘舵€併€佷笉鏂板 memory write API銆佷笉璁?AI 浠ｆ浛瀹堕暱鍐冲畾鍝竴绉嶈В閲婏紱
-- 缁х画鐢?synthetic / internal 鍦烘櫙楠岃瘉锛屼笉鎶婅繖浜涚粨鏋滃寘瑁呮垚鐪熷疄瀹跺涵鎴愭晥锛?- 灏?Family-Space 涓法鍦烘櫙閲嶅鎴愮珛銆佷笖鏄庢樉璺ㄧ┖闂寸殑 evidence / revision / authorization 闂鏁寸悊涓?MingOS 鍊欓€夛紱
-- Foundation 涓诲共鍙樺寲鏃堕噸鏂版牳瀵逛緷璧栥€?
-### 褰撳墠绂佹
+1. Foundation `main` 中 Accepted/Stable 文件决定原则、伦理与治理约束；主干中的 Draft 仍只是 Draft。
+2. MingOS `main` 决定已经合入的跨空间协议、Schema、验证器与连续性事实。
+3. Family-Space `production`、`CURRENT_PROJECT_STATUS.md` 与 Family 产品合同决定家庭产品实现边界与运行事实。
+4. Draft、Proposed、Candidate、开放 PR、Issue、旧发布记录和对话只能作为提案、证据或历史来源。
+5. 跨仓冲突必须保留原始来源，并通过具名、可撤回的 source-review 处理。
+6. 产品中有效的 V4、evidence-first projection、memory revision chain、clarification gate、rights editor 或 action lifecycle 只能作为上层学习证据，不能因为已经进入 `production` 就自动成为 MingOS Kernel 或 Foundation 规范。
 
-- 鏈粡 Review銆佸熀绾垮悓姝ュ拰鎴愬姛 CI 灏卞悎骞朵换浣曞€欓€夛紱
-- 瑙︾鏈嶅姟鍣ㄣ€丳M2銆丯ginx銆乧ron銆佺幆澧冨彉閲忋€佸瘑閽ャ€佺湡瀹炴暟鎹垨 `ymai.me`锛?- 鎶?legacy FamilyProfile銆丗amily-specific 瀛楁銆乺evision facade銆乧larification gate銆乺ights editor 鎴栦竴娆℃湁鏁堝仛娉曡〃杩颁负閫氱敤鍚堣缁撹锛?- 涓轰簡椤甸潰鈥滄湁鍐呭鈥濊€岀敤娌℃湁 provenance / confirmation / contestability 鐨勭郴缁熷瓧绗︿覆濉ˉ瀹跺涵浜嬪疄锛?- 璁?AI 鍦ㄦ病鏈夊闀跨‘璁ょ殑鎯呭喌涓嬭嚜鍔ㄥ悎骞躲€佽鐩栥€佸け鏁堟垨鍒ゅ畾浜掔浉鍐茬獊鐨勫搴悊瑙ｏ紱
-- 鎶娾€滄儏鍐靛彉浜嗏€濊嚜鍔ㄩ噸鍐欐垚鈥滀箣鍓嶈皝鐞嗚В閿欎簡鈥濓紱
-- 鍐嶉€犵浜屽 memory API銆乸ending clarification 琛ㄦ垨鑷姩纭鐘舵€佹満鏉ユ浛浠ｇ幇鏈夋暟鎹潈鍒╁叆鍙ｏ紱
-- 鎶婂綋鍓?synthetic journey 娴嬭瘯琛ㄨ堪涓虹湡瀹炲搴獙璇侊紱
-- 鍥犲綋鍓嶆柟鍚戜竴鑷村氨鑷瑙ｉ噴涓衡€滀骇鍝佸凡瀹屾垚鈥濇垨鈥滃彲浠ヨ繘鍏ョ敓浜р€濄€?
-### 褰撳墠椤哄簭
+## 5. 三个硬边界
 
-1. 淇濇寔 Family-Space 褰撳墠鍙慨姝ｇ悊瑙ｉ棴鐜负鍗曚竴浜嬪疄锛屼笉閲嶆柊鎷嗘垚澶氬鐘舵€佹満锛?2. 鍥炲埌绗竴娆¤繘鍏ャ€佸墠涓夎疆銆佺浜屾鍥炴潵鍋氱湡瀹炲闀夸綋楠屾敹鏁涳紱
-3. 璇勪及鈥滄垜鎯崇籂姝ｇ郴缁熺悊瑙ｂ€濇槸鍚﹁兘鑷劧璧板埌鈥滄垜鐨?鈫?绯荤粺璁颁笅鐨勫唴瀹光€濓紱鍙湁鐪熷疄闃诲姏鍑虹幇鏃舵墠琛ュ鑸紱
-4. 缁х画璇佹槑鈥滃厛涓嶅鐞嗏€濃€滀袱涓兘鎴愮珛鈥濃€滄儏鍐靛悗鏉ュ彉浜嗏€濅笉浼氳Е鍙戦殣寮忓け鏁堟垨瑕嗙洊锛?5. Family-Space 涓法鍦烘櫙閲嶅鎴愮珛鐨勮瘉鎹笌淇闂锛屽啀褰㈡垚 MingOS 鍗忚鎻愭锛?6. Foundation 浠呭鏍哥湡姝ｄ笂鍗囧埌鍘熷垯銆佹潈鍒┿€佸畨鍏ㄦ垨娌荤悊灞傜殑闂锛?7. 鍦ㄧ湡瀹炲搴噸鏂拌繘鍏ヤ箣鍓嶏紝閲嶆柊寤虹珛鐙珛鐨勫畨鍏ㄣ€侀殣绉併€佸悓鎰忋€佸彂甯冨拰浜哄伐楠屾敹闂ㄣ€?
-## 7. 姣忎釜璺ㄤ粨鍙樻洿蹇呴』鍥炵瓟
+### Foundation → MingOS
 
-- 鏀瑰姩灞炰簬鍘熷垯銆侀€氱敤鍗忚杩樻槸瀹跺涵浜у搧锛?- 瀹冪洿鎺ユ湇鍔″摢涓€娈电湡瀹炵敓鍛?浜у搧寰幆锛?- 渚濇嵁鍝釜 Accepted/Stable 鏂囦欢銆丮ingOS 鍗忚鎴栧綋鍓嶄骇鍝佷簨瀹炴簮锛?- 杩欐槸浜嬪疄銆佹姤鍛娿€佹帹鏂€佹彁妗堛€佹湭鐭ヨ繕鏄凡琚慨姝ｇ殑鐞嗚В锛?- provenance銆乪vidence銆乤uthorization銆乧orrection / withdrawal 鍦ㄥ摢閲岋紵
-- 绯荤粺鍙戠幇鈥滃彲鑳戒笉涓€鑷粹€濇椂锛屾槸鍦ㄩ個璇蜂汉婢勬竻锛岃繕鏄凡缁忚秺鏉冩浛浜哄垽鐪燂紵
-- 瀹堕暱涓嶉噰鍙栦换浣曚慨姝ｅ姩浣滄椂锛岀郴缁熸槸鍚︿繚鎸侀浂鑷姩鍐欏叆锛?- 鏃х悊瑙ｈ鏂拌瘉鎹浛浠ｅ悗锛屾槸鍚︾湡鐨勯€€鍑哄綋鍓?AI 涓婁笅鏂囷紝鍚屾椂浠嶄繚鐣欏繀瑕佺殑鍘嗗彶鍙拷婧€э紵
-- 鏄惁鎶娾€滃凡鍚堝叆涓诲共鈥濊鍐欐垚鈥滃凡鎴愪负绋冲畾鏉冨▉鈥濓紵
-- 鏄惁浼氳浣跨敤鑰呭け鍘讳富浣撴€с€佹嫆缁濇潈銆佹殏鍋滄潈銆佺籂姝ｆ潈銆佹暟鎹潈鍒╂垨鐜板疄涓殑瀹夊叏鏀寔锛?
-濡傛灉杩欎簺闂涓嶈兘鍥炵瓟锛屽彉鏇村彧鑳藉仠鐣欏湪 Draft 鎴?pending銆?
+Foundation 规定原则和判定边界；MingOS 将已接受要求转为协议。MingOS 可以精确引用 Draft Kernel 概念，但不得把它们写成稳定标准或 conformance。
+
+### MingOS → Family-Space
+
+MingOS 提供跨空间能力，不规定家庭领域的固定回应方式、家庭画像字段、家庭阶段、页面信息架构、具体记忆版本 UI 或澄清文案。Family-Space 可保留家庭情境解释与表达灵活性，但生命安全、隐私、授权、证据来源、纠正/撤回和主体性不得被软化。
+
+### Family-Space → 上层
+
+家庭产品字段、提示词、profile、页面、revision facade、clarification gate、rights editor 和一次有效做法不会因为存在或通过测试就自动成为 MingOS 对象或 Foundation 原则。必须先证明它是跨空间问题，再通过证据、抽象和治理复核。
+
+## 6. 当前执行与最终门
+
+### 当前可执行
+
+- 保持 Family-Space 当前可见闭环、evidence-first、revision-chain 与 clarification-first 边界稳定；
+- Family 下一产品优先级回到“第一次进入 → 第一句话 → 前三轮 → 第二次回来”，并验证家长想纠正系统理解时能否自然找到现有权利入口；
+- 如果真实使用证明纠正入口寻找成本高，只补轻量导航，不新增 pending clarification 状态、不新增 memory write API、不让 AI 代替家长决定哪一种解释；
+- 继续用 synthetic / internal 场景验证，不把这些结果包装成真实家庭成效；
+- 将 Family-Space 中跨场景重复成立、且明显跨空间的 evidence / revision / authorization 问题整理为 MingOS 候选；
+- Foundation 主干变化时重新核对依赖。
+
+### 当前禁止
+
+- 未经 Review、基线同步和成功 CI 就合并任何候选；
+- 触碰服务器、PM2、Nginx、cron、环境变量、密钥、真实数据或 `ymai.me`；
+- 把 legacy FamilyProfile、Family-specific 字段、revision facade、clarification gate、rights editor 或一次有效做法表述为通用合规结论；
+- 为了页面“有内容”而用没有 provenance / confirmation / contestability 的系统字符串填补家庭事实；
+- 让 AI 在没有家长确认的情况下自动合并、覆盖、失效或判定互相冲突的家庭理解；
+- 把“情况变了”自动重写成“之前谁理解错了”；
+- 再造第二套 memory API、pending clarification 表或自动确认状态机来替代现有数据权利入口；
+- 把当前 synthetic journey 测试表述为真实家庭验证；
+- 因当前方向一致就自行解释为“产品已完成”或“可以进入生产”。
+
+### 当前顺序
+
+1. 保持 Family-Space 当前可修正理解闭环为单一事实，不重新拆成多套状态机；
+2. 回到第一次进入、前三轮、第二次回来做真实家长体验收敛；
+3. 评估“我想纠正系统理解”是否能自然走到“我的 → 系统记下的内容”；只有真实阻力出现时才补导航；
+4. 继续证明“先不处理”“两个都成立”“情况后来变了”不会触发隐式失效或覆盖；
+5. Family-Space 中跨场景重复成立的证据与修正问题，再形成 MingOS 协议提案；
+6. Foundation 仅复核真正上升到原则、权利、安全或治理层的问题；
+7. 在真实家庭重新进入之前，重新建立独立的安全、隐私、同意、发布和人工验收门。
+
+## 7. 每个跨仓变更必须回答
+
+- 改动属于原则、通用协议还是家庭产品？
+- 它直接服务哪一段真实生命/产品循环？
+- 依据哪个 Accepted/Stable 文件、MingOS 协议或当前产品事实源？
+- 这是事实、报告、推断、提案、未知还是已被修正的理解？
+- provenance、evidence、authorization、correction / withdrawal 在哪里？
+- 系统发现“可能不一致”时，是在邀请人澄清，还是已经越权替人判真？
+- 家长不采取任何修正动作时，系统是否保持零自动写入？
+- 旧理解被新证据替代后，是否真的退出当前 AI 上下文，同时仍保留必要的历史可追溯性？
+- 是否把“已合入主干”误写成“已成为稳定权威”？
+- 是否会让使用者失去主体性、拒绝权、暂停权、纠正权、数据权利或现实中的安全支持？
+
+如果这些问题不能回答，变更只能停留在 Draft 或 pending。
