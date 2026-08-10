@@ -38,12 +38,12 @@
 ### MingOS
 
 - 仓库：`YuemingHub/MingOS`；默认分支：`main`；
-- 本次核验基线：`7f73f9fb6061f438384ece5a7c8394120f939dc9`（PR #26）；
+- 本次核验基线：`8897cf4758bf93a61f1a936625a78b1f2e8f3886`（PR #27）；
 - 已有跨空间核心对象仍是 Space / Actor / Context / Intent / Authorization / Task / Evidence / Handoff / Continuity Bundle；
 - MingOS 不拥有 Family-Space 的产品合并权，也不把 Family-specific profile、memory revision UI、clarification gate、Family rights editor 或家庭阶段字段变成通用协议；
 - 当前无真实用户、无生产环境、无数据迁移；
-- 开放 Draft PR #25 是共享能力审计/权威基线候选，当前有冲突且未接受；
-- 开放 Draft PR #27 是 Windows 文本行尾下 snapshot reproducibility 修复，属于基础设施，不是新 Core 语义。
+- PR #25 已关闭并由当前协调重建替代；其“reuse-before-build、当前不新增 Core primitive”的有效结论被保留为新审计的历史来源；
+- PR #27 已合入：Windows CRLF checkout 下的 snapshot blob SHA 验证现在只对已知 UTF-8 文本做 CRLF→LF canonicalization，未知扩展名、二进制/非法 UTF-8 保持原样；这是可复现性基础设施修复，不是新 Core 语义。
 
 ### Family-Space
 
