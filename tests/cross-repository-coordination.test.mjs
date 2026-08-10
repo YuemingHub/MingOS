@@ -3,7 +3,9 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
 const coordinationPath = new URL('../docs/CROSS_REPOSITORY_COORDINATION.md', import.meta.url);
+const auditPath = new URL('../docs/SHARED_CAPABILITY_AUDIT_2026-08-10.md', import.meta.url);
 const coordination = await readFile(coordinationPath, 'utf8');
+const audit = await readFile(auditPath, 'utf8');
 
 test('coordination snapshot pins the reviewed three-repository baselines', () => {
   assert.match(coordination, /7eb33ffc806db1da2fde488a617860ca34b76c0e/);
@@ -75,4 +77,15 @@ test('coordination snapshot keeps the accepted Foundation mapping historical and
   assert.match(coordination, /Foundation Issue #17/);
   assert.match(coordination, /不能被误读成 2026-08-10 的当前实现结论/);
   assert.match(coordination, /不修改 GOV-0009 的历史权威含义/);
+});
+
+test('shared capability audit chooses reuse and authority subtraction over new core primitives', () => {
+  assert.match(audit, /Family-Space `production`: `09a8dfad65f52d49169ec8a4034c1d0b60c5317e`/);
+  assert.match(audit, /Family-Space PR #166 is merged/);
+  assert.match(audit, /Accepted new Core candidates\n\nNone/);
+  assert.match(audit, /authority subtraction before abstraction/);
+  assert.match(audit, /`FamilyStage`, `FamilyLayer`, or generalized readiness classifier: rejected/);
+  assert.match(audit, /`AuthorityDebt` as a runtime primitive: rejected/);
+  assert.match(audit, /a second independent non-family Life Space/);
+  assert.match(audit, /Current Family action: converge the real parent journey and subtract legacy\/duplicate authority before adding architecture/);
 });
