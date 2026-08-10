@@ -9,10 +9,12 @@ const audit = await readFile(auditPath, 'utf8');
 
 test('coordination snapshot pins the reviewed three-repository baselines', () => {
   assert.match(coordination, /7eb33ffc806db1da2fde488a617860ca34b76c0e/);
-  assert.match(coordination, /7f73f9fb6061f438384ece5a7c8394120f939dc9/);
+  assert.match(coordination, /8897cf4758bf93a61f1a936625a78b1f2e8f3886/);
   assert.match(coordination, /09a8dfad65f52d49169ec8a4034c1d0b60c5317e/);
   assert.match(coordination, /PR #166 已合入/);
   assert.match(coordination, /PR #169 已关闭/);
+  assert.match(coordination, /PR #25 已关闭/);
+  assert.match(coordination, /PR #27 已合入/);
   assert.match(coordination, /PR #178/);
   assert.match(coordination, /PR #171/);
   assert.doesNotMatch(coordination, /PR #166：Draft/);
@@ -80,8 +82,11 @@ test('coordination snapshot keeps the accepted Foundation mapping historical and
 });
 
 test('shared capability audit chooses reuse and authority subtraction over new core primitives', () => {
+  assert.match(audit, /MingOS `main`: `8897cf4758bf93a61f1a936625a78b1f2e8f3886`/);
   assert.match(audit, /Family-Space `production`: `09a8dfad65f52d49169ec8a4034c1d0b60c5317e`/);
   assert.match(audit, /Family-Space PR #166 is merged/);
+  assert.match(audit, /MingOS PR #25 is closed as superseded/);
+  assert.match(audit, /MingOS PR #27 is merged as a focused snapshot reproducibility fix/);
   assert.match(audit, /Accepted new Core candidates\n\nNone/);
   assert.match(audit, /authority subtraction before abstraction/);
   assert.match(audit, /`FamilyStage`, `FamilyLayer`, or generalized readiness classifier: rejected/);
