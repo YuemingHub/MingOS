@@ -40,6 +40,16 @@ function gitBlobSha(buffer) {
   return createHash('sha1').update(header).update(buffer).digest('hex');
 }
 
+const TEXT_SOURCE_EXTENSIONS = new Set(['.csv', '.json', '.markdown', '.md', '.txt', '.yaml', '.yml']);
+
+function canonicalizeGitTextBuffer(buffer, sourcePath) {
+  const extension = path.extname(sourcePath).toLowerCase();
+  if (!TEXT_SOURCE_EXTENSIONS.has(extension)) return buffer;
+  const text = buffer.toString('utf8');
+  if (!Buffer.from(text, 'utf8').equals(buffer) || !text.includes('\r\n')) return buffer;
+  return Buffer.from(text.replace(/\r\n/g, '\n'), 'utf8');
+}
+
 function normalizeDate(value, field) {
   if (value === undefined || value === null) return null;
   if (typeof value !== 'string' || !ISO_DATE_PATTERN.test(value)) {
@@ -223,7 +233,7 @@ async function verifySources(config, configDir) {
     }
     const localFile = resolveInside(configDir, source.local_path);
     const content = await readFile(localFile);
-    const actualBlobSha = gitBlobSha(content);
+    const actualBlobSha = gitBlobSha(canonicalizeGitTextBuffer(content, localFile));
     if (actualBlobSha !== source.blob_sha) {
       throw new Error(`${source.path}: blob SHA mismatch; expected ${source.blob_sha}, got ${actualBlobSha}`);
     }
