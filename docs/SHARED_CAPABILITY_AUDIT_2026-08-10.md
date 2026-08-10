@@ -5,10 +5,12 @@ Status: Draft evidence checkpoint. This is a reuse-before-build and authority-su
 ## 1. Reviewed baselines
 
 - Foundation `main`: `7eb33ffc806db1da2fde488a617860ca34b76c0e`.
-- MingOS `main`: `7f73f9fb6061f438384ece5a7c8394120f939dc9`.
+- MingOS `main`: `8897cf4758bf93a61f1a936625a78b1f2e8f3886` (PR #27 merged).
 - Family-Space `production`: `09a8dfad65f52d49169ec8a4034c1d0b60c5317e`.
 - Family-Space PR #166 is merged and is therefore current product evidence for the action-optional final-output boundary.
 - Family-Space PR #169 is closed as superseded by the later-current-production rebuild #171.
+- MingOS PR #25 is closed as superseded by the current coordination rebuild; its useful reuse-before-build conclusion remains evidence/provenance rather than a competing coordination authority.
+- MingOS PR #27 is merged as a focused snapshot reproducibility fix. It changes no Core semantic primitive, protocol, schema, Foundation rule, or Family-Space product behavior.
 - Foundation Issue #17 tracks a current re-audit of Family-Space against the historical Accepted `GOV-0009`; the old mapping remains provenance and is not silently rewritten.
 
 ## 2. Current shared-capability map
@@ -23,6 +25,7 @@ Status: Draft evidence checkpoint. This is a reuse-before-build and authority-su
 | Evidence / journey checkpoints (#172/#179) | Evidence and review provenance | Evaluation infrastructure; no product or Core authority |
 | Legacy stage/layer/V2/loop/escalation authority debt (#181/#182/#184/#186/#187) | Existing Context / Evidence / Intent / Authorization already provide the needed shared semantics | Prefer authority subtraction in Family-Space; do not add a new Core classifier/state/router |
 | Multiple overlapping PRs for the same semantic boundary | Coordination / source-review discipline | One merge-authoritative successor per product semantic boundary; this is coordination process, not a Core runtime object |
+| Snapshot verification differing by CRLF checkout (#27) | Repository validation infrastructure | Fixed as infrastructure; no semantic candidate created |
 
 ## 3. Upstream candidate decisions
 
