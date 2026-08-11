@@ -7,90 +7,80 @@ const auditPath = new URL('../docs/SHARED_CAPABILITY_AUDIT_2026-08-10.md', impor
 const coordination = await readFile(coordinationPath, 'utf8');
 const audit = await readFile(auditPath, 'utf8');
 
-test('coordination snapshot pins the reviewed three-repository baselines', () => {
+test('current coordination pins the reviewed repository baselines', () => {
   assert.match(coordination, /7eb33ffc806db1da2fde488a617860ca34b76c0e/);
-  assert.match(coordination, /8897cf4758bf93a61f1a936625a78b1f2e8f3886/);
-  assert.match(coordination, /09a8dfad65f52d49169ec8a4034c1d0b60c5317e/);
-  assert.match(coordination, /PR #166 已合入/);
-  assert.match(coordination, /PR #169 已关闭/);
-  assert.match(coordination, /PR #25 已关闭/);
+  assert.match(coordination, /0707c39ef63357e279b01fc0f406f62124deb1ad/);
+  assert.match(coordination, /2d6d0aeb948b96e178668fa12496d41b6c1a2935/);
   assert.match(coordination, /PR #27 已合入/);
-  assert.match(coordination, /PR #178/);
-  assert.match(coordination, /PR #171/);
-  assert.doesNotMatch(coordination, /PR #166：Draft/);
-  assert.doesNotMatch(coordination, /PR #169：Draft/);
-  assert.doesNotMatch(coordination, /1e70c5933675db1591edb7dc3f3c63159e6240c5`（PR #165）/);
+  assert.match(coordination, /PR #29 已合入/);
+  assert.match(coordination, /#205 Family Navigation authority contract/);
 });
 
-test('coordination snapshot records the proven family-controlled revision journey without promotion', () => {
-  assert.match(coordination, /PR #159：Family-only memory clarification gate/);
-  assert.match(coordination, /PR #160 将 #158 与 #159 串成跨模块回归/);
-  assert.match(coordination, /clarification 零写入/);
-  assert.match(coordination, /旧版本退出 AI context/);
-  assert.match(coordination, /下一轮 AI 只看到家长修正后的当前版本/);
-  assert.match(coordination, /这仍然是 Family-Space 产品实现和验证结果，不是 MingOS 新通用对象/);
+test('current coordination records real owner use without overclaiming evidence', () => {
+  assert.match(coordination, /真实家长：有。产品所有者当前作为首位真实家长使用/);
+  assert.match(coordination, /生产环境：有/);
+  assert.match(coordination, /对外正式服务：有/);
+  assert.match(coordination, /尚未扩大邀请/);
+  assert.match(coordination, /一次真实使用只能证明“当前产品有人真实使用”，不能自动证明普遍有效、已完成、可规模化或 Foundation conformance/);
+  assert.match(coordination, /自动测试仍只能使用合成数据或明确的内部测试数据/);
+  assert.match(coordination, /未经单独授权不得读取、导出、迁移真实家庭内容/);
+  assert.doesNotMatch(coordination, /当前无真实家长、无正式生产环境、无正式对外服务/);
 });
 
-test('coordination snapshot preserves repository responsibility boundaries', () => {
-  assert.match(coordination, /MingOS 不拥有 Family-Space 的产品合并权/);
-  assert.match(coordination, /不把 Family-specific profile、memory revision UI、clarification gate、Family rights editor 或家庭阶段字段变成通用协议/);
-  assert.match(coordination, /不会因为存在或通过测试就自动成为 MingOS 对象或 Foundation 原则/);
-  assert.match(coordination, /Foundation 仅复核真正上升到原则、权利、安全或治理层的问题/);
+test('current coordination preserves the family life loop and epistemic distinctions', () => {
+  assert.match(coordination, /FACT \/ REPORT \/ FEELING \/ INTERPRETATION \/ INFERENCE \/ UNKNOWN \/ CORRECTION/);
+  assert.match(coordination, /形成暂时、可修正的理解/);
+  assert.match(coordination, /回到真实生活/);
+  assert.match(coordination, /共同回望并修正理解/);
 });
 
-test('coordination snapshot rejects a second confirmation state machine', () => {
-  assert.match(coordination, /不需要为了“澄清之后怎么办”再造 pending clarification 表、第二套 memory API 或自动确认状态机/);
-  assert.match(coordination, /“我的 → 系统记下的内容”负责家长主动修正/);
-  assert.match(coordination, /只有真实阻力出现时才补导航/);
-
-  const prohibitedSection = coordination.match(/### 当前禁止[\s\S]*?### 当前顺序/)?.[0] || '';
-  assert.match(prohibitedSection, /让 AI 在没有家长确认的情况下自动合并、覆盖、失效或判定互相冲突的家庭理解/);
-  assert.match(prohibitedSection, /再造第二套 memory API、pending clarification 表或自动确认状态机/);
-  assert.match(prohibitedSection, /把当前 synthetic journey 测试表述为真实家庭验证/);
+test('current coordination keeps repository responsibility boundaries', () => {
+  assert.match(coordination, /Family-Space 为唯一施工主线/);
+  assert.match(coordination, /MingOS 只在产品已经证明存在跨空间通用缺口时补充/);
+  assert.match(coordination, /Foundation 继续作为最高校准层/);
+  assert.match(coordination, /产品实现不得自动升级为 MingOS Core primitive/);
+  assert.match(coordination, /家庭产品字段、prompt、profile、页面、revision facade、clarification gate、rights editor、Navigation 坐标和一次有效实现/);
 });
 
-test('coordination snapshot makes Family-Space the only active implementation mainline', () => {
-  assert.match(coordination, /Family-Space 是唯一施工主线/);
-  assert.match(coordination, /MingOS 仅在产品已证明跨空间通用缺口时补充/);
-  assert.match(coordination, /Foundation 作为最高校准层，不为了体系完整性主动扩建/);
+test('current coordination enforces one merge-authoritative candidate per semantic boundary', () => {
+  assert.match(coordination, /同一产品语义边界只允许一个当前 \*\*merge-authoritative candidate\*\*/);
+  assert.match(coordination, /#205 Family Navigation authority contract.*替代已关闭 #194/);
+  assert.match(coordination, /旧 PR 被较新 production 基线重建或吸收后，应关闭或标记 superseded/);
+  assert.match(coordination, /同一父母可见语义边界同时合并多个互相覆盖的 Draft PR/);
 });
 
-test('coordination snapshot enforces one merge-authoritative candidate per semantic boundary', () => {
-  assert.match(coordination, /同一产品语义边界只允许一个当前 merge-authoritative candidate/);
-  assert.match(coordination, /#168 \/ #175 \/ #177.*HOLD/);
-  assert.match(coordination, /Lane A 当前集成候选：PR #178/);
-  assert.match(coordination, /旧 PR 若已被较新 production 基线上的候选重建或覆盖，应标记 HOLD \/ SUPERSEDED/);
-
-  const prohibitedSection = coordination.match(/### 当前禁止[\s\S]*?### 当前顺序/)?.[0] || '';
-  assert.match(prohibitedSection, /同一父母可见语义边界同时合并两个或更多互相覆盖的 Draft PR/);
-});
-
-test('coordination snapshot treats legacy family classifiers as authority debt, not new core', () => {
+test('current coordination treats legacy positive and negative authority as the same debt class', () => {
   assert.match(coordination, /authority subtraction/);
-  assert.match(coordination, /#181 \/ #182 \/ #184 \/ #186 \/ #187/);
-  assert.match(coordination, /收回 legacy stage\/layer\/V2\/loop\/escalation 的隐藏正向权威/);
-  assert.match(coordination, /不得演化成另一套分类器或状态机/);
-  assert.match(coordination, /用旧 stage\/layer\/V2\/loop\/escalation 的默认分类恢复“家庭是什么”或“家长该做什么”的正向权威/);
+  assert.match(coordination, /分类本身既不能开处方，也不能下禁令/);
+  assert.match(coordination, /自己的 category \/ confidence \/ output 不能成为 guard trigger/);
+  assert.match(coordination, /旧模型是在\*\*做决定之前被切断\*\*，还是做完决定后只擦掉标签/);
+  assert.match(coordination, /producer 把对象降成 `candidate \/ unknown \/ shadow` 后，consumer 有没有再次升级/);
+  assert.match(coordination, /真实 consumer chain 和执行时序才是/);
 });
 
-test('coordination snapshot keeps the accepted Foundation mapping historical and requests a current re-audit', () => {
+test('current coordination keeps Safety source provenance distinct', () => {
+  assert.match(coordination, /#204 Safety source boundary/);
+  assert.match(coordination, /先有直接自杀阳性报告、后又否认/);
+  assert.match(coordination, /直接阳性报告、后续否认、纯否认、家长推测/);
+  assert.match(coordination, /lexical regex/);
+});
+
+test('accepted Foundation mapping remains historical and re-audit stays separate', () => {
   assert.match(coordination, /GOV-0009-family-os-implementation-mapping\.md/);
-  assert.match(coordination, /基于 2026-07-09 的 Family OS 文档快照/);
+  assert.match(coordination, /2026-07-09 Family OS 快照/);
   assert.match(coordination, /Foundation Issue #17/);
-  assert.match(coordination, /不能被误读成 2026-08-10 的当前实现结论/);
-  assert.match(coordination, /不修改 GOV-0009 的历史权威含义/);
+  assert.match(coordination, /不直接改写 GOV-0009/);
 });
 
-test('shared capability audit chooses reuse and authority subtraction over new core primitives', () => {
-  assert.match(audit, /MingOS `main`: `8897cf4758bf93a61f1a936625a78b1f2e8f3886`/);
+test('dated 2026-08-10 shared audit remains provenance rather than current coordination authority', () => {
+  assert.match(audit, /^# Shared Capability Audit — 2026-08-10/m);
+  assert.match(audit, /Status: Draft evidence checkpoint/);
   assert.match(audit, /Family-Space `production`: `09a8dfad65f52d49169ec8a4034c1d0b60c5317e`/);
-  assert.match(audit, /Family-Space PR #166 is merged/);
-  assert.match(audit, /MingOS PR #25 is closed as superseded/);
-  assert.match(audit, /MingOS PR #27 is merged as a focused snapshot reproducibility fix/);
   assert.match(audit, /Accepted new Core candidates\n\nNone/);
   assert.match(audit, /authority subtraction before abstraction/);
   assert.match(audit, /`FamilyStage`, `FamilyLayer`, or generalized readiness classifier: rejected/);
   assert.match(audit, /`AuthorityDebt` as a runtime primitive: rejected/);
-  assert.match(audit, /a second independent non-family Life Space/);
-  assert.match(audit, /Current Family action: converge the real parent journey and subtract legacy\/duplicate authority before adding architecture/);
+
+  assert.match(coordination, /本文件是三仓协作的导航、边界和\*\*当前协调事实入口\*\*/);
+  assert.match(coordination, /只有当前独立证据 authority 可以激活保护/);
 });
