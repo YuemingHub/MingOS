@@ -29,7 +29,7 @@ test('current coordination preserves the family-controlled revision journey with
 
 test('current coordination preserves repository responsibility boundaries', () => {
   assert.match(coordination, /MingOS 不拥有 Family-Space 的产品合并权/);
-  assert.match(coordination, /不把 Family-Space 的产品实现自动提升为 MingOS Core/);
+  assert.match(coordination, /产品实现不得自动升级为 MingOS Core primitive/);
   assert.match(coordination, /家庭产品字段、提示词、profile、页面、revision facade、clarification gate、rights editor、Navigation 坐标和一次有效做法不会因为存在或通过测试就自动成为 MingOS 对象或 Foundation 原则/);
   assert.match(coordination, /Foundation 规定原则和判定边界；MingOS 将已接受要求转为协议/);
 });
