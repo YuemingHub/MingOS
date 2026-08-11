@@ -44,3 +44,8 @@ test('Family-Space pilot preserves domain and non-production boundaries', async 
   assert.ok(result.authorization.resource_scope.some((scope) => scope.includes('read-only@4e77e245')));
   assert.deepEqual(result.blockers, []);
 });
+
+test('examples validation uses portable artifact paths', async () => {
+  const { stdout } = await execFileAsync(process.execPath, ['packages/kernel/src/validate.mjs', 'examples']);
+  assert.match(stdout, /MingOS validation passed: \d+ documents/);
+});
