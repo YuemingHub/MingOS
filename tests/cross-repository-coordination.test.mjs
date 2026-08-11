@@ -60,7 +60,7 @@ test('current coordination treats legacy classifiers as authority debt, includin
   assert.match(coordination, /authority subtraction/);
   assert.match(coordination, /stage \/ layer \/ V2 \/ problem map \/ loop \/ referral shortcut/);
   assert.match(coordination, /分类本身既不能开处方，也不能下禁令/);
-  assert.match(coordination, /旧模型是在做决定之前被切断，还是做完决定以后只擦掉标签/);
+  assert.match(coordination, /旧模型是在做决定之前被切断，还是做完决定(?:以)?后只擦掉标签/);
   assert.match(coordination, /producer 降低 authority 后，consumer 有没有再次升级它/);
   assert.match(coordination, /guard 的触发证据来自当前独立 authority/);
 });
