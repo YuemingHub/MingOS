@@ -42,7 +42,7 @@ for (const [kind, file] of Object.entries(schemaFiles)) {
 const documents = [];
 const failures = [];
 for (const file of await walk(target)) {
-  const relative = path.relative(root, file);
+  const relative = path.relative(root, file).replaceAll(path.sep, '/');
   let document;
   try {
     document = JSON.parse(await readFile(file, 'utf8'));
