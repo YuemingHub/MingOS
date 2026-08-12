@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "kind": "mingos-adoption-authority-manifest",
+  "status": "proposed",
+  "owner": "MingOS",
+  "nonClaims": [
+    "not_foundation_conformance",
+    "not_certification",
+    "not_merge_approval",
+    "not_production_authorization"
+  ],
+  "classes": {
+    "hard_invariant": {
+      "owner": "Foundation",
+      "activation": "current_independent_evidence_required",
+      "mayRequireAction": true
+    },
+    "adaptive_default": {
+      "owner": "MingOS",
+      "activation": "ordinary_cross_space_semantics",
+      "mayRequireAction": false
+    },
+    "product_owned_choice": {
+      "owner": "DownstreamProduct",
+      "activation": "within_active_hard_boundaries",
+      "mayRequireAction": false
+    }
+  },
+  "canonicalRules": {
+    "guardActivation": "only_current_independent_evidence_authority_may_activate_protection",
+    "legacyClassification": "may_offer_hypothesis_but_cannot_prescribe_or_prohibit",
+    "ordinaryAction": "no_action_is_valid_without_current_action_authority",
+    "optionalActionVisibility": "internally_optional_must_remain_visibly_rejectable",
+    "durableActionPromotion": "explicit_human_choice_required",
+    "safetyAction": "minimum_necessary_protective_action_may_be_required_when_safety_owned",
+    "correction": "new_evidence_or_correction_may_retire_older_interpretation"
+  },
+  "semantics": [
+    {
+      "key": "life_safety_protection",
+      "class": "hard_invariant",
+      "authorityOwner": "current_safety_evidence_owner",
+      "triggerExpectation": "current_direct_or_other_explicitly_authoritative_safety_evidence",
+      "permittedEffect": ["protective_guard", "minimum_necessary_protective_action"],
+      "forbiddenUpgrade": ["legacy_category_to_safety", "knowledge_default_to_safety"],
+      "validation": ["source_provenance_visible_to_system", "ordinary_action_does_not_override_safety"]
+    },
+    {
+      "key": "privacy_consent_coercion",
+      "class": "hard_invariant",
+      "authorityOwner": "current_boundary_evidence_owner",
+      "triggerExpectation": "current_request_or_evidence_crosses_privacy_consent_or_coercion_boundary",
+      "permittedEffect": ["protective_refusal", "safe_alternative"],
+      "forbiddenUpgrade": ["family_stage_to_coercion_guard", "legacy_score_to_privacy_guard"],
+      "validation": ["trigger_is_current_and_source_backed"]
+    },
+    {
+      "key": "epistemic_provenance",
+      "class": "hard_invariant",
+      "authorityOwner": "current_evidence_provenance",
+      "triggerExpectation": "always_preserve_source_and_certainty_status",
+      "permittedEffect": ["prevent_certainty_upgrade", "preserve_unknown"],
+      "forbiddenUpgrade": ["report_to_fact_without_evidence", "inference_to_identity", "knowledge_to_evidence"],
+      "validation": ["fact_report_feeling_interpretation_inference_unknown_correction_remain_distinct"]
+    },
+    {
+      "key": "correction_reversibility",
+      "class": "hard_invariant",
+      "authorityOwner": "new_current_evidence_or_explicit_correction",
+      "triggerExpectation": "new_evidence_or_correction_conflicts_with_older_understanding",
+      "permittedEffect": ["retire_old_interpretation", "recompute_derived_navigation"],
+      "forbiddenUpgrade": ["old_story_overrides_correction", "derived_projection_becomes_canonical_truth"],
+      "validation": ["later_consumer_uses_corrected_authority"]
+    },
+    {
+      "key": "legacy_model_boundary",
+      "class": "hard_invariant",
+      "authorityOwner": "current_independent_evidence_only",
+      "triggerExpectation": "legacy_model_stage_layer_score_or_category_is_present",
+      "permittedEffect": ["history", "shadow", "hypothesis_candidate", "retrieval_hint_without_decision_authority"],
+      "forbiddenUpgrade": ["legacy_category_to_prescription", "legacy_category_to_prohibition", "legacy_confidence_to_guard"],
+      "validation": ["authority_removed_before_consumer_decision"]
+    },
+    {
+      "key": "receive_then_clarify",
+      "class": "adaptive_default",
+      "authorityOwner": "MingOS",
+      "triggerExpectation": "ordinary_interaction",
+      "permittedEffect": ["receiving_posture", "evidence_clarification", "one_coherent_response_direction"],
+      "forbiddenUpgrade": ["posture_to_family_identity", "receiving_to_mandatory_action"],
+      "validation": ["ordinary_no_action_outcome_allowed"]
+    },
+    {
+      "key": "uncertainty_and_hypothesis",
+      "class": "adaptive_default",
+      "authorityOwner": "MingOS",
+      "triggerExpectation": "evidence_is_incomplete_or_multiple_explanations_remain",
+      "permittedEffect": ["transparent_hypothesis", "concrete_clarifying_question", "unknown"],
+      "forbiddenUpgrade": ["hypothesis_to_fact", "unknown_to_default_stage"],
+      "validation": ["uncertainty_survives_writer_and_persistence"]
+    },
+    {
+      "key": "ordinary_no_action",
+      "class": "adaptive_default",
+      "authorityOwner": "MingOS",
+      "triggerExpectation": "no_current_action_authority",
+      "permittedEffect": ["reflection", "explanation", "exploration", "question", "pause", "no_action"],
+      "forbiddenUpgrade": ["ordinary_turn_to_mandatory_next_step", "support_posture_to_task"],
+      "validation": ["no_action_is_valid"]
+    },
+    {
+      "key": "ordinary_optional_action",
+      "class": "product_owned_choice",
+      "authorityOwner": "DownstreamProductWithExplicitHumanIntent",
+      "triggerExpectation": "explicit_current_request_for_help_action_or_explicit_human_choice",
+      "permittedEffect": ["bounded_optional_candidate"],
+      "forbiddenUpgrade": ["optional_metadata_to_mandatory_visible_command", "unaccepted_candidate_to_action_memory", "multiple_actions_from_single_bounded_request"],
+      "validation": ["visible_rejectability", "explicit_human_choice_before_durable_promotion"]
+    },
+    {
+      "key": "professional_support_information",
+      "class": "adaptive_default",
+      "authorityOwner": "current_user_intent_for_information",
+      "triggerExpectation": "user_owns_request_to_understand_support_options",
+      "permittedEffect": ["support_information", "option_comparison"],
+      "forbiddenUpgrade": ["third_party_report_to_user_intent", "support_inquiry_to_severity", "support_inquiry_to_mandatory_referral"],
+      "validation": ["intent_source_distinct_from_safety_severity"]
+    },
+    {
+      "key": "product_expression_and_ui",
+      "class": "product_owned_choice",
+      "authorityOwner": "DownstreamProduct",
+      "triggerExpectation": "inside_current_hard_boundaries",
+      "permittedEffect": ["wording", "tone", "pacing", "ui", "review_rhythm", "domain_specific_read_model"],
+      "forbiddenUpgrade": ["product_field_to_universal_core_primitive", "ui_coordinate_to_family_identity"],
+      "validation": ["product_specific_objects_remain_downstream"]
+    },
+    {
+      "key": "derived_navigation",
+      "class": "adaptive_default",
+      "authorityOwner": "current_source_backed_evidence",
+      "triggerExpectation": "product_chooses_to_organize_current_evidence",
+      "permittedEffect": ["recomputable_navigation", "inquiry_direction"],
+      "forbiddenUpgrade": ["navigation_to_canonical_fact", "navigation_to_prescription", "navigation_to_prohibition", "navigation_feedback_to_self_confirmed_truth"],
+      "validation": ["derived_navigation_may_be_absent", "new_evidence_can_recompute_navigation"]
+    }
+  ]
+}
