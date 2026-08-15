@@ -5,7 +5,7 @@ import { readFile } from 'node:fs/promises';
 const coordinationPath = new URL('../docs/CROSS_REPOSITORY_COORDINATION.md', import.meta.url);
 const auditPath = new URL('../docs/SHARED_CAPABILITY_AUDIT_2026-08-10.md', import.meta.url);
 const coordination = await readFile(coordinationPath, 'utf8');
-const audit = await readFile(auditPath, 'utf8');
+const audit = (await readFile(auditPath, 'utf8')).replace(/\r\n/g, '\n');
 
 test('current coordination pins the reviewed repository baselines', () => {
   assert.match(coordination, /7eb33ffc806db1da2fde488a617860ca34b76c0e/);
