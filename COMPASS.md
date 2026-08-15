@@ -1,5 +1,6 @@
 # MingOS Compass
 
+> Shared contract: `THREE_REPO_COMPASS_V1`  
 > Status: operational compass for maintainers and AI agents.  
 > Scope: MingOS Core direction, cross-space authority, abstraction criteria, and anti-drift rules.  
 > This file does not replace Foundation authority or product-specific contracts.
@@ -327,6 +328,31 @@ The durable aim is:
 
 > **understand more, while taking less of the person's life away from them.**
 
-## 15. One-line compass
+## 15. Shared compass change protocol
+
+`THREE_REPO_COMPASS_V1` identifies the shared semantic contract, not identical file contents.
+
+The shared semantics are:
+
+- the North Star direction;
+- the three-repository constitutional map;
+- the three authority classes and their owners;
+- the Foundation → MingOS → Product bridge;
+- no silent authority upgrade;
+- evidence is not automatic conformance;
+- reality may challenge every layer.
+
+A material change to these shared semantics MUST NOT be silently made in one repository as though the other two already agree.
+
+When a shared semantic change is needed, either:
+
+1. create/update companion changes in the affected repositories; or
+2. explicitly record a `temporary_divergence` with the reason, affected semantics, evidence, responsible owner, and the condition for convergence.
+
+Moving facts — current product stage, PR number, deployment SHA, provider status, or a local implementation detail — remain owned by their source repository and do **not** require synchronized Compass edits.
+
+`THREE_REPO_COMPASS_V1` should change only when all three repositories have adopted a materially new compatible shared contract.
+
+## 16. One-line compass
 
 > **MingOS carries authority and evidence safely across life spaces; it does not decide how every product must help, nor how every person must live.**
