@@ -1,13 +1,13 @@
 # MingOS 三仓协调契约
 
 > 状态：Proposed coordination contract  
-> 日期：2026-08-11  
+> 日期：2026-08-17  
 > 维护位置：`YuemingHub/MingOS`  
 > 适用范围：`mingos-foundation`、`MingOS`、`Family-Space`
 
 本文件是三仓协作的导航、边界和**当前协调事实入口**。它不替代各仓自己的 canonical fact source，也不把 Draft、开放 PR、产品字段、内部验收、一次真实使用或 AI 判断自动提升为 Accepted / Stable / generalized evidence。
 
-本次快照以 Family-Space `production@2d6d0aeb948b96e178668fa12496d41b6c1a2935` 为当前产品基线。当前重点不是继续增加模型，而是持续做 **authority subtraction**：先确认来源和当前 authority，再删除旧分类器、旧路由、知识默认项和兼容字段对当前回复的隐藏决策权。
+本次快照以 Family-Space `production@23734f3d45f188cd841a90aed82d8481658379c8` 为当前产品基线。当前重点不是继续增加模型，而是持续做 **authority subtraction**：先确认来源和当前 authority，再删除旧分类器、旧路由、知识默认项和兼容字段对当前回复的隐藏决策权。
 
 ## 1. 三层关系
 
@@ -28,29 +28,28 @@
 ### Foundation
 
 - 仓库：`YuemingHub/mingos-foundation`；默认分支：`main`；
-- 本次核验主干仍为 `7eb33ffc806db1da2fde488a617860ca34b76c0e`；
+- 本次核验主干仍为 `4d50b9faeabe1e17c3bfc94e50f1c161375616f7`（`1.0.0-alpha.19`）；
 - Accepted / Stable 权威仍按仓库 canonical state 判定；主干中的 Draft 不因 merge 自动成为稳定标准；
-- `GOV-0009-family-os-implementation-mapping.md` 是 Accepted 的**历史审计记录**，明确基于 2026-07-09 Family OS 快照，不能被误读成 2026-08-11 当前产品结论；
+- `GOV-0009-family-os-implementation-mapping.md` 是 Accepted 的**历史审计记录**，明确基于 2026-07-09 Family OS 快照，不能被误读成当前产品结论；
 - Foundation Issue #17 已建立当前 Family-Space 重新审计入口；新的产品事实作为 evidence input 进入，不直接改写 GOV-0009，也不自动生成 Charter / Kernel 新规则。
 
 ### MingOS
 
 - 仓库：`YuemingHub/MingOS`；默认分支：`main`；
-- 本次 #31 变更前 `main`：`0707c39ef63357e279b01fc0f406f62124deb1ad`；
-- PR #27 已合入 snapshot CRLF 可复现性修复；
-- PR #29 已合入上一版三仓协调契约与共享能力审计；
-- Issue #30 / Draft PR #31 正在纠正一个由 Family 失败审查证明为过宽的旧假设：legacy 分类器不能因为输出被叫作“guard”或“保守保护”就重新获得运行时 authority；
+- 本次核验 `main`：`d4582ebfe84fc47a0559b941780d0393fd327f08`；
+- PR #27 已合入 snapshot CRLF 可复现性修复；PR #29 已合入三仓协调契约与共享能力审计；PR #30/#31 已合入 legacy 分类器不得以改名 negative guard 恢复运行时 authority 的修正；
+- MingOS Issue #33（Adoption Bridge V1）正在交付：Foundation Proposed 源的 provisional 消费契约（人类可读契约 + machine-readable 契约 + 可执行语义压力场景），全部以 `adoption_status=provisional`、`foundation_conformance=false` 表达；
 - 当前仍没有证据要求新增 MingOS Core primitive；继续 **reuse-before-build**。
 
 ### Family-Space
 
 当前 canonical fact source 为 `CURRENT_PROJECT_STATUS.md`。截至本次核验：
 
-- 当前产品基线：`production@2d6d0aeb948b96e178668fa12496d41b6c1a2935`；
+- 当前产品基线：`production@23734f3d45f188cd841a90aed82d8481658379c8`；
 - **真实家长：有。产品所有者当前作为首位真实家长使用；其他家长数量不作推断；**
 - **生产环境：有。已由仓库所有者于 2026-08-11 明确授权并完成运行核验；**
 - **对外正式服务：有。当前以产品所有者真实使用、边用边改为主，尚未扩大邀请；**
-- 当前阶段：生产真实使用、产品闭环收敛、合成回归与持续小步优化；
+- 当前阶段：**S0 — 第二家庭准备**；证据重点是生产所有者真实使用 + 合成回归 + 去标识化真实咨询语言压力基线；
 - 自动测试仍只能使用合成数据或明确的内部测试数据；未经单独授权不得读取、导出、迁移真实家庭内容；
 - 一次真实使用只能证明“当前产品有人真实使用”，不能自动证明普遍有效、已完成、可规模化或 Foundation conformance。
 
