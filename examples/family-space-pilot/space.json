@@ -11,7 +11,7 @@
   "boundaries": [
     "家庭专业判断和生命回复逻辑保留在 Family-Space",
     "MingOS 只提供跨空间协议与运行时",
-    "当前无真实家长、无生产运行",
+    "真实家长与生产运行存在于 Family-Space 产品层（CURRENT_PROJECT_STATUS.md 为准），本示例不含真实家庭数据",
     "未经新的独立放行流程，不接入真实个人数据"
   ],
   "foundation_repository": "YuemingHub/mingos-foundation",

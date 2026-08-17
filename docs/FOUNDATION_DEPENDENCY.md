@@ -1,7 +1,7 @@
 ---
 title: MingOS Foundation Dependency Baseline
 status: Proposed
-updated: 2026-08-06
+updated: 2026-08-17
 owner: MingOS Architecture
 ---
 
@@ -26,9 +26,9 @@ Only Accepted or Stable Foundation documents are current normative dependencies.
 |---|---|---|
 | Foundation repository | `YuemingHub/mingos-foundation` | Accepted current repository identity; historical `YuemingHub/Ming-Foundation` retained as provenance |
 | Foundation default branch | `main` | Repository metadata |
-| Foundation main baseline | `7eb33ffc806db1da2fde488a617860ca34b76c0e` | Observed after PR #15, #12 and #16 merged |
-| Foundation version | `1.0.0-alpha.18` | Foundation main README / GOV-0001 |
-| Observation date | `2026-08-06` | Coordination record |
+| Foundation main baseline | `4d50b9faeabe1e17c3bfc94e50f1c161375616f7` | Observed after PR #15, #12, #16 merged and the 2026-08 reality rebase (evidence-led authority model) landed |
+| Foundation version | `1.0.0-alpha.19` | Foundation main GOV-0001 |
+| Observation date | `2026-08-17` | Coordination record |
 | MingOS dependency status | Proposed downstream record | This document |
 
 If Foundation `main` advances, this baseline is stale and MUST be regenerated before a new cross-repository claim is made.
@@ -56,7 +56,8 @@ These constraints do not prescribe Family-Space response templates, family-stage
 |---|---|---|---|
 | Foundation PR #15 | Merged | Accepted repository-identity facts and governance records | Use `YuemingHub/mingos-foundation` as current; preserve the old path as history |
 | Foundation PR #12 | Merged | KERNEL-0004, KERNEL-0005 and REF-0045–REF-0051 remain `Draft` | Selective, evidence-labelled use is allowed; no conformance, certification or completeness claim |
-| Foundation PR #16 | Merged | Operational reservation finalization | Nine Round 09 IDs are integrated; this does not promote their document status |
+| Foundation PR #16 | Merged | Operational reservation finalization | Round 09 reservation IDs are integrated; this does not promote their document status |
+| Foundation reality rebase (`e54399e` → `4d50b9f`) | Merged | Evidence-led authority model, reservation validation main-churn safety, compass entrypoint | Reread `main` and re-record exact commit before any new cross-repository claim |
 | Family-Space product evidence | External evidence | Product repository and its own status source | Use for bounded review or proposals; never silently promote product fields into Kernel or Foundation |
 
 The current Foundation Kernel boundary remains:

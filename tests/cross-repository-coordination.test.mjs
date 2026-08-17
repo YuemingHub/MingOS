@@ -8,9 +8,9 @@ const coordination = await readFile(coordinationPath, 'utf8');
 const audit = (await readFile(auditPath, 'utf8')).replace(/\r\n/g, '\n');
 
 test('current coordination pins the reviewed repository baselines', () => {
-  assert.match(coordination, /7eb33ffc806db1da2fde488a617860ca34b76c0e/);
-  assert.match(coordination, /0707c39ef63357e279b01fc0f406f62124deb1ad/);
-  assert.match(coordination, /2d6d0aeb948b96e178668fa12496d41b6c1a2935/);
+  assert.match(coordination, /4d50b9faeabe1e17c3bfc94e50f1c161375616f7/);
+  assert.match(coordination, /d4582ebfe84fc47a0559b941780d0393fd327f08/);
+  assert.match(coordination, /23734f3d45f188cd841a90aed82d8481658379c8/);
   assert.match(coordination, /PR #27 已合入/);
   assert.match(coordination, /PR #29 已合入/);
   assert.match(coordination, /#205 Family Navigation authority contract/);

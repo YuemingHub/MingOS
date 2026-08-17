@@ -8,9 +8,9 @@ const dependency = await readFile(dependencyPath, 'utf8');
 test('Foundation dependency pins the observed merged main baseline', () => {
   assert.match(dependency, /status: Proposed/);
   assert.match(dependency, /YuemingHub\/mingos-foundation/);
-  assert.match(dependency, /7eb33ffc806db1da2fde488a617860ca34b76c0e/);
-  assert.match(dependency, /1\.0\.0-alpha\.18/);
-  assert.match(dependency, /PR #15, #12 and #16 merged/);
+  assert.match(dependency, /4d50b9faeabe1e17c3bfc94e50f1c161375616f7/);
+  assert.match(dependency, /1\.0\.0-alpha\.19/);
+  assert.match(dependency, /PR #15, #12, #16 merged/);
 });
 
 test('merged Draft Kernel documents do not become silent MingOS authority', () => {

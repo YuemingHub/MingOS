@@ -40,7 +40,7 @@ test('Family-Space pilot preserves domain and non-production boundaries', async 
   assert.equal(result.space.id, 'family-space');
   assert.equal(result.space.purpose, '让家庭在持续关系中被理解、被支持，并形成现实可行的下一步');
   assert.ok(result.space.boundaries.includes('家庭专业判断和生命回复逻辑保留在 Family-Space'));
-  assert.ok(result.space.boundaries.includes('当前无真实家长、无生产运行'));
+  assert.ok(result.space.boundaries.includes('真实家长与生产运行存在于 Family-Space 产品层（CURRENT_PROJECT_STATUS.md 为准），本示例不含真实家庭数据'));
   assert.ok(result.authorization.resource_scope.some((scope) => scope.includes('read-only@4e77e245')));
   assert.deepEqual(result.blockers, []);
 });
