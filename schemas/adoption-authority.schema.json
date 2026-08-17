@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mingos.cn/schemas/adoption-authority.schema.json",
+  "title": "MingOS Adoption Authority Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "contract_id",
+    "runtime_semantics_version",
+    "adopted_foundation",
+    "adoption_status",
+    "foundation_conformance",
+    "items"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "kind": { "const": "adoption-authority" },
+    "contract_id": { "type": "string", "minLength": 1 },
+    "runtime_semantics_version": { "type": "string", "minLength": 1 },
+    "adopted_foundation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_repository", "source_manifest", "source_record", "source_status", "source_revision"],
+      "properties": {
+        "source_repository": { "type": "string", "minLength": 1 },
+        "source_manifest": { "type": "string", "minLength": 1 },
+        "source_record": { "type": "string", "minLength": 1 },
+        "source_status": { "enum": ["Accepted", "Stable", "Proposed", "Candidate", "Draft"] },
+        "source_revision": { "type": "string", "minLength": 7 },
+        "note": { "type": "string" }
+      }
+    },
+    "adoption_status": { "enum": ["provisional", "selective", "full"] },
+    "foundation_conformance": { "const": false },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "semantic_key",
+          "source_reference",
+          "source_status",
+          "authority_class",
+          "authority_owner",
+          "applicability",
+          "trigger_evidence",
+          "permitted_downstream_effect",
+          "forbidden_authority_upgrade",
+          "validation_expectation",
+          "adoption_status",
+          "foundation_conformance"
+        ],
+        "properties": {
+          "semantic_key": { "type": "string", "minLength": 1 },
+          "source_reference": { "type": "string", "minLength": 1 },
+          "source_status": { "enum": ["Accepted", "Stable", "Proposed", "Candidate", "Draft"] },
+          "source_revision": { "type": "string", "minLength": 7 },
+          "authority_class": { "enum": ["hard_invariant", "adaptive_default", "product_owned_choice"] },
+          "authority_owner": { "type": "string", "minLength": 1 },
+          "applicability": { "type": "string", "minLength": 1 },
+          "trigger_evidence": { "type": "string", "minLength": 1 },
+          "permitted_downstream_effect": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+          "forbidden_authority_upgrade": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+          "validation_expectation": { "type": "string", "minLength": 1 },
+          "adoption_status": { "enum": ["provisional", "selective", "full"] },
+          "foundation_conformance": { "const": false }
+        }
+      }
+    }
+  }
+}

@@ -24,7 +24,8 @@ const SCHEMA_FILES = {
   handoff: 'handoff.schema.json',
   'continuity-bundle': 'continuity-bundle.schema.json',
   'source-conflict-report': 'source-conflict-report.schema.json',
-  'source-review': 'source-review.schema.json'
+  'source-review': 'source-review.schema.json',
+  'adoption-authority': 'adoption-authority.schema.json'
 };
 
 async function readJson(file) {
