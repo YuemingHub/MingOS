@@ -38,16 +38,16 @@ No build step is required.
 From the repository root:
 
 ```bash
-python -m http.server 8080 --directory web/prototype-v1
+python -m http.server 8080
 ```
 
 Then open:
 
 ```text
-http://localhost:8080/
+http://localhost:8080/web/prototype-v1/
 ```
 
-A static file server is preferred over opening `index.html` directly so link and browser behavior matches a real HTTP surface more closely.
+Serving from the repository root keeps prototype-relative links to repository documents valid while still exercising the page through HTTP rather than `file://`.
 
 ## V1 acceptance checks
 
