@@ -50,13 +50,13 @@ async function audit(name, viewport, reducedMotion = 'no-preference') {
 
   const firstWorldLink = page.locator('#world-panel a').first();
   await firstWorldLink.waitFor({ state: 'visible' });
-  const focusedInsidePanel = await page.evaluate(() => document.activeElement?.closest('#world-panel') !== null);
-  if (!focusedInsidePanel) throw new Error(`${name}: focus did not move into world panel`);
+  await page.waitForFunction(() => document.activeElement?.closest('#world-panel') !== null);
 
   await page.keyboard.press('Escape');
   if ((await toggle.getAttribute('aria-expanded')) !== 'false') {
     throw new Error(`${name}: Escape did not close world panel`);
   }
+  await page.waitForFunction(() => document.activeElement === document.querySelector('[data-world-toggle]'));
 
   await page.screenshot({ path: `${outDir}/${name}.png`, fullPage: true });
 
