@@ -1,0 +1,66 @@
+.hero__title {
+  max-width: 1180px;
+}
+
+.world-button__label--short {
+  display: none;
+}
+
+.reality-ledger {
+  margin-top: clamp(90px, 14vw, 160px);
+  border-top: 1px solid var(--mist);
+}
+
+.reality-ledger__row {
+  display: grid;
+  grid-template-columns: minmax(230px, 0.34fr) minmax(0, 0.66fr);
+  gap: clamp(40px, 8vw, 120px);
+  align-items: start;
+  padding: clamp(42px, 6vw, 72px) 0;
+  border-bottom: 1px solid var(--mist);
+}
+
+.reality-ledger__state {
+  display: grid;
+  justify-items: start;
+  gap: 28px;
+}
+
+.reality-ledger__state h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(23px, 2.6vw, 34px);
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.reality-ledger__row > p {
+  max-width: 650px;
+  margin: 2px 0 0;
+  color: var(--ink-soft);
+  font-size: clamp(16px, 1.7vw, 20px);
+  line-height: 2;
+}
+
+@media (max-width: 820px) {
+  .world-button span:first-child {
+    display: inline;
+  }
+
+  .world-button__label--full {
+    display: none !important;
+  }
+
+  .world-button__label--short {
+    display: inline;
+  }
+
+  .reality-ledger__row {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .reality-ledger__state {
+    gap: 20px;
+  }
+}
