@@ -13,13 +13,17 @@ async function revealByScrolling(page) {
     const step = Math.max(420, Math.floor(window.innerHeight * 0.72));
     for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
       window.scrollTo(0, y);
-      await new Promise((resolve) => setTimeout(resolve, 45));
+      await new Promise((resolve) => setTimeout(resolve, 50));
     }
     window.scrollTo(0, document.documentElement.scrollHeight);
-    await new Promise((resolve) => setTimeout(resolve, 80));
+    await new Promise((resolve) => setTimeout(resolve, 100));
     window.scrollTo(0, 0);
   });
-  await page.waitForTimeout(120);
+
+  await page.waitForFunction(() =>
+    [...document.querySelectorAll('[data-reveal]')].every((node) => node.classList.contains('is-visible')),
+  );
+  await page.waitForTimeout(850);
 }
 
 async function audit(name, viewport, reducedMotion = 'no-preference') {
@@ -46,6 +50,7 @@ async function audit(name, viewport, reducedMotion = 'no-preference') {
     h1Count: document.querySelectorAll('h1').length,
     mainCount: document.querySelectorAll('main').length,
     skipLink: Boolean(document.querySelector('.skip-link')),
+    revealCount: document.querySelectorAll('[data-reveal]').length,
   }));
 
   if (metrics.scrollWidth > metrics.clientWidth + 1) {
@@ -56,10 +61,25 @@ async function audit(name, viewport, reducedMotion = 'no-preference') {
   if (!metrics.skipLink) throw new Error(`${name}: missing skip link`);
   if (metrics.lang !== 'zh-CN') throw new Error(`${name}: unexpected lang ${metrics.lang}`);
 
+  await page.screenshot({ path: `${outDir}/${name}-hero.png`, fullPage: false });
+
   await revealByScrolling(page);
-  await page.screenshot({ path: `${outDir}/${name}.png`, fullPage: true });
+  const revealedCount = await page.locator('[data-reveal].is-visible').count();
+  if (revealedCount !== metrics.revealCount) {
+    throw new Error(`${name}: only ${revealedCount}/${metrics.revealCount} reveal nodes became visible`);
+  }
+
+  await page.addStyleTag({
+    content: '.site-header, .skip-link { visibility: hidden !important; }',
+  });
+  await page.screenshot({ path: `${outDir}/${name}-full.png`, fullPage: true });
 
   const toggle = page.locator('[data-world-toggle]');
+  await page.evaluate(() => {
+    const injected = document.querySelector('style[data-audit-hide-fixed]');
+    injected?.remove();
+  });
+  await page.locator('.site-header').evaluate((node) => { node.style.visibility = 'visible'; });
   await toggle.click();
   if ((await toggle.getAttribute('aria-expanded')) !== 'true') {
     throw new Error(`${name}: world panel did not open`);
@@ -79,7 +99,7 @@ async function audit(name, viewport, reducedMotion = 'no-preference') {
   if (pageErrors.length) throw new Error(`${name}: page errors: ${pageErrors.join(' | ')}`);
 
   await context.close();
-  return { name, ...metrics, reducedMotion };
+  return { name, ...metrics, revealedCount, reducedMotion };
 }
 
 const results = [];
