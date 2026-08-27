@@ -69,17 +69,13 @@ async function audit(name, viewport, reducedMotion = 'no-preference') {
     throw new Error(`${name}: only ${revealedCount}/${metrics.revealCount} reveal nodes became visible`);
   }
 
-  await page.addStyleTag({
+  const screenshotStyle = await page.addStyleTag({
     content: '.site-header, .skip-link { visibility: hidden !important; }',
   });
   await page.screenshot({ path: `${outDir}/${name}-full.png`, fullPage: true });
+  await screenshotStyle.evaluate((node) => node.remove());
 
   const toggle = page.locator('[data-world-toggle]');
-  await page.evaluate(() => {
-    const injected = document.querySelector('style[data-audit-hide-fixed]');
-    injected?.remove();
-  });
-  await page.locator('.site-header').evaluate((node) => { node.style.visibility = 'visible'; });
   await toggle.click();
   if ((await toggle.getAttribute('aria-expanded')) !== 'true') {
     throw new Error(`${name}: world panel did not open`);
