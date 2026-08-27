@@ -8,6 +8,20 @@ await fs.mkdir(outDir, { recursive: true });
 
 const browser = await chromium.launch({ headless: true });
 
+async function revealByScrolling(page) {
+  await page.evaluate(async () => {
+    const step = Math.max(420, Math.floor(window.innerHeight * 0.72));
+    for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((resolve) => setTimeout(resolve, 45));
+    }
+    window.scrollTo(0, document.documentElement.scrollHeight);
+    await new Promise((resolve) => setTimeout(resolve, 80));
+    window.scrollTo(0, 0);
+  });
+  await page.waitForTimeout(120);
+}
+
 async function audit(name, viewport, reducedMotion = 'no-preference') {
   const context = await browser.newContext({ viewport, reducedMotion });
   const page = await context.newPage();
@@ -42,6 +56,9 @@ async function audit(name, viewport, reducedMotion = 'no-preference') {
   if (!metrics.skipLink) throw new Error(`${name}: missing skip link`);
   if (metrics.lang !== 'zh-CN') throw new Error(`${name}: unexpected lang ${metrics.lang}`);
 
+  await revealByScrolling(page);
+  await page.screenshot({ path: `${outDir}/${name}.png`, fullPage: true });
+
   const toggle = page.locator('[data-world-toggle]');
   await toggle.click();
   if ((await toggle.getAttribute('aria-expanded')) !== 'true') {
@@ -57,8 +74,6 @@ async function audit(name, viewport, reducedMotion = 'no-preference') {
     throw new Error(`${name}: Escape did not close world panel`);
   }
   await page.waitForFunction(() => document.activeElement === document.querySelector('[data-world-toggle]'));
-
-  await page.screenshot({ path: `${outDir}/${name}.png`, fullPage: true });
 
   if (consoleErrors.length) throw new Error(`${name}: console errors: ${consoleErrors.join(' | ')}`);
   if (pageErrors.length) throw new Error(`${name}: page errors: ${pageErrors.join(' | ')}`);
