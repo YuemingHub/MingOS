@@ -8,9 +8,7 @@
   <meta name="description" content="MingOS Living Interface V1 — 一个关于人与智能之间另一种关系的叙事原型。" />
   <title>MingOS — Living Interface V1</title>
   <link rel="stylesheet" href="./styles.css" />
-  <style>
-    .hero__title { max-width: 1180px; }
-  </style>
+  <link rel="stylesheet" href="./refinements.css" />
   <script defer src="./app.js"></script>
 </head>
 <body>
@@ -22,7 +20,8 @@
       <span class="open-mark" aria-hidden="true"></span>
     </a>
     <button class="world-button" type="button" aria-expanded="false" aria-controls="world-panel" data-world-toggle>
-      <span>四个空间</span>
+      <span class="world-button__label world-button__label--full">四个空间</span>
+      <span class="world-button__label world-button__label--short">空间</span>
       <span aria-hidden="true">＋</span>
     </button>
   </header>
@@ -33,19 +32,19 @@
       <nav aria-label="MingOS 空间导航" class="world-nav">
         <a href="#mingos">
           <span class="world-nav__name">MingOS</span>
-          <span class="world-nav__role">The idea</span>
+          <span class="world-nav__role">为什么存在</span>
         </a>
         <a href="https://ymai.love/">
           <span class="world-nav__name">Family Space</span>
-          <span class="world-nav__role">For us</span>
+          <span class="world-nav__role">我们家</span>
         </a>
         <a href="https://ymai.fun/">
           <span class="world-nav__name">归 · Return to Oneself</span>
-          <span class="world-nav__role">For me</span>
+          <span class="world-nav__role">我自己</span>
         </a>
         <a href="https://ymai.me/">
           <span class="world-nav__name">月明</span>
-          <span class="world-nav__role">Where it began</span>
+          <span class="world-nav__role">从哪里开始</span>
         </a>
       </nav>
     </div>
@@ -54,7 +53,6 @@
   <main id="main">
     <section class="hero section" id="top" aria-labelledby="hero-title">
       <div class="section-shell hero__inner">
-        <p class="eyebrow" data-reveal>MingOS</p>
         <h1 id="hero-title" class="hero__title" data-reveal>
           当智能越来越靠近我们的生活，<br />
           我们开始认真想一件事：
@@ -92,13 +90,13 @@
 
     <section class="section spaces" aria-labelledby="spaces-title">
       <div class="section-shell">
-        <p class="eyebrow" data-reveal>Two places</p>
+        <p class="eyebrow" data-reveal>两个地方</p>
         <h2 id="spaces-title" class="section-title" data-reveal>我们先留出两个地方。</h2>
 
         <div class="space-list">
           <article class="space-story space-story--family" data-reveal>
             <div class="space-story__meta">
-              <span>For us</span>
+              <span>我们家</span>
               <span class="status-dot" aria-hidden="true"></span>
             </div>
             <div class="space-story__body">
@@ -114,7 +112,7 @@
 
           <article class="space-story space-story--return" data-reveal>
             <div class="space-story__meta">
-              <span>For me</span>
+              <span>我自己</span>
               <span class="status-dot" aria-hidden="true"></span>
             </div>
             <div class="space-story__body">
@@ -133,7 +131,7 @@
 
     <section class="section order" id="mingos" aria-labelledby="order-title">
       <div class="section-shell order__shell">
-        <p class="eyebrow" data-reveal>Underneath</p>
+        <p class="eyebrow" data-reveal>在背后</p>
         <h2 id="order-title" class="section-title" data-reveal>
           它们看起来不同。<br />
           背后，我们想守住同一种秩序。
@@ -161,7 +159,7 @@
 
     <section class="section boundaries" aria-labelledby="boundaries-title">
       <div class="section-shell">
-        <p class="eyebrow" data-reveal>Boundaries</p>
+        <p class="eyebrow" data-reveal>边界</p>
         <h2 id="boundaries-title" class="section-title section-title--narrow" data-reveal>
           如果系统有一天比今天强很多，<br />
           有些东西仍然不能因为“更智能”就被拿走。
@@ -186,31 +184,39 @@
       <div class="section-shell">
         <div class="reality-heading">
           <div>
-            <p class="eyebrow" data-reveal>Reality, not promise</p>
+            <p class="eyebrow" data-reveal>今天</p>
             <h2 id="reality-title" class="section-title" data-reveal>我们现在真正做到哪里</h2>
           </div>
-          <p class="reality-date" data-reveal>Prototype snapshot · 28 Aug 2026</p>
+          <p class="reality-date" data-reveal>原型快照 · 2026.08.28</p>
         </div>
 
-        <div class="reality-grid">
-          <article class="reality-item" data-reveal>
-            <p class="reality-item__status"><span class="marker marker--exists">EXISTS</span></p>
-            <h3>现在真实存在的</h3>
+        <div class="reality-ledger" aria-label="MingOS 当前事实账本">
+          <article class="reality-ledger__row" data-reveal>
+            <div class="reality-ledger__state">
+              <span class="marker marker--exists">EXISTS</span>
+              <h3>现在真实存在的</h3>
+            </div>
             <p>MingOS 已有可验证的跨空间协议、证据与连续性工作；Family Space 已有独立的真实产品施工线。</p>
           </article>
-          <article class="reality-item" data-reveal>
-            <p class="reality-item__status"><span class="marker marker--testing">TESTING</span></p>
-            <h3>正在验证的</h3>
+          <article class="reality-ledger__row" data-reveal>
+            <div class="reality-ledger__state">
+              <span class="marker marker--testing">TESTING</span>
+              <h3>正在验证的</h3>
+            </div>
             <p>如何把底层原则变成真实产品体验，而不是再增加一层抽象；本页面本身就是其中一个原型。</p>
           </article>
-          <article class="reality-item" data-reveal>
-            <p class="reality-item__status"><span class="marker marker--direction">DIRECTION</span></p>
-            <h3>还只是方向的</h3>
+          <article class="reality-ledger__row" data-reveal>
+            <div class="reality-ledger__state">
+              <span class="marker marker--direction">DIRECTION</span>
+              <h3>还只是方向的</h3>
+            </div>
             <p>让更多家庭与个人拥有长期、可控、可修订的 Life Space。方向不等于已经交付。</p>
           </article>
-          <article class="reality-item" data-reveal>
-            <p class="reality-item__status"><span class="marker marker--unknown">UNKNOWN</span></p>
-            <h3>我们还不知道的</h3>
+          <article class="reality-ledger__row" data-reveal>
+            <div class="reality-ledger__state">
+              <span class="marker marker--unknown">UNKNOWN</span>
+              <h3>我们还不知道的</h3>
+            </div>
             <p>这些空间在更长时间、更多真实家庭与不同人生阶段里，究竟会怎样被使用、修正和留下。</p>
           </article>
         </div>
@@ -223,7 +229,7 @@
 
     <section class="section questions" aria-labelledby="questions-title">
       <div class="section-shell questions__shell">
-        <p class="eyebrow" data-reveal>Open questions</p>
+        <p class="eyebrow" data-reveal>仍然没有答案的</p>
         <h2 id="questions-title" class="section-title" data-reveal>还有一些问题，我们没有答案。</h2>
 
         <div class="question-list">
