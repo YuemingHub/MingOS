@@ -160,6 +160,11 @@ ul,ol{margin:0;padding:0;list-style:none}
 .foot-links a:hover{color:var(--gold)}
 .foot-links a::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   width:100%;min-width:44px;height:100%;min-height:44px}
+/* 触控修正（20260905）：链接本体加高到 ≥44px，扩展层改为填充自身盒子，
+   不再向行间溢出——此前相邻扩展层在 11px gap 内互相覆盖，边界 4px 会点到相邻行 */
+.foot-links button,.foot-links a{padding-block:8px}
+.foot-links button::before,.foot-links a::before{
+  top:0;left:0;right:0;bottom:0;transform:none;width:auto;height:auto;min-height:0}
 .foot-bottom{margin-top:clamp(40px,7vh,72px);padding-top:22px;border-top:1px solid var(--hair-2);
   display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   font-size:13.5px;color:var(--text-3);letter-spacing:.05em}
