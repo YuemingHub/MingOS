@@ -169,6 +169,10 @@ ul{margin:0;padding:0;list-style:none}
 .ghost-link{font-size:15px;color:var(--text-2);letter-spacing:.04em;
   border-bottom:1px solid var(--hair);padding-bottom:2px;
   transition:color var(--t-1) var(--ease),border-color var(--t-1) var(--ease)}
+.ghost-link.is-current{color:var(--gold);border-color:rgba(201,169,110,.45);cursor:default}
+.head-right{display:flex;align-items:center;gap:clamp(16px,2.4vw,30px)}
+.about-link .full{display:inline}.about-link .short{display:none}
+@media (max-width:520px){.about-link .full{display:none}.about-link .short{display:inline}}
 .ghost-link:hover{color:var(--gold);border-color:var(--gold)}
 /* !important：压过 .js .js-only{display:inline-flex}（同场景两规则叠加时，后者特异性更高） */
 @media (max-width:720px){.hide-sm{display:none !important}}
@@ -537,6 +541,7 @@ ul{margin:0;padding:0;list-style:none}
     <b>MingOS</b>
   </a>
   <div class="head-right">
+    <a class="ghost-link about-link is-current" href="/about" aria-current="page"><span class="full">谁在做这件事</span><span class="short">关于</span></a>
     <button type="button" class="ghost-link hide-sm js-only" data-drawer="why-family">为什么从家庭开始？</button>
     <button type="button" class="mark-btn" data-drawer="constellation"
             aria-label="你现在在哪里 · 四个空间的位置图">
