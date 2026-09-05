@@ -29,7 +29,7 @@ import os, re, sys, json, shutil, subprocess, tempfile, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-PAGES = ['index.html', 'mingos/index.html', 'foundation/index.html', 'building/index.html']
+PAGES = ['index.html', 'mingos/index.html', 'foundation/index.html', 'building/index.html', 'about/index.html']
 OUTFONT = os.path.join(ROOT, 'MingOS-Serif.woff2')
 # 可选：传入另一个站点根目录（如 ../ymai-love），自动发现根目录 *.html 与 */index.html
 if len(sys.argv) > 1:
