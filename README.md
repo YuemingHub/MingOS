@@ -1,3 +1,13 @@
+> ⚠️ **PORTFOLIO STATUS · 2026-09-25**
+>
+> MingOS remains the public home for **proven shared semantics**, but is now **FREEZE-BY-DEFAULT**: do not expand runtime/platform abstractions unless repeated real failures across independent Life Spaces / reality systems prove a cross-space need that cannot be owned locally or borrowed externally.
+>
+> Portfolio consolidation is tracked in Issue #43: durable Foundation principles and the current live mingos.cn source are planned to be absorbed here. Until those migrations are verified, `mingos-foundation` and `MingOS-web` remain source-of-record for their current assets.
+>
+> Closed Drafts #36/#37 are provenance, not active queues.
+
+---
+
 # MingOS
 
 > 面向未来的数字生命空间操作系统。
