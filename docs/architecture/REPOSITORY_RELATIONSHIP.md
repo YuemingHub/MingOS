@@ -1,8 +1,8 @@
 # 仓库关系
 
-## mingos-foundation
+## Foundation（`foundation/`）
 
-最高原则与校准标准。MingOS 只能引用和落实，不应复制后形成第二套宪章。
+最高原则与校准标准，现以存活文本形式位于本仓库 `foundation/`，来源 `YuemingHub/mingos-foundation` @ `fc40f98`（见 [`../../foundation/README.md`](../../foundation/README.md)）。MingOS 只能引用和落实，不应复制后形成第二套宪章。
 
 ## MingOS
 

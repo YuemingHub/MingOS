@@ -2,7 +2,7 @@
 >
 > MingOS remains the public home for **proven shared semantics**, but is now **FREEZE-BY-DEFAULT**: do not expand runtime/platform abstractions unless repeated real failures across independent Life Spaces / reality systems prove a cross-space need that cannot be owned locally or borrowed externally.
 >
-> Portfolio consolidation is tracked in Issue #43: durable Foundation principles and the current live mingos.cn source are planned to be absorbed here. Until those migrations are verified, `mingos-foundation` and `MingOS-web` remain source-of-record for their current assets.
+> Portfolio consolidation is tracked in Issue #43. The durable Foundation principle texts now live in [`foundation/`](foundation/), harvested from `YuemingHub/mingos-foundation` @ `fc40f98` — see [`foundation/README.md`](foundation/README.md) for provenance and status limits. The live mingos.cn source has **not** been migrated yet: `MingOS-web` remains source-of-record for the site.
 >
 > Closed Drafts #36/#37 are provenance, not active queues.
 
@@ -18,7 +18,7 @@ MingOS 不是某一个聊天机器人、Agent、知识库或家庭教育产品�
 
 | 仓库 | 职责 |
 |---|---|
-| [`YuemingHub/mingos-foundation`](https://github.com/YuemingHub/mingos-foundation) | 生命宪章、最高原则、伦理与不可违背边界 |
+| **本仓库 [`foundation/`](foundation/)** | 生命宪章、最高原则、伦理与不可违背边界（存活文本，来源 `YuemingHub/mingos-foundation`） |
 | **本仓库 `YuemingHub/MingOS`** | 跨空间协议、Schema、内核与运行时 |
 | `YuemingHub/Family-Space` | 第一个垂直空间：家庭空间；家庭业务不进入 MingOS 内核 |
 

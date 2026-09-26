@@ -29,7 +29,7 @@ MingOS succeeds when stronger system capability makes people more able to judge,
 ## 2. Three-repository constitutional map
 
 ```text
-mingos-foundation
+MingOS/foundation/   # surviving texts from mingos-foundation
     ↓ defines non-negotiable boundaries
 
 MingOS

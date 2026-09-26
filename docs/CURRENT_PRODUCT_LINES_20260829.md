@@ -3,6 +3,8 @@
 > Current coordination fact: 2026-08-29
 >
 > This file maps current product/repository roles. It does **not** promote product implementation into MingOS Core.
+>
+> **2026-09-26 pointer update (Issue #43 Phase B).** In the map below, `mingos-foundation` now means this repository's [`foundation/`](../foundation/README.md) — the surviving principle texts harvested from `YuemingHub/mingos-foundation` @ `fc40f98`, still **Candidate / Draft**. The source repository is becoming archive/provenance. The map's layer semantics are unchanged.
 
 ## 1. Current map
 

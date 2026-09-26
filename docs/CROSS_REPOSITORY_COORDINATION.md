@@ -3,7 +3,9 @@
 > 状态：Proposed coordination contract  
 > 日期：2026-08-11  
 > 维护位置：`YuemingHub/MingOS`  
-> 适用范围：`mingos-foundation`、`MingOS`、`Family-Space`
+> 适用范围：`MingOS/foundation/`、`MingOS`、`Family-Space`
+>
+> **2026-09-26 修订（Issue #43 Phase B）**：下文的 Foundation 仓坐标是 2026-08-11 的时点事实，**不再指向当前权威仓**。存活的生命宪章 / 原则文本已迁入本仓库 `foundation/`（来源 `YuemingHub/mingos-foundation` @ `fc40f98`，状态仍为 Candidate / Draft，见 `foundation/README.md`）。源仓 `YuemingHub/mingos-foundation` 将随 Phase D 转为 archive，仅作 provenance。**注意**：下表第 1 行把「治理流程、标准与合规判定」记在原则层，但本次收割**没有**迁入任何 Foundation workflow / ADR / RFC / Kernel / conformance / registry / scripts —— `foundation/` 只是存活原则文本，不承载治理机器。原文不改写，此处显式记录以免误读。本修订**不改动**下文记录的历史正文，也**不提升**其中任何 Foundation 文本的状态。
 
 本文件是三仓协作的导航、边界和**当前协调事实入口**。它不替代各仓自己的 canonical fact source，也不把 Draft、开放 PR、产品字段、内部验收、一次真实使用或 AI 判断自动提升为 Accepted / Stable / generalized evidence。
 

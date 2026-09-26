@@ -8,6 +8,8 @@ owner: MingOS Architecture
 # MingOS Foundation Dependency Baseline
 
 > This is a downstream adoption record. It does not modify, promote, or replace any document in `YuemingHub/mingos-foundation`.
+>
+> **Amended 2026-09-26 (Issue #43 Phase B).** The Foundation repository coordinates in section 2 and 4 are a 2026-08-06 point-in-time observation, not a current authority pointer. The surviving charter/principle texts now live in this repository at [`foundation/`](../foundation/README.md), harvested from `YuemingHub/mingos-foundation` @ `fc40f98`; they remain **Candidate / Draft** and this harvest does not promote them. `YuemingHub/mingos-foundation` becomes archive/provenance. The dated body below is otherwise left unchanged.
 
 ## 1. Purpose
 
@@ -24,7 +26,7 @@ Only Accepted or Stable Foundation documents are current normative dependencies.
 
 | Item | Current value | Authority / status |
 |---|---|---|
-| Foundation repository | `YuemingHub/mingos-foundation` | Accepted current repository identity; historical `YuemingHub/Ming-Foundation` retained as provenance |
+| Foundation repository | `YuemingHub/mingos-foundation` | Observed 2026-08-06; superseded 2026-09-26 — current text location is [`foundation/`](../foundation/README.md); historical `YuemingHub/Ming-Foundation` retained as provenance |
 | Foundation default branch | `main` | Repository metadata |
 | Foundation main baseline | `7eb33ffc806db1da2fde488a617860ca34b76c0e` | Observed after PR #15, #12 and #16 merged |
 | Foundation version | `1.0.0-alpha.18` | Foundation main README / GOV-0001 |

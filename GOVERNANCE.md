@@ -1,6 +1,8 @@
 # 治理边界
 
-MingOS 受 `YuemingHub/mingos-foundation` 的最高原则约束。本仓库负责把原则转化为跨空间的可执行协议，但不自行改写生命宪章。
+MingOS 受本仓库 [`foundation/`](foundation/) 中生命宪章类文本的边界约束（存活原则文本，来源 `YuemingHub/mingos-foundation` @ `fc40f98`；状态与限制见 [`foundation/README.md`](foundation/README.md)）。本仓库负责把原则转化为跨空间的可执行协议，但不自行改写生命宪章。
+
+`foundation/` 里的文本保持其原本的 Candidate / Draft 状态，迁移不构成状态提升；它们也不覆盖个人现实、项目当前事实或人的主体性。
 
 ## 决策层级
 
