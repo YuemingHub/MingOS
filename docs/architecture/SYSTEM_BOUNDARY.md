@@ -23,7 +23,7 @@ MingOS 是跨空间的公共操作底座。它处理：
 ## 依赖方向
 
 ```text
-mingos-foundation
+MingOS/foundation/     # 来源 mingos-foundation
        ↓
      MingOS
        ↓

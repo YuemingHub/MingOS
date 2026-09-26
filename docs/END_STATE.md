@@ -40,7 +40,7 @@ flowchart TB
 从工程职责看，三仓关系保持清晰：
 
 ```text
-mingos-foundation  →  MingOS  →  Family-Space
+MingOS/foundation/  →  MingOS  →  Family-Space
 原则与治理基座       公共运行内核    第一个真实垂直空间
 ```
 

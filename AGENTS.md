@@ -61,7 +61,7 @@
 ## 三仓关系
 
 ```text
-mingos-foundation
+MingOS/foundation/        # 存活原则文本，来源 mingos-foundation
     ↓ hard boundaries
 
 MingOS
