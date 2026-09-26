@@ -1,52 +1,32 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-MingOS · 中文衬线子集重建工具（多页面版）
+MingOS · 中文衬线子集构建工具
 
-用途：标题字用的是内嵌的 "MingOS Serif"（Noto Serif SC 子集）。
-      如果你改了文案、出现了新的汉字，那几个字会掉回系统字体（宋体），
-      看起来就是"一句话里有一两个字不一样"。这时重跑一次本脚本即可。
+标题/核心句使用的 "MingOS Serif" 是 Noto Serif SC（SIL OFL 1.1 授权，见 FONT-LICENSE.txt）
+的按需子集：包含 out/ 下所有已导出页面里真正出现的字符（全站并集）。
 
-覆盖范围：index.html + mingos/ + foundation/ + building/ 四个页面。
-每个页面内联【自己的】子集（首页保持最小，新页面各自独立，互不增重）。
-仓库根目录的 MingOS-Serif.woff2 是四页并集，供四站复用与重建。
+用法：
+    pip install fonttools brotli        # 只需一次
+    npm run build                       # 先产出 out/index.html
+    python tools/build-font.py          # 联网拉取 Google Fonts 分片并生成 public/MingOS-Serif.woff2
+    npm run build                       # 字体进入 public/ 后再构建一次
 
-用法（在项目根目录 mingos-cn/ 下）：
-    pip install fonttools brotli      # 只需一次
-    python tools/build-font.py        # 需要联网，约 1-2 分钟
-
-它做五件事：
-  1. 从四个页面各抽出非 ASCII 字符（页面真正会显示的字）
-  2. 向 Google Fonts 取 Noto Serif SC 的分片清单，只下载覆盖到并集的那几片
-  3. 裁到只剩这些字 → 合并成一个并集字体
-  4. 并集字体存回 MingOS-Serif.woff2；再按页裁出各自的子集
-  5. 各页子集 base64 内联回各自 HTML 的 @font-face
-
-字体许可：SIL Open Font License 1.1（可商用、可内嵌、可子集化）。
-         授权全文见 FONT-LICENSE.txt，随字体一起分发是 OFL 的要求。
+文案改动后重跑即可；缺字会掉到系统宋体栈（Songti SC / SimSun），不会报错。
 """
-import os, re, sys, json, shutil, subprocess, tempfile, urllib.request
+import os, re, io, sys, json, shutil, subprocess, tempfile, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-PAGES = ['index.html', 'mingos/index.html', 'foundation/index.html', 'building/index.html', 'about/index.html']
-OUTFONT = os.path.join(ROOT, 'MingOS-Serif.woff2')
-# 可选：传入另一个站点根目录（如 ../ymai-love），自动发现根目录 *.html 与 */index.html
-if len(sys.argv) > 1:
-    ROOT = os.path.abspath(sys.argv[1])
-    import glob
-    PAGES = sorted(
-        os.path.relpath(p, ROOT).replace('\\', '/')
-        for p in glob.glob(os.path.join(ROOT, '*.html'))
-        + glob.glob(os.path.join(ROOT, '*', 'index.html')))
-OUTFONT = os.path.join(ROOT, 'MingOS-Serif.woff2')
+OUTDIR = os.path.join(ROOT, 'out')
+OUTFONT = os.path.join(ROOT, 'public', 'MingOS-Serif.woff2')
 UA = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
       '(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
 CSS_URL = 'https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400&display=swap'
 
 
 def get(url, binary=False, tries=4):
-    """先用 curl（本环境里 Python 的 urllib 跟 Google 的 TLS 握手会失败），再退到 urllib。"""
+    """curl 优先（部分环境 Python urllib 与 Google TLS 握手会失败），失败退回 urllib。"""
     last = None
     for n in range(tries):
         try:
@@ -63,17 +43,34 @@ def get(url, binary=False, tries=4):
                 return data if binary else data.decode('utf-8')
         except Exception as e:
             last = str(e)[:80]
-        import time; time.sleep(2 * (n + 1))
+        import time
+        time.sleep(2 * (n + 1))
     raise RuntimeError('下载失败 %s（%s）' % (url[:70], last))
 
 
-def page_chars(rel):
-    html = open(os.path.join(ROOT, rel), encoding='utf-8').read()
-    body = html.split('<body>')[1]
-    body = re.sub(r'<script[\s\S]*?</script>', '', body)
-    body = re.sub(r'<style[\s\S]*?</style>', '', body)
-    txt = re.sub(r'<[^>]+>', '', body)
-    return sorted({c for c in txt if ord(c) > 127})
+def page_chars():
+    """全站并集：out/ 下每一个已导出的页面都要有字形覆盖。
+
+    只扫 index.html 的话，二级页（如 /foundation）独有的用字会缺，
+    而缺字是静默回退到系统宋体——肉眼很难发现，只有对比才看得出来。"""
+    import html as h
+    need = set()
+    files = []
+    for dirpath, _dirs, names in os.walk(OUTDIR):
+        for n in names:
+            if n.endswith('.html'):
+                files.append(os.path.join(dirpath, n))
+    for f in sorted(files):
+        body = io.open(f, encoding='utf-8').read().split('<body')
+        if len(body) < 2:
+            continue
+        body = body[1]
+        body = re.sub(r'<script[\s\S]*?</script>', '', body)
+        body = re.sub(r'<style[\s\S]*?</style>', '', body)
+        txt = h.unescape(re.sub(r'<[^>]+>', '', body))
+        need |= {c for c in txt if ord(c) > 127}
+    print('扫描 %d 个页面' % len(files))
+    return sorted(need)
 
 
 def parse_range(ur):
@@ -88,49 +85,10 @@ def parse_range(ur):
     return cps
 
 
-def rename_mingos(path):
-    """改名：合并会让 name 表留下残留，浏览器字体面板里会误导。"""
-    from fontTools.ttLib import TTFont
-    f = TTFont(path)
-    n = f['name']
-    n.names = [r for r in n.names if r.platformID != 1]
-    for nid, val in [(1, 'MingOS Serif'), (2, 'Regular'), (3, 'MingOSSerif-Regular'),
-                     (4, 'MingOS Serif'), (6, 'MingOSSerif-Regular')]:
-        n.setName(val, nid, 3, 1, 0x409)
-        n.setName(val, nid, 1, 0, 0)
-    f['OS/2'].usWeightClass = 400
-    f.flavor = 'woff2'
-    f.save(path)
-
-
-def subset_to(src, text, dst):
-    subprocess.run([sys.executable, '-m', 'fontTools.subset', src,
-                    '--text=' + text, '--flavor=woff2', '--output-file=' + dst,
-                    '--layout-features=', '--no-hinting', '--desubroutinize',
-                    '--drop-tables+=DSIG,BASE,GDEF,GPOS,GSUB', '--name-IDs=1,2,3,4,6',
-                    '--notdef-outline'], check=True, capture_output=True)
-
-
-def inline(page_rel, b64):
-    path = os.path.join(ROOT, page_rel)
-    html = open(path, encoding='utf-8').read()
-    pat = r'src:url\(data:font/woff2;base64,[A-Za-z0-9+/=]+\) format\("woff2"\);'
-    if re.search(pat, html):
-        html = re.sub(pat, 'src:url(data:font/woff2;base64,' + b64 + ') format("woff2");', html)
-    else:
-        print('  注意：%s 里没找到 @font-face 的 src，请手动插入一次（之后脚本会自动替换）' % page_rel)
-        return
-    open(path, 'w', encoding='utf-8').write(html)
-    print('  已内联 %s（base64 %d 字符）' % (page_rel, len(b64)))
-
-
 def main():
-    page_map = {rel: page_chars(rel) for rel in PAGES}
-    for rel, chars in page_map.items():
-        print('%-24s %d 个非 ASCII 字符' % (rel, len(chars)))
-    union = sorted({c for chars in page_map.values() for c in chars})
-    need = {ord(c) for c in union}
-    print('并集 %d 个字符' % len(union))
+    chars = page_chars()
+    print('页面需要 %d 个非 ASCII 字符' % len(chars))
+    need = {ord(c) for c in chars}
 
     css = get(CSS_URL)
     slices = []
@@ -163,38 +121,37 @@ def main():
 
     miss = sorted(need - covered)
     if miss:
-        print('  注意：这些字符不在该字体里，会继续走 sans/mono（通常是有意的）：')
-        print('   ', ' '.join('U+%04X' % m for m in miss))
+        print('  注意：以下字符不在 Noto Serif SC 里，将走系统字体栈：')
+        print('   ', ' '.join('U+%04X(%s)' % (m, chr(m)) for m in miss))
 
     merged = os.path.join(tmp, 'merged.ttf')
     subprocess.run([sys.executable, '-m', 'fontTools.merge'] + parts +
                    ['--output-file=' + merged], check=True, capture_output=True)
 
-    # 并集字体：存回仓库根目录，供四站复用与以后重建
-    union_font = os.path.join(tmp, 'union.woff2')
+    final = os.path.join(tmp, 'final.woff2')
     allchars = os.path.join(tmp, 'all.txt')
-    open(allchars, 'w', encoding='utf-8').write(''.join(union))
+    open(allchars, 'w', encoding='utf-8').write(''.join(chars))
     subprocess.run([sys.executable, '-m', 'fontTools.subset', merged,
-                    '--text-file=' + allchars, '--flavor=woff2', '--output-file=' + union_font,
+                    '--text-file=' + allchars, '--flavor=woff2', '--output-file=' + final,
                     '--layout-features=', '--no-hinting', '--desubroutinize',
                     '--name-IDs=1,2,3,4,6', '--notdef-outline'], check=True, capture_output=True)
-    rename_mingos(union_font)
-    shutil.copyfile(union_font, OUTFONT)
+
+    # 规整 name 表与字重，避免浏览器字体面板出现误导信息
     from fontTools.ttLib import TTFont
-    print('并集字体: MingOS-Serif.woff2  %d B  字形 %d' %
-          (os.path.getsize(OUTFONT), TTFont(OUTFONT)['maxp'].numGlyphs))
-
-    # 每个页面裁出自己的子集并内联
-    for rel, chars in page_map.items():
-        page_font = os.path.join(tmp, 'page.woff2')
-        subset_to(merged, ''.join(chars), page_font)
-        rename_mingos(page_font)
-        size = os.path.getsize(page_font)
-        import base64
-        b64 = base64.b64encode(open(page_font, 'rb').read()).decode()
-        print('%-24s 子集 %d B  字形 %d' % (rel, size, TTFont(page_font)['maxp'].numGlyphs))
-        inline(rel, b64)
-
+    f = TTFont(final)
+    n = f['name']
+    n.names = [r for r in n.names if r.platformID != 1]
+    for nid, val in [(1, 'MingOS Serif'), (2, 'Regular'), (3, 'MingOSSerif-Regular'),
+                     (4, 'MingOS Serif'), (6, 'MingOSSerif-Regular')]:
+        n.setName(val, nid, 3, 1, 0x409)
+        n.setName(val, nid, 1, 0, 0)
+    f['OS/2'].usWeightClass = 400
+    f.flavor = 'woff2'
+    os.makedirs(os.path.dirname(OUTFONT), exist_ok=True)
+    f.save(OUTFONT)
+    size = os.path.getsize(OUTFONT)
+    print('最终字体: %s  %d B  字形 %d' % (os.path.relpath(OUTFONT, ROOT), size,
+                                          TTFont(OUTFONT)['maxp'].numGlyphs))
     shutil.rmtree(tmp, ignore_errors=True)
 
 

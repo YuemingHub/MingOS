@@ -1,0 +1,106 @@
+{
+  "skill": "check",
+  "generated_at": "2026-09-12T16:05:00+08:00",
+  "project_name": "mingos.cn (MingOS-web)",
+  "target": "https://mingos.cn 单页落地页 · 移动端优先走查",
+  "findings": [
+    {
+      "category": "responsive",
+      "severity": "major",
+      "description": "SVG 线条宽度按 CSS 像素写，但 SVG 的 stroke-width 是用户单位、会随 viewBox 缩放。.venn__svg viewBox 为 640x450，桌面渲染 560px（缩放 0.875）→ .vc 写 1.2 实际仅 1.05px；移动端渲染 340px（缩放 0.531）→ 写 1.6 实际仅 0.85px；320px 小屏缩放 0.431 → 实际 0.69px。.vc-flow 移动端写 3.2 实际仅 1.70px。旁证：同一文件的 .venn__human 在移动端被单独补成 26px，说明已知 SVG 会缩放，但只补了文字未补线条。这是用户两次反馈“圆看不见/不清楚”的真正原因。",
+      "suggestion": "按缩放比补偿用户单位：.vc 桌面 1.2→1.5（实际 1.31px）、移动端 1.6→2.8（实际 1.49px）；.vc-flow 桌面 2.6→3.0、移动端 3.2→5.6（实际约 3.0px）；.venn__dot 的 r 3.2→4.5。不要把 .vc/.vc-flow 改成 vector-effect:non-scaling-stroke —— 它们依赖 stroke-dasharray 做描画与绕圆动画，该属性会改变虚线长度基准导致动画损坏。",
+      "location": "app/globals.css .vc / .vc-flow / .venn__dot（约 300-400 行与 1330-1360 行）"
+    },
+    {
+      "category": "responsive",
+      "severity": "major",
+      "description": "整页常驻 14 个 infinite 动画（turn×2、fall、venn-drift-a/b/c、venn-flow×2、venn-glow-breathe、lamp、horizon-breathe、tide），其中 6 个是 SVG 元素的 transform 动画。移动端唯一的降级只有 prefers-reduced-motion，没有针对低端机的轻量化。用户明确说明移动端是主要入口。",
+      "suggestion": "在 @media (max-width:767px) 关掉最不易察觉的 venn-drift-a/b/c（保留旋转微光）；或给漂移图层加 will-change: transform 让浏览器提前分层。",
+      "location": "app/globals.css 全局动效"
+    },
+    {
+      "category": "responsive",
+      "severity": "major",
+      "description": ".end::before 是 1100x1100 的元素加大半径 filter: blur(14px)。虽然父级 overflow:hidden，模糊本身仍参与合成，移动端滚到结尾可能明显掉帧。",
+      "suggestion": "移动端把尺寸降到约 620px、blur(10px)；或改用 radial-gradient 直接绘制，避免 filter。",
+      "location": "app/globals.css .end::before"
+    },
+    {
+      "category": "responsive",
+      "severity": "minor",
+      "description": "顶部有 env(safe-area-inset-top)，底部没有 env(safe-area-inset-bottom)。.end__in 的 padding-bottom 固定 46px，iPhone 全面屏上底栏贴得偏近。",
+      "suggestion": "改为 padding-bottom: calc(46px + env(safe-area-inset-bottom))。",
+      "location": "app/globals.css .end__in"
+    },
+    {
+      "category": "responsive",
+      "severity": "minor",
+      "description": "未设置 -webkit-tap-highlight-color，iOS 上点击链接会闪一块灰色高亮，与整体克制的调性不符。",
+      "suggestion": "html { -webkit-tap-highlight-color: transparent; }，由已有的 :active 态承担反馈。",
+      "location": "app/globals.css 全局"
+    },
+    {
+      "category": "responsive",
+      "severity": "minor",
+      "description": "body 上的 text-rendering: optimizeLegibility 在移动端被普遍认为会拖慢文字渲染，收益很小。",
+      "suggestion": "移动端覆盖为 auto，或整体移除。",
+      "location": "app/globals.css body"
+    },
+    {
+      "category": "feedback",
+      "severity": "minor",
+      "description": "两个链接的触摸热区低于 44px：.end__meta a（备案号，13px 字号≈25px 行高）、.why__triad a（≈38px）。",
+      "suggestion": "给这两处加 padding-block，把可点高度撑到 ≥44px。",
+      "location": "app/globals.css .end__meta a / .why__triad a"
+    },
+    {
+      "category": "visual-hierarchy",
+      "severity": "minor",
+      "description": "长句对齐不一致：.venn__not 与 .spaces__close 已在移动端改为左对齐，但 .venn__cap（“它们相互渗透——本来就是同一个人的生活。”）仍居中。",
+      "suggestion": "一并在移动端改左对齐。",
+      "location": "app/globals.css .venn__cap"
+    },
+    {
+      "category": "visual-hierarchy",
+      "severity": "minor",
+      "description": "分区标签 .label 为 12.5px + letter-spacing 0.24em，小屏上字小而散、读起来发飘。",
+      "suggestion": "移动端字号提到 13px、字距收到 0.18em。",
+      "location": "app/globals.css .label"
+    },
+    {
+      "category": "components",
+      "severity": "minor",
+      "description": "结尾段落的色值仍是裸 hex（.end 渐变的 6 个色停、.horizon__line/road 的 rgba），未纳入已有的 token 体系（--stroke-* / --faint / --dawn-*）。",
+      "suggestion": "抽成 --dawn-1…--dawn-6 与 --dawn-line，避免以后调结尾要翻代码找色值。",
+      "location": "app/globals.css .end / .horizon"
+    },
+    {
+      "category": "feedback",
+      "severity": "minor",
+      "description": ".end__meta a 只有 :hover / :focus-visible，缺 :active 态；项目内 .space__go 与 .why__triad a 都有。",
+      "suggestion": "补 :active 态。",
+      "location": "app/globals.css .end__meta a"
+    },
+    {
+      "category": "ia",
+      "severity": "minor",
+      "description": "单页 7 屏长滚动，移动端没有“回到顶部”。但《页面表达总纲》明确要求首屏不放导航，故属取舍而非缺陷。",
+      "suggestion": "不主动加。若用户希望，可在页脚加一行极轻的“回到顶部”。",
+      "location": "app/page.tsx"
+    }
+  ],
+  "summary": {
+    "blocker": 0,
+    "major": 3,
+    "minor": 9,
+    "pass": 5
+  },
+  "skipped": [
+    "edge-states（静态营销页无表单/列表/数据请求，N/A）",
+    "brief-consistency（仓库内无 spark-output/context/brief.json）",
+    "完整 WCAG 审计（本 Skill 仅做可达性抽样，合规请走 Access）"
+  ],
+  "unverifiable": [
+    "首屏高度：.hero 用 100svh 写法正确，但 .hero__in padding-top 16vh 叠加 .hero padding-top 40px 与 flex 居中，内容可能偏低。静态读码判不了，必须真机确认，故未记为 finding。"
+  ]
+}
