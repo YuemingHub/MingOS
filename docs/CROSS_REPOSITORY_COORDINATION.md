@@ -1,3 +1,14 @@
+> ⚠️ **HISTORICAL COORDINATION RECORD · SUPERSEDED FOR CURRENT AUTHORITY**
+>
+> 本文件主体记录的是 2026-08-11 的三仓协调现实，保留作 provenance。它**不再是当前协调事实入口**，也不得继续作为 Foundation → MingOS → Product 的当前层级依据。
+>
+> 当前权威边界请看：
+> - `GOVERNANCE.md`
+> - `COMPASS.md`
+> - `foundation/README.md`
+>
+> 以下历史正文不删除、不改写其当时事实。
+
 # MingOS 三仓协调契约
 
 > 状态：Proposed coordination contract  
